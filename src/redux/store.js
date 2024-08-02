@@ -10,11 +10,20 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import exampleReducer from "./exampleReducer";
+
+import { authReducer } from "./auth/slice";
+
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
+
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    example: exampleReducer, ///тимчасова заглушка
+    auth: persistedAuthReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
