@@ -2,6 +2,7 @@ import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
 import css from './WaterForm.module.css';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 const WaterForm = () => {
   const [counter, setCouter] = useState(50);
