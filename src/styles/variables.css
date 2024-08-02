@@ -1,0 +1,9 @@
+:root {
+  --color-font-main: #323f47;
+  --color-font-second: #2f2f2f;
+  --color-main-bg: #f0eff4;
+  --color-second-bg: #9be1a0;
+  --color-second-bg-hover: #87d28d;
+  --white: #ffffff;
+  --transition-color-color: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}

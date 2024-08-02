@@ -1,0 +1,29 @@
+@import url("./styles/variables.css");
+@import url("./styles/reset.css");
+
+body {
+  font-family: Poppins, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.29;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+
+  color-scheme: light dark;
+  color: var(--color-font-main);
+  background-color: var(--white);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+}
