@@ -1,0 +1,45 @@
+.modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(47, 47, 47, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 16px;
+  top: 20px;
+  padding: 0;
+  line-height: 0;
+  transition: all var(--transition-color-color);
+}
+.btn:hover {
+  color: red;
+  filter: drop-shadow(0 0 0.75rem crimson);
+}
+.info {
+  max-width: 344px;
+  width: 100%;
+  position: relative;
+  min-height: 280px;
+  background-color: var(--white);
+  border-radius: 15px;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+  padding: 40px 14px;
+}
+.svg {
+  stroke-width: 0.5;
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    right: 20px;
+  }
+  .info {
+    padding: 40px;
+  }
+}
