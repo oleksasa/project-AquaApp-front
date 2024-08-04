@@ -54,6 +54,13 @@
   display: block;
   margin-top: 8px;
   width: 100%;
+  transition: border-color 300ms, box-shadow 300ms;
+  outline: transparent;
+}
+.input:hover,
+.input:focus {
+  border-color: rgb(155, 225, 160);
+  box-shadow: 0 0 5px rgba(155, 225, 160, 0.5);
 }
 .btnSubmit {
   border-radius: 30px;
@@ -84,23 +91,25 @@
   color: rgb(11, 250, 27);
   filter: drop-shadow(0 0 0.75rem rgb(11, 250, 27));
 }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+
+/* скидання дефолту */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
   pointer-events: none; /* Вимикає прокручування */
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
   pointer-events: none; /* Вимикає прокручування */
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 const WaterForm = () => {
-  const [counter, setCouter] = useState(50);
+  const [counter, setCouter] = useState(0);
   const { register, handleSubmit } = useForm();
   const onSubmit = data => alert(JSON.stringify(data));
 
