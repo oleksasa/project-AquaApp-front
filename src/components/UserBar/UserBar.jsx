@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Icon from "../Icon/Icon";
 import UserBarPopover from "../UserBarPopover/UserBarPopover";
 import css from "./UserBar.module.css";
@@ -7,6 +7,7 @@ export default function UserBar() {
   const [isShow, setIsShow] = useState(false);
   const [popoverWidth, setPopoverWidth] = useState(null);
   const buttonRef = useRef(null);
+  const popoverRef = useRef(null);
 
   const handlClick = () => {
     if (!isShow) {
@@ -20,6 +21,24 @@ export default function UserBar() {
     if (buttonRef.current) {
       setPopoverWidth(buttonRef.current.offsetWidth);
     }
+  }, [isShow]);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        isShow &&
+        popoverRef.current &&
+        !popoverRef.current.contains(event.target) &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setIsShow(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
   }, [isShow]);
 
   return (
@@ -47,11 +66,13 @@ export default function UserBar() {
         </div>
       </button>
       {isShow && (
-        <UserBarPopover
-          style={{
-            width: popoverWidth !== null ? `${popoverWidth}px` : "auto",
-          }}
-        />
+        <div ref={popoverRef}>
+          <UserBarPopover
+            style={{
+              width: popoverWidth !== null ? `${popoverWidth}px` : "auto",
+            }}
+          />
+        </div>
       )}
     </div>
   );
