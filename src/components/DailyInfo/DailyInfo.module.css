@@ -1,0 +1,23 @@
+.wrapperDW {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 24px;
+}
+@media screen and (min-width: 375px) {
+}
+@media screen and (min-width: 768px) {
+  .wrapperDW {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .wrapperDW {
+    gap: 48px;
+  }
+}

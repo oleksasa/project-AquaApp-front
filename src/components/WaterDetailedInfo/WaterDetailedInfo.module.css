@@ -1,0 +1,25 @@
+.wrapper {
+  border-radius: 30px;
+  max-width: 343px;
+  background-color: var(--color-main-bg);
+  min-height: 770px;
+}
+@media screen and (min-width: 375px) {
+  .wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    min-width: 704px;
+    min-height: 738px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    min-width: 672px;
+    min-height: 736px;
+  }
+}

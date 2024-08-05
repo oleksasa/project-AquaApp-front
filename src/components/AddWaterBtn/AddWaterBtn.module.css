@@ -1,0 +1,27 @@
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: var(--color-second-bg);
+  stroke: var(--color-font-main);
+  transition: var(--transition-color-color);
+}
+.icon:hover {
+  fill: var(--color-font-main);
+  stroke: var(--white);
+}
+
+.btnAddWater {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--color-font-main);
+  background-color: transparent;
+}
