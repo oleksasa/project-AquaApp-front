@@ -24,20 +24,36 @@
   filter: drop-shadow(0 0 0.75rem crimson);
 }
 .info {
-  max-width: 344px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: auto;
-  min-height: 280px;
+  width: 100%;
+  max-width: 290px;
   background-color: var(--white);
   border-radius: 15px;
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
-  padding: 40px 14px;
+  /* padding: 40px 14px; */
 }
 .svg {
   stroke-width: 0.5;
+  font-size: 24px;
+}
+
+@media screen and (min-width: 343px) {
+  .btn {
+    right: 20px;
+  }
+  .info {
+    /* padding: 40px; */
+    max-width: 320px;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .info {
+    max-width: 343px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -45,6 +61,16 @@
     right: 20px;
   }
   .info {
-    padding: 40px;
+    /* padding: 40px; */
+    max-width: 518px;
+  }
+  .svg {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .info {
+    max-width: 518px;
   }
 }

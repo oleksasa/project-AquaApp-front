@@ -3,7 +3,7 @@ import css from './WaterModal.module.css';
 
 const WaterModal = ({ props }) => {
   return (
-    <>
+    <div className={css.container}>
       {props === 'add' ? (
         <>
           <h2 className={css.h2}>Add water</h2>
@@ -16,7 +16,7 @@ const WaterModal = ({ props }) => {
         </>
       )}
       <WaterForm />
-    </>
+    </div>
   );
 };
 

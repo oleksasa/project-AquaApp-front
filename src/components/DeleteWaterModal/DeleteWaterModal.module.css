@@ -8,6 +8,7 @@
   line-height: 1.2;
   letter-spacing: -0.01em;
   margin-bottom: 16px;
+  text-align: center;
 }
 .p {
   font-size: 14px;
@@ -15,6 +16,7 @@
   line-height: 1.29;
   letter-spacing: -0.01em;
   margin-bottom: 28px;
+  text-align: center;
 }
 .containerBtn {
   display: flex;
@@ -53,4 +55,35 @@
 .cancel:hover {
   background: #f0eff4;
   color: rgb(50, 63, 71);
+}
+
+.container {
+  padding: 40px 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 40px;
+  }
+  .containerBtn {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+  .delete,
+  .cancel {
+    padding: 18px 57px 18px 57px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .h2 {
+    font-size: 28px;
+    line-height: 1.14;
+    margin-bottom: 24px;
+  }
+  .p {
+    font-size: 18px;
+    line-height: 1.33;
+    margin-bottom: 24px;
+  }
 }
