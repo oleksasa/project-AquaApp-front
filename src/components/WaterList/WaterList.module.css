@@ -1,0 +1,52 @@
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: hidden;
+}
+.wrapList {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+/* WebKit стилізація горизонтальної смуги прокрутки */
+.wrapList::-webkit-scrollbar {
+  height: 8px;
+}
+
+.wrapList::-webkit-scrollbar-track {
+  background-color: var(--white);
+  border-radius: 9px;
+}
+
+.wrapList::-webkit-scrollbar-thumb {
+  background-color: var(--color-font-main);
+  border-radius: 9px;
+}
+
+/* Firefox стилізація горизонтальної смуги прокрутки */
+/* .wrapList {
+  scrollbar-color: var(--color-font-main) var(--white);
+  scrollbar-width: thin;
+} */
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .wrapList {
+    gap: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapList {
+    gap: 16px;
+  }
+}
