@@ -1,28 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import SharedLayout from './components/SharedLayout/SharedLayout';
-import BaseModal from './components/BaseModal/BaseModal';
-import WaterForm from './components/WaterForm/WaterForm';
-import WaterModal from './components/WaterModal/WaterModal';
-import { useState } from 'react';
-import LogOutModal from './components/LogOutModal/LogOutModal';
-import DeleteWaterModal from './components/DeleteWaterModal/DeleteWaterModal';
+import { lazy } from 'react';
+import RestrictedRoute from './components/permissions/RestrictedRoute';
+import PrivateRoute from './components/permissions/PrivateRoute';
 
-const HomePage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
-
-  return (
-    <div>
-      <button onClick={handleOpenModal}>Open Modal</button>
-      <BaseModal isOpen={isModalOpen} onRequestClose={handleCloseModal}>
-        <DeleteWaterModal />
-      </BaseModal>
-    </div>
-  );
-};
+const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
+//const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage.jsx"));
+// const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage.jsx"));
+//const TrackerPage = lazy(() => import("./pages/TrackerPage/TrackerPage.jsx"));
+//const NotFoundPage = lazy(() =>
+// import("../pages/NotFoundPage/NotFoundPage.jsx"));
 
 function App() {
   return (
