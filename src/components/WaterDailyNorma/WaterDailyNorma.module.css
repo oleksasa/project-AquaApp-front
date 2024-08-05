@@ -1,0 +1,42 @@
+.container {
+  /* My daily norma */
+
+  /* Auto layout */
+  /* display: flex; */
+  position: relative;
+
+  /* align-items: center; */
+  padding: 12px;
+  /* gap: 52px; */
+
+  /* position: absolute; */
+  width: 102px;
+  height: 54px;
+  /* left: 16px;
+  top: 122px; */
+
+  background: #ffffff;
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.text {
+  /* My daily norma */
+
+  /* width: 78px;
+  height: 10px; */
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 10px;
+  /* identical to box height, or 100% */
+
+  color: rgba(47, 47, 47, 0.6);
+
+  /* Inside auto layout */
+  /* flex: none; */
+  /* order: 1; */
+  /* flex-grow: 0; */
+}
