@@ -6,13 +6,19 @@ export default function WaterList() {
   //   const waters = useSelector();
 
   return (
-    <ul>
-      {/* {waters.map((water) => (
+    <div className={css.container}>
+      <ul className={css.wrapList}>
+        {/* {waters.map((water) => (
         <li key={water.id}>
           <WaterItem water={water} />
         </li>
       ))} */}
-      <WaterItem />
-    </ul>
+        <WaterItem />
+        <WaterItem />
+        <WaterItem />
+        <WaterItem />
+        <WaterItem />
+      </ul>
+    </div>
   );
 }

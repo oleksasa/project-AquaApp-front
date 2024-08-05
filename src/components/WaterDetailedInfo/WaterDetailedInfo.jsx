@@ -6,7 +6,7 @@ import css from "./WaterDetailedInfo.module.css";
 
 export default function WaterDetailedInfo() {
   return (
-    <div>
+    <div className={css.wrapper}>
       <UserPanel />
       <DailyInfo />
       {/* <MonthInfo /> */}
