@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+  text-align: center;
+}
+.containerBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.delete {
+  border: none;
+  border-radius: 30px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background: rgb(155, 225, 160);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  transition: background var(--transition-color-color);
+}
+.delete:hover {
+  background: #87d28d;
+}
+.cancel {
+  border: none;
+  padding-top: 14px;
+  font-size: 14px;
+  padding-bottom: 14px;
+  border-radius: 30px;
+  background: rgb(240, 239, 244);
+  color: rgba(50, 63, 71, 0.3);
+  font-weight: 700;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  transition: background var(--transition-color-color),
+    color var(--transition-color-color);
+}
+.cancel:hover {
+  background: #f0eff4;
+  color: rgb(50, 63, 71);
+}
+.container {
+  padding: 40px 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 40px;
+  }
+  .containerBtn {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+  .delete,
+  .cancel {
+    padding: 18px 57px 18px 57px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .h2 {
+    font-size: 28px;
+    line-height: 1.14;
+    margin-bottom: 24px;
+  }
+  .p {
+    font-size: 18px;
+    line-height: 1.33;
+    margin-bottom: 24px;
+  }
+}
