@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
-import { logInUser } from '../../api/auth.js';
+// import { logInUser } from '../../api/auth.js';
 import css from './LoginForm.module.css';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
