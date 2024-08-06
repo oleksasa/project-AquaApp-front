@@ -2,11 +2,13 @@
   min-height: 100vh;
   max-width: 375px;
   margin: auto;
+  padding: 16px;  
 }
 
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
+    padding: 32px;
   }
 }
 

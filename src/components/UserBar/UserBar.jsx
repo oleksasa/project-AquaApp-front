@@ -1,7 +1,8 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Icon from "../Icon/Icon";
-import UserBarPopover from "../UserBarPopover/UserBarPopover";
-import css from "./UserBar.module.css";
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import Icon from '../Icon/Icon';
+import { IoPersonCircleSharp } from 'react-icons/io5';
+import UserBarPopover from '../UserBarPopover/UserBarPopover';
+import css from './UserBar.module.css';
 
 export default function UserBar() {
   const [isShow, setIsShow] = useState(false);
@@ -24,7 +25,7 @@ export default function UserBar() {
   }, [isShow]);
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
+    const handleOutsideClick = event => {
       if (
         isShow &&
         popoverRef.current &&
@@ -35,9 +36,9 @@ export default function UserBar() {
       }
     };
 
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener('mousedown', handleOutsideClick);
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isShow]);
 
@@ -51,11 +52,12 @@ export default function UserBar() {
       >
         User name
         <div className={css.wrapAvatar}>
-          <img
+          <IoPersonCircleSharp className={css.avatar} />
+          {/* <img
             className={css.imgAvatar}
-            src="../../../public/avatar.jpg"
+            src="../../public/avatar.jpg"
             alt="User's Avatar"
-          />
+          /> */}
         </div>
         <div className={css.wrapIcon}>
           {isShow ? (
@@ -69,7 +71,7 @@ export default function UserBar() {
         <div ref={popoverRef}>
           <UserBarPopover
             style={{
-              width: popoverWidth !== null ? `${popoverWidth}px` : "auto",
+              width: popoverWidth !== null ? `${popoverWidth}px` : 'auto',
             }}
           />
         </div>
