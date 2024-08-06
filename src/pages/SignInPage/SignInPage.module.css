@@ -15,8 +15,12 @@
   .SignInWrap {
     width: 704px;
     height: 960px;
-    padding-left: 134px;
-    padding-right: 134px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding-left: 134px; */
+    /* padding-right: 134px; */
   }
 }
 @media screen and (min-width: 1440px) {

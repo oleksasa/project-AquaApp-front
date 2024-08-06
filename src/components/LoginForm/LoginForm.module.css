@@ -4,10 +4,13 @@
   row-gap: 16px;
   margin-bottom: 32px;
 }
+.LoginForm {
+  width: 311px;
+}
 .LoginTitle {
   color: var(--color-font-main);
   font-size: 32px;
-  padding-bottom: 32px;
+  margin-bottom: 32px;
 }
 .LoginPosition {
   position: relative;
@@ -102,6 +105,9 @@
 @media screen and (min-width: 768px) {
   .LoginTitle {
     font-size: 36px;
+  }
+  .LoginForm {
+    width: 436px;
   }
   .LoginName {
     font-size: 16px;
