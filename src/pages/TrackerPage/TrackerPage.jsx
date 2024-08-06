@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import MonthInfo from '../../components/MonthInfo/MonthInfo';
+import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedInfo";
+import css from "./TrackerPage.module.css";
 import { addMonths, subMonths } from 'date-fns';
 
-const TrackerPage = () => {
+export default function TrackerPage () {
     const [selectedDay, setSelectedDay] = useState(null);
     const [currentMonth, setCurrentMonth] = useState( new Date());
 
@@ -23,7 +25,10 @@ const TrackerPage = () => {
     };
 
     return (
-        <div>
+        <div className={css.container}>
+            {/* <WaterMainInfo /> */}
+            <WaterDetailedInfo 
+            selectedDay={selectedDay}/>
             <MonthInfo
             currentMonth={currentMonth}
             onMonthChange={handleMonthChange}
@@ -33,7 +38,5 @@ const TrackerPage = () => {
             />
         </div>
     );
-};
-
-export default TrackerPage;
+}
 
