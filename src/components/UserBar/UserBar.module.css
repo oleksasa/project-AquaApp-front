@@ -19,7 +19,7 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--white);
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   position: relative;
 }
 
@@ -29,12 +29,20 @@
   height: 38px;
   overflow: hidden;
 }
+.avatar {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  background-color: var(--color-font-main);
+  fill: var(--white);
+}
 
 .imgAvatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .wrapIcon {
   width: 16px;
   height: 16px;
