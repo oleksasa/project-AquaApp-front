@@ -1,0 +1,14 @@
+.text {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-main);
+}
+
+@media screen and (min-width: 768px) {
+  .text {
+    font-size: 28px;
+    line-height: 114%;
+  }
+}

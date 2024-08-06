@@ -1,0 +1,111 @@
+.wrapItem {
+  min-width: 149px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 15px;
+  padding: 18px 14px;
+  backdrop-filter: blur(33.599998474121094px);
+  background-color: var(--white);
+  margin-bottom: 24px;
+}
+
+.icon {
+  width: 28px;
+  height: 31px;
+}
+.textML {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--color-font-main);
+  margin-bottom: 6px;
+}
+
+.textTime {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.wrapBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 8px;
+  height: 36px;
+}
+
+.btnIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: var(--white);
+  padding: 0;
+  fill: var(--white);
+  stroke: var(--color-font-main);
+  line-height: 0;
+}
+.btnIconTrash {
+  /* padding-top: 6px; */
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+.iconPen {
+  width: 14px;
+  height: 14px;
+}
+.iconTrash {
+  width: 14px;
+  height: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapItem {
+    min-width: 192px;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 36px;
+  }
+  .textML {
+    font-size: 15px;
+    line-height: 149%;
+  }
+
+  .textTime {
+    line-height: 187%;
+  }
+
+  .wrapBtn {
+    gap: 14px;
+    height: 46px;
+  }
+
+  .btnIconTrash {
+    box-shadow: none;
+  }
+  .iconPen {
+    width: 16px;
+    height: 16px;
+  }
+  .iconTrash {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapBtn {
+    gap: 16px;
+  }
+}
