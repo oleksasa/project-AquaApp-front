@@ -6,7 +6,6 @@ import {
   registerUser,
   requestUserInfo,
   updateUserInfo,
-  updateUserPhoto,
 } from "../../api/auth.js";
 import { fetchRefreshToken } from "../../axios.js";
 
@@ -31,8 +30,7 @@ export const signUp = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const resSignUp = await registerUser(userData);
-      const resSignIn = await logInUser(userData);
-      return resSignIn.data;
+      return resSignUp.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.data.message);
     }
@@ -79,17 +77,17 @@ export const updateUserProfile = createAsyncThunk(
 
 //=================== UPLOAD PHOTO =====================
 
-export const uploadUserPhoto = createAsyncThunk(
-  "users/photo",
-  async (formData, thunkAPI) => {
-    try {
-      const response = await updateUserPhoto(formData);
-      return response.data.photo;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.response.data.data.message);
-    }
-  }
-);
+// export const uploadUserPhoto = createAsyncThunk(
+//   "users/photo",
+//   async (formData, thunkAPI) => {
+//     try {
+//       const response = await updateUserPhoto(formData);
+//       return response.data.photo;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.response.data.data.message);
+//     }
+//   }
+// );
 
 //=================== REFRESH TOKEN =====================
 

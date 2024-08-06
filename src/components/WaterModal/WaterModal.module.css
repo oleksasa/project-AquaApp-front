@@ -1,0 +1,54 @@
+.h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  width: 248px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+.p {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.container {
+  padding: 40px 20px 0px 20px;
+  width: 100%;
+}
+
+@media screen and (min-width: 343px) {
+  .container {
+    padding: 40px 20px 0px 20px;
+    max-width: 320px;
+  }
+}
+@media screen and (min-width: 360px) {
+  .container {
+    max-width: 343px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 40px 40px 0px 40px;
+    max-width: 518px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .h2 {
+    font-size: 28px;
+    line-height: 32px;
+    line-height: 1.32;
+    width: 347px;
+  }
+  .p {
+    font-size: 18px;
+    line-height: 1.32;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+}
