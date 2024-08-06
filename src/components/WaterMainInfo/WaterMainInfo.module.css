@@ -1,8 +1,9 @@
 .section {
   position: relative;
-  width: 100%;
   height: 415px;
   padding: 24px 12px;
+  margin-left: auto;
+  margin-right: auto;
 
   /* Accent */
   background: #9be1a0;
@@ -11,7 +12,7 @@
 
 .logo {
   /* AquaTrack */
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;

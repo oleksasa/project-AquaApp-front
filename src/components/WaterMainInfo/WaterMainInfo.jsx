@@ -1,6 +1,8 @@
-import WaterDailyNorma from "../../components/WaterDailyNorma/WaterDailyNorma";
+import WaterDailyNorma from '../../components/WaterDailyNorma/WaterDailyNorma';
+import WaterProgressBar from '../../components/WaterProgressBar/WaterProgressBar';
+import AddWaterBtn from '../../components/AddWaterBtn/AddWaterBtn';
 
-import css from "./WaterMainInfo.module.css";
+import css from './WaterMainInfo.module.css';
 
 export default function WaterMainInfo() {
   return (
@@ -8,8 +10,8 @@ export default function WaterMainInfo() {
       <p className={css.logo}>AquaTrack</p>
       <div className={css.backImg}></div>
       <WaterDailyNorma />
-      {/* <WaterProgressBar /> */}
-      {/* <AddWaterBtn /> */}
+      <WaterProgressBar />
+      <AddWaterBtn />
     </section>
   );
 }
