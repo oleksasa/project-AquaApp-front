@@ -1,11 +1,6 @@
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
   max-width: 375px;
-  flex-direction: column;
-  gap: 16px;
   margin: auto;
 }
 
@@ -17,7 +12,6 @@
 
 @media screen and (min-width: 1440px) {
   .container {
-    flex-direction: row;
     gap: 32px;
     max-width: 1440px;
   }
