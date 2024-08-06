@@ -1,0 +1,48 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px 20px;
+}
+  
+.header {
+  display: flex;
+  align-items: center;
+}
+  
+.title {
+  margin-right: auto;
+  margin-left: 0;
+  font-size: 20px;
+  color: rgba(50, 63, 71, 1);
+  flex: 1;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
+}
+  
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+  margin-left: 16px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+    margin-left: 20px;
+  }
+}
+  
+
+ 
+  
