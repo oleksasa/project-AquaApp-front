@@ -35,14 +35,34 @@
   top: 50px;
   z-index: 0;
 
-  background: url(./img/transparent_bottle_for_water1.png);
+  background: url(./img/transparent_bottle_for_water1.png) no-repeat;
+  background-size: contain;
 }
 
-.field {
-  font-family: inherit;
-  font-size: inherit;
-  padding: 4px;
-  border: 1px solid rgb(139, 134, 134);
-  border-radius: 4px;
-  margin-bottom: 12px;
+@media screen and (min-width: 768px) {
+  .section {
+    height: 578px;
+    padding: 32px;
+  }
+  .backImg {
+    width: 374px;
+    height: 477px;
+    left: calc(50% - 374px / 2);
+    top: 69px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    width: 672px;
+    height: 736px;
+    padding: 32px;
+    margin-bottom: 0;
+  }
+  .backImg {
+    width: 472px;
+    height: 604px;
+    left: 100px;
+    top: 92px;
+  }
 }

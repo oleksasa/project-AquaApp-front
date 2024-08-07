@@ -2,11 +2,9 @@
   /* My daily norma */
   display: flex;
   position: absolute;
-  flex-direction: column;
   justify-content: center;
-  gap: 6px;
+  align-items: center;
 
-  padding: 12px;
   width: 102px;
   height: 54px;
   top: 122px;
@@ -25,6 +23,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
+  margin-bottom: 6px;
 
   color: #323f47;
 }
@@ -38,4 +37,29 @@
   line-height: 10px;
 
   color: rgba(47, 47, 47, 0.6);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 129px;
+    height: 78px;
+  }
+
+  .dailyNorma {
+    font-size: 15px;
+    line-height: 1.49;
+    margin-bottom: 4px;
+  }
+
+  .text {
+    font-size: 12px;
+    line-height: 1.87;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    left: 64px;
+    top: 157px;
+  }
 }
