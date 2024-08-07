@@ -25,7 +25,7 @@ export const fetchRefreshToken = async () => {
 instance.interceptors.request.use(
   config => {
     const state = store.getState();
-    const token = state.auth.token;
+    const { token } = state.auth;
     if (token) {
       config.headers['Authorization'] = 'Bearer ' + token;
     }
@@ -42,7 +42,7 @@ instance.interceptors.response.use(
   },
   async error => {
     const originalRequest = error.config;
-
+    console.log('dfdfdfdf');
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {

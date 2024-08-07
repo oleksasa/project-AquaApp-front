@@ -37,6 +37,7 @@ const LoginForm = () => {
     defaultValues: INITIAL_VALUE,
     mode: 'onTouched',
   });
+
   const onSubmit = async data => {
     try {
       await dispatch(logIn(data)).unwrap();
@@ -48,6 +49,7 @@ const LoginForm = () => {
       toast.error('Something went wrong!');
     }
   };
+
   return (
     <div className={css.LoginWrapper}>
       <form className={css.LoginForm} onSubmit={handleSubmit(onSubmit)}>
