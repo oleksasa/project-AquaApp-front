@@ -16,11 +16,14 @@
 @media screen and (min-width: 768px) {
   .container {
     min-width: 768px;
+    padding: 32px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
     min-width: 1440px;
+    display: flex;
+    gap: 32px;
   }
 }
