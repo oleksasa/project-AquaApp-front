@@ -7,6 +7,7 @@ import { persistor, store } from './redux/store.js';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { injectStore } from './axios.js';
+import { Toaster } from 'react-hot-toast';
 
 injectStore(store);
 
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           <App />
+          <Toaster/>
         </BrowserRouter>
       </PersistGate>
     </Provider>
