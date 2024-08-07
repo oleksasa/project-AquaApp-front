@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import {
   logInUser,
@@ -6,14 +6,13 @@ import {
   registerUser,
   requestUserInfo,
   updateUserInfo,
-  updateUserPhoto,
-} from "../../api/auth.js";
-import { fetchRefreshToken } from "../../axios.js";
+} from '../../api/auth.js';
+import { fetchRefreshToken } from '../../axios.js';
 
 //====================== SIGN IN ======================
 
 export const logIn = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (userData, thunkAPI) => {
     try {
       const res = await logInUser(userData);
@@ -21,27 +20,27 @@ export const logIn = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.data.message);
     }
-  }
+  },
 );
 
 //====================== SIGN UP ======================
 
 export const signUp = createAsyncThunk(
-  "auth/signUp",
+  'auth/signUp',
   async (userData, thunkAPI) => {
     try {
       const resSignUp = await registerUser(userData);
-      const resSignIn = await logInUser(userData);
-      return resSignIn.data;
+      return resSignUp.data;
     } catch (err) {
+      console.log(err);
       return thunkAPI.rejectWithValue(err.response.data.data.message);
     }
-  }
+  },
 );
 
 //====================== LOG OUT =======================
 
-export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await logOutUser();
   } catch (err) {
@@ -52,7 +51,7 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 //================= USER INFORMATION ===================
 
 export const getUserInfo = createAsyncThunk(
-  "auth/info",
+  'auth/info',
   async (_, thunkAPI) => {
     try {
       const response = await requestUserInfo();
@@ -60,13 +59,13 @@ export const getUserInfo = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.data.message);
     }
-  }
+  },
 );
 
 //================== UPDATE PROFILE ====================
 
 export const updateUserProfile = createAsyncThunk(
-  "auth/update",
+  'auth/update',
   async (userData, thunkAPI) => {
     try {
       const response = await updateUserInfo(userData);
@@ -74,27 +73,13 @@ export const updateUserProfile = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.data.message);
     }
-  }
-);
-
-//=================== UPLOAD PHOTO =====================
-
-export const uploadUserPhoto = createAsyncThunk(
-  "users/photo",
-  async (formData, thunkAPI) => {
-    try {
-      const response = await updateUserPhoto(formData);
-      return response.data.photo;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.response.data.data.message);
-    }
-  }
+  },
 );
 
 //=================== REFRESH TOKEN =====================
 
 export const refreshToken = createAsyncThunk(
-  "users/refresh",
+  'users/refresh',
   async (_, thunkAPI) => {
     try {
       const { token } = await fetchRefreshToken();
@@ -102,7 +87,7 @@ export const refreshToken = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response);
     }
-  }
+  },
 );
 
 //=====================================================
