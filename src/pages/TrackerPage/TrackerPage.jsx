@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import MonthInfo from '../../components/MonthInfo/MonthInfo.jsx';
-import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedInfo.jsx";
+import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
+import MonthInfo from '../../components/MonthInfo/MonthInfo';
+import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import css from "./TrackerPage.module.css";
 import { addMonths, subMonths } from 'date-fns';
 
@@ -26,7 +27,7 @@ export default function TrackerPage () {
 
     return (
         <div className={css.container}>
-            {/* <WaterMainInfo /> */}
+            <WaterMainInfo />
             <WaterDetailedInfo 
             selectedDay={selectedDay}/>
             <MonthInfo

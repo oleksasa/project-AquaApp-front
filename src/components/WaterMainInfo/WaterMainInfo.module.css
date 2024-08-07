@@ -1,0 +1,48 @@
+.section {
+  position: relative;
+  height: 415px;
+  padding: 24px 12px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+
+  /* Accent */
+  background: #9be1a0;
+  border-radius: 30px;
+}
+
+.logo {
+  /* AquaTrack */
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  /* identical to box height, or 100% */
+  text-align: left;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+
+  color: #323f47;
+}
+
+.backImg {
+  /* transparent_bottle_for_water 1 */
+  position: absolute;
+  width: 262px;
+  height: 335px;
+  left: calc(50% - 262px / 2 + 0.5px);
+  top: 50px;
+  z-index: 0;
+
+  background: url(./img/transparent_bottle_for_water1.png);
+}
+
+.field {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 4px;
+  border: 1px solid rgb(139, 134, 134);
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
