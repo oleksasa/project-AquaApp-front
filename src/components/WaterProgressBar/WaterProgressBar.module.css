@@ -17,3 +17,21 @@
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
 }
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 295px;
+    height: 106px;
+    left: calc(50% - 295px / 2 - 0.5px);
+    top: 322px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 295px;
+    height: 106px;
+    left: calc(50% - 295px / 2 - 0.5px);
+    top: 450px;
+  }
+}
