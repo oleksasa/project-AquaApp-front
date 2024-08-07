@@ -16,7 +16,7 @@ export default function AddWaterBtn() {
         Add water
       </button>
       <BaseModal isOpen={isOpen} onRequestClose={closeModal}>
-        <WaterModal props={'add'} />
+        <WaterModal props={'add'} onRequestClose={closeModal} />
       </BaseModal>
     </>
   );

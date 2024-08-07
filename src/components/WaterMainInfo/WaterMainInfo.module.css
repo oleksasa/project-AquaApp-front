@@ -1,14 +1,14 @@
 .section {
   position: relative;
   height: 415px;
-  padding: 24px 12px;
+  /* padding: 24px 12px; */
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
 
   /* Accent */
-  background: #9be1a0;
-  border-radius: 30px;
+  /* background: #9be1a0; */
+  /* border-radius: 30px; */
 }
 
 .logo {
