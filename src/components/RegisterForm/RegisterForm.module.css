@@ -1,3 +1,7 @@
+.RegisterWrapper {
+  width: 100%;
+}
+
 .RegisterContainer {
   display: flex;
   flex-direction: column;
@@ -9,9 +13,7 @@
   font-size: 32px;
   margin-bottom: 32px;
 }
-.RegisterForm {
-  width: 311px;
-}
+
 .RegisterPosition {
   position: relative;
 }
@@ -101,7 +103,8 @@
     font-size: 36px;
   }
   .RegisterForm {
-    width: 436px;
+    max-width: 436px;
+    margin: 0 auto;
   }
   .RegisterName {
     font-size: 16px;
