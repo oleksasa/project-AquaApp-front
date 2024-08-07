@@ -18,3 +18,4 @@ export const WATER_INITIAL_STATE = {
     isError: null,
   },
 };
+
