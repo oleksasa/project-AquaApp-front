@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import CalendarPagination from '../CalendarPagination/CalendarPagination.jsx';
-import Calendar from '../Calendar/Calendar.jsx';
-import WaterStatistics from '../WaterStatistics/WaterStatistics.jsx';
+import CalendarPagination from '../CalendarPagination/CalendarPagination';
+import Calendar from '../Calendar/Calendar';
+import WaterStatistics from '../WaterStatistics/WaterStatistics';
 import { format } from 'date-fns';
 import css from './MonthInfo.module.css';
 import { getDayWater, getMonthWater } from '../../api/water.js';
