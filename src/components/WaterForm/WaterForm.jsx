@@ -16,7 +16,7 @@ const schema = yup.object().shape({
     .max(1500, 'Max 1500 ml'),
 });
 
-const WaterForm = () => {
+const WaterForm = ({onRequestClose}) => {
   const [counter, setCounter] = useState(0);
   const {
     register,
@@ -48,6 +48,7 @@ const WaterForm = () => {
 
     // Якщо всі перевірки пройдено, показуємо дані
     alert(JSON.stringify(data));
+    onRequestClose();
   };
 
   const minus = () => {
