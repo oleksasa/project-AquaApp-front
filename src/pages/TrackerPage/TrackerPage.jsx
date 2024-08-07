@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import MonthInfo from '../../components/MonthInfo/MonthInfo';
-import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedInfo";
+import MonthInfo from '../../components/MonthInfo/MonthInfo.jsx';
+import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedInfo.jsx";
 import css from "./TrackerPage.module.css";
 import { addMonths, subMonths } from 'date-fns';
 

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { format, eachDayOfInterval, startOfMonth, endOfMonth } from "date-fns";
-import CalendarItem from '../CalendarItem';
+import CalendarItem from '../CalendarItem/CalendarItem.jsx';
 import css from './Calendar.module.css';
 
 const Calendar = ({ currentMonth, onDayClick }) => {

@@ -1,29 +1,30 @@
 import { useState, useEffect } from 'react';
-import CalendarPagination from '../CalendarPagination.jsx';
-import Calendar from '../Calendar.jsx';
-import WaterStatistics from '../WaterStatistics';
+import CalendarPagination from '../CalendarPagination/CalendarPagination.jsx';
+import Calendar from '../Calendar/Calendar.jsx';
+import WaterStatistics from '../WaterStatistics/WaterStatistics.jsx';
 import { format } from 'date-fns';
 import css from './MonthInfo.module.css';
+import { getDayWater, getMonthWater } from '../../api/water.js';
 
 const MonthInfo = ({ currentMonth, onMonthChange, onDayClick, onPrevMonth, onNextMonth }) => {
-    const [waterData, setWaterData] = useState({});
+    // const [waterData, setWaterData] = useState({});
     const [showStats, setShowStats] = useState(false);
 
-    const fetchWaterData = async (date) => {
-        try {
-            const response = await fetch(`/api/water-intake?date=${format(date, 'yyyy-MM')}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            setWaterData(data);
-        } catch (error) {
-            console.error('Failed to fetch water data:', error);
-        }
-    };
+    // const fetchWaterData = async (date) => {
+    //     try {
+    //         const response = await fetch(`/api/water-intake?date=${format(date, 'yyyy-MM')}`);
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok');
+    //         }
+    //         const data = await response.json();
+    //         setWaterData(data);
+    //     } catch (error) {
+    //         console.error('Failed to fetch water data:', error);
+    //     }
+    // };
 
     useEffect(() => {
-        fetchWaterData(currentMonth);
+        getMonthWater(currentMonth);
     }, [currentMonth]);
 
 
@@ -32,7 +33,7 @@ const MonthInfo = ({ currentMonth, onMonthChange, onDayClick, onPrevMonth, onNex
     };
 
     const handleDayClick = (day) => {
-        fetchWaterData(day);
+        getDayWater(day);
         onDayClick(day);
     };
 
@@ -61,7 +62,6 @@ const MonthInfo = ({ currentMonth, onMonthChange, onDayClick, onPrevMonth, onNex
             {showStats ? (
                 <WaterStatistics
                 currentMonth={currentMonth}
-                waterData={waterData}
                 />
             ) : (
                 <Calendar
