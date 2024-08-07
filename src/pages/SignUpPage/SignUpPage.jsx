@@ -1,23 +1,23 @@
-import LoginForm from '../../components/LoginForm/LoginForm.jsx';
+import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
 import { Layout } from '../../components/layouts/Layout/Layout.jsx';
-import css from './SignInPage.module.css';
 import { useWindowWidth } from '../../hooks/useWindowWidth.js';
+import css from './SignUpPage.module.css';
 
-const SignInPage = () => {
+const SignUpPage = () => {
   const windowWidth = useWindowWidth();
 
   return (
     <Layout
       leftComponent={{
         component: (
-          <div className={css.SignInWrap}>
-            <LoginForm />
+          <div className={css.SignUpWrap}>
+            <RegisterForm />
           </div>
         ),
         bg: 'var(--color-main-bg)',
       }}
       rightComponent={{
-        component: <div>Right</div>,
+        component: <div className={css.rightComponentStyle}>Right</div>,
         bg: 'var(--color-main-bg)',
         hide: windowWidth < 1440,
       }}
@@ -25,4 +25,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SignUpPage;

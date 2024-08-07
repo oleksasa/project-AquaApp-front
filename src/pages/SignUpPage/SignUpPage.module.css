@@ -1,0 +1,17 @@
+.SignUpWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 126px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .SignUpWrap {
+    margin-top: 171px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .SignUpWrap {
+    margin-top: 74px;
+  }
+}
