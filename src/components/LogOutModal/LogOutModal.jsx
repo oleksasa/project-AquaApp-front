@@ -12,7 +12,7 @@ const LogOutModal = ({onClose}) => {
     dispatch(logOut());
 
     if(isLoggedIn){
-      toast.error("Something went wrong...")
+      toast.error("Something went wrong. Try again later")
     }
   }
 
