@@ -23,6 +23,7 @@
     /* padding-right: 134px; */
   }
 }
+
 @media screen and (min-width: 1440px) {
   .SignInWrap {
     width: 672px;
