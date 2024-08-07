@@ -27,7 +27,12 @@ function App() {
             <RestrictedRoute redirectTo="/tracker" component={<SignUpPage />} />
           }
         />
-        <Route path="/signin" element={<SignInPage />} />
+        <Route
+          path="/signin"
+          element={
+            <RestrictedRoute redirectTo="/tracker" component={<SignInPage />} />
+          }
+        />
         <Route
           path="/tracker"
           element={
