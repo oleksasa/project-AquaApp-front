@@ -10,9 +10,12 @@ const LogOutModal = ({onClose}) => {
 
   const logOutUser=()=>{
     dispatch(logOut());
-    isLoggedIn ? toast.error("This didn't work."):toast.success('You have successfully logged out.');
+
+    if(isLoggedIn){
+      toast.error("Something went wrong. Try again later")
+    }
   }
-  
+
   return (
     <div className={css.container}>
       <h2 className={css.h2}>Log out</h2>
