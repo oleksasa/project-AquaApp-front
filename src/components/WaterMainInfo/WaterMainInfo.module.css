@@ -1,68 +1,27 @@
 .section {
-  position: relative;
-  height: 415px;
-  /* padding: 24px 12px; */
-  margin-left: auto;
-  margin-right: auto;
-  /* margin-bottom: 16px; */
-
-  /* Accent */
-  /* background: #9be1a0; */
-  /* border-radius: 30px; */
-}
-
-.logo {
-  /* AquaTrack */
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 24px;
-  /* identical to box height, or 100% */
-  text-align: left;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-
-  color: #323f47;
-}
-
-.backImg {
-  /* transparent_bottle_for_water 1 */
-  position: absolute;
-  width: 262px;
-  height: 335px;
-  left: calc(50% - 262px / 2 + 0.5px);
-  top: 50px;
+  background: url(./transparent_bottle_for_water1.png) no-repeat;
+  background-size: 262px 335px;
+  background-position: center;
+  width: 100%;
+  min-height: 335px;
   z-index: 0;
-
-  background: url(./img/transparent_bottle_for_water1.png) no-repeat;
-  background-size: contain;
 }
 
 @media screen and (min-width: 768px) {
   .section {
-    height: 578px;
-    padding: 32px;
-  }
-  .backImg {
-    width: 374px;
-    height: 477px;
-    left: calc(50% - 374px / 2);
-    top: 69px;
+    margin-top: 13px;
+    background-size: 374px 477px;
+    min-height: 477px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .section {
-    width: 672px;
-    height: 736px;
-    padding: 32px;
     margin-bottom: 0;
+    background-size: 472px 604px;
+    min-height: 604px;
+    margin-top: 36px;
   }
   .backImg {
-    width: 472px;
-    height: 604px;
-    left: 100px;
-    top: 92px;
   }
 }
