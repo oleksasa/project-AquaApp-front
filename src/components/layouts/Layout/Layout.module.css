@@ -7,6 +7,10 @@
   text-transform: uppercase;
 }
 
+.paddingLeft {
+  padding: 24px 16px 30px 16px;
+}
+
 .layoutWrapper {
   border-radius: 30px;
   display: grid;
@@ -16,7 +20,7 @@
 
 .component {
   border-radius: 30px;
-  padding: 24px 16px;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
@@ -25,7 +29,7 @@
     line-height: 24px;
   }
 
-  .component {
+  .paddingLeft {
     padding: 32px 32px;
   }
 }
@@ -34,5 +38,9 @@
   .layoutWrapper {
     gap: 32px;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .paddingLeft {
+    padding: 32px 32px 40px 32px;
   }
 }
