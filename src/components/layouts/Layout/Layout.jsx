@@ -7,10 +7,14 @@ export const Layout = ({ leftComponent, rightComponent }) => {
   return (
     <div className={css.layoutWrapper}>
       <div
-        className={classNames(css.leftComponentStyle, css.component)}
+        className={classNames(
+          css.leftComponentStyle,
+          css.component,
+          css.paddingLeft,
+        )}
         style={{
           backgroundColor: leftComponent.bg,
-          display: leftComponent.hide ? 'none' : 'block',
+          display: leftComponent.hide ? 'none' : 'flex',
         }}
       >
         <Link to="/" className={css.logo}>
@@ -22,7 +26,7 @@ export const Layout = ({ leftComponent, rightComponent }) => {
         className={classNames(css.rightComponentStyle, css.component)}
         style={{
           backgroundColor: rightComponent.bg,
-          display: rightComponent.hide ? 'none' : 'block',
+          display: rightComponent.hide ? 'none' : 'flex',
         }}
       >
         {rightComponent.component}
