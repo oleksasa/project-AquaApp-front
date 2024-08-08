@@ -5,7 +5,7 @@ import WaterStatistics from '../WaterStatistics/WaterStatistics';
 import { format, addMonths, subMonths } from 'date-fns';
 import css from './MonthInfo.module.css';
 import { getDayWater, getMonthWater } from '../../api/water.js';
-import Icon from '../Icon/Icon';
+import BtnIcon from '../BtnIcon/BtnIcon';
 
 const MonthInfo = () => {
     const [showStats, setShowStats] = useState(false);
@@ -73,7 +73,7 @@ const MonthInfo = () => {
                 className={css.button}
                 onClick={handleButtonClick}
                 >
-                    {showStats ? <Icon id="pie-chart-01" className={css.icon}/> : <Icon id="pie-chart-02" className={css.icon}/>}
+                    {showStats ? <BtnIcon id="pie-chart-01" className={css.icon}/> : <BtnIcon id="pie-chart-02" className={css.icon}/>}
                     {/* <svg className={css.icon}>
                         <use href={showStats ? '#icon-calendar' : '#icon-stats'}></use>
                     </svg> */}

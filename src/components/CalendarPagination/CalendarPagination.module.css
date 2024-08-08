@@ -1,6 +1,6 @@
 .button {
     border: none;
-    color: #323F47;
+    
 }
 
 .text {
@@ -15,5 +15,5 @@
 .icon {
     width: 8px;
     height: 12px;
-    fill:#323F47;
+    color: #323F47;
 }
