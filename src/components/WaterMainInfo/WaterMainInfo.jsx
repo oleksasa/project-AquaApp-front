@@ -7,7 +7,6 @@ import AddWaterBtnProgressSection from '../AddWaterBtnProgressSection/AddWaterBt
 export default function WaterMainInfo() {
   return (
     <section className={css.section}>
-      <div className={css.backImg}></div>
       <WaterDailyNorma />
       <WaterProgressBar />
       <AddWaterBtnProgressSection />

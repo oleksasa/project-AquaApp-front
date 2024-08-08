@@ -21,6 +21,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
+  margin-bottom: 6px;
 
   color: #323f47;
 }
@@ -47,6 +48,7 @@
   .dailyNorma {
     font-size: 15px;
     line-height: 1.49;
+    margin-bottom: 0px;
   }
 
   .text {
