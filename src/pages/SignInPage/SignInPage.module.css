@@ -1,33 +1,16 @@
 .SignInWrap {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  position: relative;
-  margin: 0 auto;
-  width: 343px;
-  height: 780px;
-  background-color: var(--color-main-bg);
-  border-radius: 30px;
-  padding: 16px;
+  margin-top: 172px;
 }
 
 @media screen and (min-width: 768px) {
   .SignInWrap {
-    width: 704px;
-    height: 960px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* padding-left: 134px; */
-    /* padding-right: 134px; */
+    margin-top: 225px;
   }
 }
 @media screen and (min-width: 1440px) {
   .SignInWrap {
-    width: 672px;
-    height: 736px;
-    padding-left: 118px;
-    padding-right: 118px;
+    margin-top: 113px;
   }
 }

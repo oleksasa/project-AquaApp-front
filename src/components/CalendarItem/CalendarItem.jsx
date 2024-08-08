@@ -1,14 +1,15 @@
 import { format } from "date-fns";
 import css from './CalendarItem.module.css';
+import { myDailyNorma } from '../WaterDailyNorma/WaterDailyNorma';
 
-const CalendarItem = ({ date, onClick, dailyWaterIntake, dailyGoal, isSelected }) => {
-    const percentage = dailyGoal ? (dailyWaterIntake / dailyGoal) * 100 : 0;
-    const btn = percentage >= 100 ? css.completed : css.incomplete;
+const CalendarItem = ({ date, onClick, dailyWaterIntake, isSelected }) => {
+    const percentage = myDailyNorma > 0 ? (dailyWaterIntake / myDailyNorma) * 100 : 0;
+    const btnClass = percentage >= 100 ? css.completed : css.incomplete;
 
     return (
         <div className={css.container}>
             <button
-            className={`${css.button} ${btn} ${isSelected ? css.selected : ''}`}
+            className={`${css.button} ${btnClass} ${isSelected ? css.selected : ''}`}
             onClick={() => onClick(date)}
             aria-label={`Day ${format(date, 'd')}`}
             >

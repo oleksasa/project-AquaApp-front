@@ -2,30 +2,48 @@ import { useState, useEffect } from 'react';
 import CalendarPagination from '../CalendarPagination/CalendarPagination';
 import Calendar from '../Calendar/Calendar';
 import WaterStatistics from '../WaterStatistics/WaterStatistics';
-import { format } from 'date-fns';
+import { format, addMonths, subMonths } from 'date-fns';
 import css from './MonthInfo.module.css';
 import { getDayWater, getMonthWater } from '../../api/water.js';
 
-const MonthInfo = ({ currentMonth, onMonthChange, onDayClick, onPrevMonth, onNextMonth }) => {
-    // const [waterData, setWaterData] = useState({});
+const MonthInfo = () => {
     const [showStats, setShowStats] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(null);
+    const [currentMonth, setCurrentMonth] = useState( new Date());
+    const [monthlyWaterData, setMonthlyWaterData]  = useState({});
+    const [dailyWaterData, setDailyWaterData] = useState({});
 
-    // const fetchWaterData = async (date) => {
-    //     try {
-    //         const response = await fetch(`/api/water-intake?date=${format(date, 'yyyy-MM')}`);
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
-    //         const data = await response.json();
-    //         setWaterData(data);
-    //     } catch (error) {
-    //         console.error('Failed to fetch water data:', error);
-    //     }
-    // };
+
+    const handleMonthChange = (newMonth) => {
+        setCurrentMonth(newMonth);
+    };
+
+    const handlePrevMonth = () => {
+        handleMonthChange(subMonths(currentMonth, 1));
+    };
+
+    const handleNextMonth = () => {
+        handleMonthChange(addMonths(currentMonth, 1));
+    };
+
 
     useEffect(() => {
-        getMonthWater(currentMonth);
+        const fetchMonthWater = async () => {
+            const data = await getMonthWater(currentMonth);
+            setMonthlyWaterData(data);
+        };
+        fetchMonthWater();
     }, [currentMonth]);
+
+    useEffect(() => {
+        if (selectedDay) {
+            const fetchDayWater = async () => {
+                const data = await getDayWater(selectedDay);
+                setDailyWaterData(data);
+            };
+            fetchDayWater();
+        }
+    }, [selectedDay]);
 
 
     const handleButtonClick = () => {
@@ -33,8 +51,7 @@ const MonthInfo = ({ currentMonth, onMonthChange, onDayClick, onPrevMonth, onNex
     };
 
     const handleDayClick = (day) => {
-        getDayWater(day);
-        onDayClick(day);
+        setSelectedDay(day);
     };
 
     const monthName = format(currentMonth, 'MMMM');
@@ -46,9 +63,9 @@ const MonthInfo = ({ currentMonth, onMonthChange, onDayClick, onPrevMonth, onNex
                     {showStats ? 'Statistics' : monthName}
                 </h1>
                 <CalendarPagination
-                currentMonth={onMonthChange}
-                onPrevMonth={onPrevMonth}
-                onNextMonth={onNextMonth}
+                currentMonth={currentMonth}
+                onPrevMonth={handlePrevMonth}
+                onNextMonth={handleNextMonth}
                 />
                 <button
                 className={css.button}
@@ -62,11 +79,13 @@ const MonthInfo = ({ currentMonth, onMonthChange, onDayClick, onPrevMonth, onNex
             {showStats ? (
                 <WaterStatistics
                 currentMonth={currentMonth}
+                waterData={monthlyWaterData}
                 />
             ) : (
                 <Calendar
                 currentMonth={currentMonth}
                 onDayClick={handleDayClick}
+                dailyWaterData={dailyWaterData}
                 />
             )}
         </div>

@@ -4,27 +4,24 @@ import { format, eachDayOfInterval, startOfMonth, endOfMonth } from "date-fns";
 import CalendarItem from '../CalendarItem/CalendarItem';
 import css from './Calendar.module.css';
 
-const Calendar = ({ currentMonth, onDayClick }) => {
+const Calendar = ({ currentMonth, onDayClick, dailyWaterData }) => {
 
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     useEffect(() => {
         const today = new Date();
-        setSelectedDate(today);
-    }, []);
+        if (today >= startOfMonth(currentMonth) && today <= endOfMonth(currentMonth)) {
+            setSelectedDate(today);
+        } else {
+            setSelectedDate(startOfMonth(currentMonth));
+        }
+        
+    }, [currentMonth]);
 
     const start = startOfMonth(currentMonth);
     const end = endOfMonth(currentMonth);
     const days = eachDayOfInterval({ start, end });
-    // дані вказані для прикладу
-    const dailyGoal = 2000;
     
-    const waterData = days.reduce((acc, day) => {
-        acc[format(day, 'yyyy-MM-dd')] = {
-            dailyWaterIntake: Math.random() * dailyGoal,
-        };
-        return acc;
-    }, {});
 
     const handleDayClick = (date) => {
         setSelectedDate(date);
@@ -35,7 +32,7 @@ const Calendar = ({ currentMonth, onDayClick }) => {
         <div className={css.container}>
             {days.map(day => {
                 const formattedDate = format(day, 'yyyy-MM-dd');
-                const dailyWaterIntake = waterData[formattedDate]?.dailyWaterIntake || 0;
+                const dailyWaterIntake = dailyWaterData[formattedDate]?.dailyWaterIntake || 0;
             
             return (
                 <CalendarItem
@@ -43,7 +40,6 @@ const Calendar = ({ currentMonth, onDayClick }) => {
                 date={day}
                 onClick={handleDayClick}
                 dailyWaterIntake={dailyWaterIntake}
-                dailyGoal={dailyGoal}
                 isSelected={selectedDate && day.toDateString() === selectedDate.toDateString()}
                 />
             );

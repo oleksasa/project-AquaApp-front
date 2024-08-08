@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { INITIAL_STATE } from "./initialState";
+import { createSlice } from '@reduxjs/toolkit';
+import { INITIAL_STATE } from './initialState';
 import {
   getUserInfo,
   logIn,
@@ -7,11 +7,10 @@ import {
   refreshToken,
   signUp,
   updateUserProfile,
-  uploadUserPhoto,
-} from "./operations";
+} from './operations';
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: INITIAL_STATE,
   reducers: {
     setToken: (state, action) => {
@@ -30,7 +29,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
 
       ////////////////////////////////////////////////////
@@ -44,7 +43,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = true;
         state.isNewUser = true;
-        state.successMessage = "Successfully registered";
+        state.successMessage = 'Successfully registered';
         state.user = action.payload.user;
         state.token = action.payload.token;
       })
@@ -62,10 +61,10 @@ const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.token = action.payload.token;
-        state.user = action.payload.user;
+        console.log(action.payload);
+        state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
-        state.successMessage = "Successfully logged in";
+        state.successMessage = 'Successfully logged in';
       })
       .addCase(logIn.rejected, (state, action) => {
         state.isLoading = false;
@@ -78,10 +77,10 @@ const authSlice = createSlice({
         state.errorMessage = null;
         state.successMessage = null;
       })
-      .addCase(logOut.fulfilled, (state) => {
+      .addCase(logOut.fulfilled, state => {
         return INITIAL_STATE;
       })
-      .addCase(logOut.rejected, (state) => {
+      .addCase(logOut.rejected, state => {
         return INITIAL_STATE;
       })
 
@@ -97,7 +96,7 @@ const authSlice = createSlice({
       })
       .addCase(getUserInfo.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = "Something went wrong, try again later";
+        state.errorMessage = 'Something went wrong, try again later';
       })
 
       ////////////////////////////////////////////////////
@@ -108,31 +107,16 @@ const authSlice = createSlice({
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.successMessage = "Profile updated";
+        state.successMessage = 'Profile updated';
         state.user = action.payload;
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = "Something went wrong, try again later";
+        state.errorMessage = 'Something went wrong, try again later';
       })
 
-      ////////////////////////////////////////////////////
-      .addCase(uploadUserPhoto.pending, (state, action) => {
-        state.isLoadingPhoto = true;
-        state.errorMessage = null;
-        state.successMessage = null;
-      })
-      .addCase(uploadUserPhoto.fulfilled, (state, action) => {
-        state.isLoadingPhoto = false;
-        state.successMessage = "Photo updated";
-        state.user.photo = action.payload;
-      })
-      .addCase(uploadUserPhoto.rejected, (state, action) => {
-        state.isLoadingPhoto = false;
-        state.errorMessage = "Something went wrong, try again later";
-      })
       //////
-      .addCase(refreshToken.pending, (state) => {
+      .addCase(refreshToken.pending, state => {
         state.isLoggedIn = false;
       })
       .addCase(refreshToken.fulfilled, (state, action) => {
