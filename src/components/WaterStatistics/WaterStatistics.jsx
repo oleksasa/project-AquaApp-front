@@ -15,25 +15,32 @@ const WaterStatistics = ({ currentMonth, waterData }) => {
         return days.map(day => {
             const formattedDate = format(day, 'yyyy-MM-dd');
             return {
-                date: format(day, 'd MMM'),
+                date: format(day, 'd'),
                 waterIntake: waterData[formattedDate]?.dailyWaterIntake || 0
             };
         });
     };
+    // дані для прикладу
+    const dailyGoal = 3;
 
     const monthData = getMonthData();
 
     return (
         <div className={css.container}>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={300}>
                 <LineChart
                     data={monthData}
-                    margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                    margin={{ top: 50, right: 10, left: 0, bottom: 0 }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
+                    <XAxis 
+                    dataKey="date"
+                    interval={0} />
+                    <YAxis 
+                    domain={[0, (dataMax) => Math.max(dataMax, dailyGoal)]}
+                    tickFormatter={(value) => `${value} l`}
+                    />
+                    <Tooltip  formatter={(value) => `${value} l`}/>
                     <Legend />
                     <Line type="monotone" dataKey="waterIntake" stroke="#87D28D" activeDot={{ r: 8 }} />
                 </LineChart>

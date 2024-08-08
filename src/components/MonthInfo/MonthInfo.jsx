@@ -5,6 +5,7 @@ import WaterStatistics from '../WaterStatistics/WaterStatistics';
 import { format, addMonths, subMonths } from 'date-fns';
 import css from './MonthInfo.module.css';
 import { getDayWater, getMonthWater } from '../../api/water.js';
+import Icon from '../Icon/Icon';
 
 const MonthInfo = () => {
     const [showStats, setShowStats] = useState(false);
@@ -66,20 +67,23 @@ const MonthInfo = () => {
                 currentMonth={currentMonth}
                 onPrevMonth={handlePrevMonth}
                 onNextMonth={handleNextMonth}
+                onMonthChange={handleMonthChange}
                 />
                 <button
                 className={css.button}
                 onClick={handleButtonClick}
                 >
-                    <svg className={css.icon}>
+                    {showStats ? <Icon id="pie-chart-01" className={css.icon}/> : <Icon id="pie-chart-02" className={css.icon}/>}
+                    {/* <svg className={css.icon}>
                         <use href={showStats ? '#icon-calendar' : '#icon-stats'}></use>
-                    </svg>
+                    </svg> */}
                 </button>
             </div>
             {showStats ? (
                 <WaterStatistics
                 currentMonth={currentMonth}
                 waterData={monthlyWaterData}
+                // dailyGoal={}
                 />
             ) : (
                 <Calendar

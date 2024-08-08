@@ -1,20 +1,17 @@
 
 .container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 9px;
-  width: 303px;
+  width: 100%;
   padding: 0;
 
   @media screen and (min-width: 768px) {
     gap: 24px;
-    width: 640px;
+    grid-template-columns: repeat(8, 1fr);
+    
   }
 
-  @media screen and (min-width: 1400px) {
-    gap: 22px;
-    width: 608px;
-  }
 }
 
 

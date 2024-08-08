@@ -1,8 +1,9 @@
 import { format } from "date-fns";
 import css from './CalendarItem.module.css';
-import { myDailyNorma } from '../WaterDailyNorma/WaterDailyNorma';
+
 
 const CalendarItem = ({ date, onClick, dailyWaterIntake, isSelected }) => {
+    const myDailyNorma = 2000;
     const percentage = myDailyNorma > 0 ? (dailyWaterIntake / myDailyNorma) * 100 : 0;
     const btnClass = percentage >= 100 ? css.completed : css.incomplete;
 

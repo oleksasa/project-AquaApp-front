@@ -1,5 +1,5 @@
 import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
-import MonthInfo from '../../components/MonthInfo/MonthInfo';
+// import MonthInfo from '../../components/MonthInfo/MonthInfo';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import css from "./TrackerPage.module.css";
 
@@ -8,7 +8,7 @@ export default function TrackerPage() {
     <div className={css.container}>
       <WaterMainInfo />
       <WaterDetailedInfo />
-      <MonthInfo/>
+      {/* <MonthInfo/> */}
     </div>
   );
 }
