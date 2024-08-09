@@ -53,11 +53,6 @@ export default function UserBar() {
         User name
         <div className={css.wrapAvatar}>
           <IoPersonCircleSharp className={css.avatar} />
-          {/* <img
-            className={css.imgAvatar}
-            src="../../public/avatar.jpg"
-            alt="User's Avatar"
-          /> */}
         </div>
         <div className={css.wrapIcon}>
           {isShow ? (
