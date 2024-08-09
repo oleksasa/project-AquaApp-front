@@ -1,0 +1,397 @@
+.userSettingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.firstPart {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.secondPart {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.uploadPhotoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.img {
+  object-fit: cover;
+  border-radius: 100%;
+  width: 75px;
+  height: 75px;
+}
+
+.button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: none;
+  background: none;
+  color: var(--color-font-second);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+}
+
+.uploadSvg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--color-font-second);
+  fill: none;
+}
+
+.input {
+  display: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-second);
+}
+
+.radioInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.customRadio {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--color-second-bg);
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  background-color: #fff;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.radioInput:checked + .customRadio::after {
+  content: "";
+  position: absolute;
+  width: 8.5px;
+  height: 8.5px;
+  border-radius: 50%;
+  background-color: var(--color-second-bg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.radioButtonsWrapper {
+  display: flex;
+  gap: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-main);
+}
+
+.radioButtonsWrapper label {
+  cursor: pointer;
+}
+.formTitle {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-main);
+}
+
+.genderTitle {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-main);
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.formInput {
+  width: 100%;
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  padding: 14px 0px 14px 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-second);
+}
+.formInput:focus {
+  outline: none;
+}
+
+.formInput:active {
+  border-color: rgba(47, 47, 47, 0.4);
+}
+
+.errorMessage {
+  display: block;
+  color: #ef5050;
+  margin-top: 2px;
+}
+
+.errorInput {
+  border: 1px solid #ef5050;
+  color: #ef5050;
+}
+
+.formulaList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.listItem {
+  margin-bottom: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-second);
+}
+
+.formula {
+  display: block;
+  margin-top: 5px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-second-bg);
+}
+
+.normaDescriptionContainer {
+  margin-bottom: 14px;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.normaDescriptionSpan {
+  color: var(--color-second-bg);
+}
+
+.exclamationMarkSvg {
+  width: 18px;
+  height: 18px;
+}
+
+.activeTime {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-second);
+}
+
+.weight {
+  margin-bottom: 14px;
+}
+
+.formText {
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-second);
+}
+
+.waterPerDayContainer {
+  margin-bottom: 16px;
+}
+
+.waterPerDayText {
+  margin-bottom: 14px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--color-font-second);
+}
+
+.formButton {
+  width: 116px;
+  height: 46px;
+  border-radius: 30px;
+  padding: 14px 40px;
+  background: var(--color-second-bg);
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--color-font-main);
+  transition: ease-in-out 150ms;
+}
+
+.formButton:hover {
+  background: #87d28d;
+}
+
+@media screen and (min-width: 768px) {
+  .img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .button {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .uploadSvg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .customRadio {
+    margin-right: 10px;
+  }
+
+  .radioButtonsWrapper {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .formTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .genderTitle {
+    margin-bottom: 14px;
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .name {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+  }
+
+  .formInput {
+    padding: 16px 0px 16px 16px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .formulaList {
+    flex-direction: row;
+    gap: 28px;
+  }
+
+  .listItem {
+    margin-bottom: 0px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .formula {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .normaDescriptionContainer {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .exclamationMarkSvg {
+    width: 22px;
+    height: 22px;
+    margin-right: 4px;
+  }
+
+  .activeTime {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .formText {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .waterPerDayText {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .formButton {
+    width: 141px;
+    height: 56px;
+    border-radius: 30px;
+    padding: 16px 50px;
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .userSettingForm {
+    gap: 40px;
+  }
+
+  .formWrapper {
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .firstPart {
+    flex: 1;
+  }
+
+  .secondPart {
+    flex: 1;
+    transform: translateY(86px);
+  }
+  .waterPerDayContainer {
+    margin-bottom: 0;
+  }
+}
