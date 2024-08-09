@@ -8,6 +8,7 @@ import {
   signUp,
   updateUserProfile,
 } from './operations';
+import toast from 'react-hot-toast';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -49,7 +50,7 @@ const authSlice = createSlice({
       })
       .addCase(signUp.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload;
+        toast.errorMessage = action.payload;
       })
 
       ////////////////////////////////////////////////////
@@ -68,7 +69,7 @@ const authSlice = createSlice({
       })
       .addCase(logIn.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload;
+        toast.errorMessage = action.payload;
       })
 
       ////////////////////////////////////////////////////
@@ -96,7 +97,7 @@ const authSlice = createSlice({
       })
       .addCase(getUserInfo.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = 'Something went wrong, try again later';
+        toast.errorMessage = 'Something went wrong, try again later';
       })
 
       ////////////////////////////////////////////////////
@@ -112,7 +113,7 @@ const authSlice = createSlice({
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = 'Something went wrong, try again later';
+        toast.errorMessage = 'Something went wrong, try again later';
       })
 
       //////

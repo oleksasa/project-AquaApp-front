@@ -1,7 +1,15 @@
-import Icon from "../Icon/Icon";
-import css from "./UserBarPopover.module.css";
+import { useDispatch } from 'react-redux';
+import Icon from '../Icon/Icon';
+import css from './UserBarPopover.module.css';
+import { logOut } from '../../redux/auth/operations';
 
 export default function UserBarPopover({ style }) {
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
+
   return (
     <div className={css.wrapper} style={style}>
       <button className={css.btnSet} type="button">
@@ -10,7 +18,7 @@ export default function UserBarPopover({ style }) {
         </div>
         Settings
       </button>
-      <button className={css.btnLogOut} type="button">
+      <button className={css.btnLogOut} type="button" onClick={handleLogOut}>
         <div className={css.wrapIcon}>
           <Icon id="log-out" className={css.iconLog} />
         </div>
