@@ -1,5 +1,5 @@
-import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
-import { Layout } from '../../components/layouts/Layout/Layout.jsx';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import { Layout } from '../../components/layouts/Layout/Layout';
 import { useWindowWidth } from '../../hooks/useWindowWidth.js';
 import css from './SignUpPage.module.css';
 
