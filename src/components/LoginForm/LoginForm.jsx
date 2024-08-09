@@ -12,7 +12,7 @@ import { getUserInfo, logIn } from '../../redux/auth/operations.js';
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string()
-    .min(8, 'Password must be at least 6 characters')
+    .min(6, 'Password must be at least 6 characters')
     .required('Required'),
 });
 
