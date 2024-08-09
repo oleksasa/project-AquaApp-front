@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { logOutReducer, setToken } from './redux/auth/slice.js';
 
-const BASE_URL = 'https://project-aquaapp-back.onrender.com';
+// const BASE_URL = 'https://project-aquaapp-back.onrender.com';
+const BASE_URL = 'http://localhost:3000';
 
 let store;
 export const injectStore = _store => {
@@ -19,7 +20,7 @@ export const fetchRefreshToken = async () => {
     {},
     { withCredentials: true },
   );
-  return data;
+  return data.data.accessToken;
 };
 
 instance.interceptors.request.use(

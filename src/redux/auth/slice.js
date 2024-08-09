@@ -62,7 +62,6 @@ const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log(action.payload);
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.successMessage = 'Successfully logged in';
@@ -118,13 +117,17 @@ const authSlice = createSlice({
 
       //////
       .addCase(refreshToken.pending, state => {
-        state.isLoggedIn = false;
+        // state.isLoggedIn = false;
+        state.isRefreshing = true;
       })
       .addCase(refreshToken.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
         state.token = action.payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
-      .addCase(refreshToken.rejected, () => INITIAL_STATE);
+      .addCase(refreshToken.rejected, (state) => {
+        state.isRefreshing = false;
+      });
   },
 });
 
