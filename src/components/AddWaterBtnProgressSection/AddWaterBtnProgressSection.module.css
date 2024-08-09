@@ -1,0 +1,51 @@
+.iconProgressSection {
+  width: 16px;
+  height: 16px;
+  fill: var(--white);
+}
+.iconProgressSection:hover {
+  fill: var(--color-font-main);
+}
+
+.btnAddWaterProgressSection {
+  margin-top: 40px;
+  margin-left: 171px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: center;
+
+  color: var(--white);
+  background-color: var(--color-font-main);
+}
+
+@media screen and (min-width: 768px) {
+  .btnAddWaterProgressSection {
+    margin-top: 26px;
+    padding: 18px 30px;
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 462px;
+  }
+
+  .iconProgressSection {
+    width: 24px;
+    height: 24px;
+    fill: var(--white);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btnAddWaterProgressSection {
+    margin-top: 56px;
+    margin-left: 430px;
+  }
+}

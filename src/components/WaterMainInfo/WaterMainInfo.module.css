@@ -1,0 +1,27 @@
+.section {
+  background: url(./transparent_bottle_for_water1.png) no-repeat;
+  background-size: 262px 335px;
+  background-position: center;
+  width: 100%;
+  min-height: 335px;
+  z-index: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    margin-top: 13px;
+    background-size: 374px 477px;
+    min-height: 477px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    margin-bottom: 0;
+    background-size: 472px 604px;
+    min-height: 604px;
+    margin-top: 36px;
+  }
+  .backImg {
+  }
+}

@@ -1,0 +1,153 @@
+.p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  margin-bottom: 8px;
+}
+.counter {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.minus,
+.plus {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  line-height: 0;
+}
+
+.counterInfo {
+  border-radius: 30px;
+  background: rgb(50, 63, 71);
+  padding: 11px 20px 11px 20px;
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  line-height: 1;
+}
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.timeP {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+.valueP {
+  color: rgb(50, 63, 71);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+.input {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 16px 14px;
+  background-color: rgb(255,255,255);
+  display: block;
+  margin-top: 8px;
+  color: rgba(47, 47, 47, 1);
+  width: 100%;
+  transition: border-color 300ms, box-shadow 300ms;
+  outline: transparent;
+}
+.input:hover,
+.input:focus {
+  border-color: rgb(155, 225, 160);
+  box-shadow: 0 0 5px rgba(155, 225, 160, 0.5);
+}
+.btnSubmit {
+  border-radius: 30px;
+  background: rgb(155, 225, 160);
+  padding: 14px 40px;
+  width: min-content;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  text-align: center;
+  border: none;
+  transition: background var(--transition-color-color);
+}
+.svg {
+  font-size: 40px;
+}
+.btnSubmit:hover {
+  background: #87d28d;
+}
+.minus,
+.plus {
+  color: rgb(1,1,1);
+  transition: all var(--transition-color-color);
+}
+.minus:hover {
+  color: red;
+  filter: drop-shadow(0 0 0.75rem crimson);
+}
+.plus:hover {
+  color: rgb(11, 250, 27);
+  filter: drop-shadow(0 0 0.75rem rgb(11, 250, 27));
+}
+.form {
+  padding-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .svg {
+    font-size: 43px;
+  }
+  .counterInfo {
+    padding: 12.5px 20px 12.5px 20px;
+  }
+  .btnSubmit {
+    padding: 18px 50px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .input {
+    padding: 16px;
+  }
+  .timeP {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .valueP {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}
+
+/* скидання дефолту */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  pointer-events: none; /* Вимикає прокручування */
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  pointer-events: none; /* Вимикає прокручування */
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}

@@ -1,0 +1,64 @@
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 15px;
+  padding: 14px 57px 14px 20px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  width: fit-content;
+  position: absolute;
+}
+.btnSet,
+.btnLogOut {
+  background-color: inherit;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--main);
+}
+.btnLogOut {
+  color: rgba(50, 63, 71, 0.4);
+  fill: var(--white);
+  stroke: rgba(50, 63, 71, 0.4);
+  transition: var(--transition-color-color);
+}
+.btnLogOut:hover {
+  color: var(--color-font-main);
+  stroke: var(--color-font-main);
+}
+.wrapIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--color-font-main);
+}
+
+.iconLog {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .btnSet,
+  .btnLogOut {
+    font-size: 15px;
+    line-height: 149%;
+  }
+}
