@@ -1,23 +1,26 @@
 .modal {
-  display: block;
+  display: fixed;
   position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 375px;
-  max-height: 99%;
+  max-height: 90%;
   padding: 40px 20px;
-  margin: auto;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: var(--white);
   border-radius: 15px;
   overflow-y: scroll;
   overflow-x: hidden;
   border: none;
+  scrollbar-width: none;
 }
 
 .modal:focus {
   outline: none;
 }
 
-.modal::-webkit-scrollbar {
+/* .modal::-webkit-scrollbar {
   border-radius: 30px;
   width: 8px;
 }
@@ -25,7 +28,7 @@
 .modal::-webkit-scrollbar-thumb {
   background: var(--color-main-bg);
   border-radius: 10px;
-}
+} */
 
 .overlay {
   background-color: rgba(47, 47, 47, 0.6);
@@ -53,6 +56,7 @@
 @media screen and (min-width: 768px) {
   .modal {
     max-width: 648px;
+    padding: 40px;
   }
 
   .title {
