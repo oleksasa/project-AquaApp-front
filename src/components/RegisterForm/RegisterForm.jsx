@@ -57,7 +57,7 @@ const RegisterForm = () => {
       await dispatch(signUp(userData)).unwrap();
       toast.success('User successfully registered!');
       reset();
-      navigate('/signin');
+      navigate('/tracker');
     } catch (error) {
       toast.error('Something went wrong!');
     }
