@@ -9,16 +9,14 @@
 }
 
 .userCount {
-  left: 16px;
-  bottom: 96px;
+  margin-top: 209px;
+  margin-left: 16px;
 }
 
 .advantagesList {
-  right: 16px;
-  bottom: 32px;
-  width: 200px;
+  margin-top: 8px;
+  margin-left: 80px;
   list-style-type: none;
-  padding: 0;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -31,7 +29,8 @@
   border-radius: 30px;
   font-weight: 700;
   font-size: 8px;
-  line-height: 100%;
+  line-height: 8px;
+  letter-spacing: -0.01em;
 }
 
 .advantagesHabit {
@@ -50,6 +49,7 @@
   height: 8px;
   background-color: var(--color-second-bg);
   border-radius: 50%;
+  position: absolute;
 }
 
 .advantagesStatistics {
@@ -70,6 +70,7 @@
   .advantagesSection {
     padding: 32px;
     background-image: url('../../../public/img/bg/girl-tab.webp');
+    min-height: 436px;
   }
 
   .userCount {
@@ -77,9 +78,9 @@
   }
 
   .advantagesList {
-    width: 300px;
-
-    right: 32px;
+    margin-top: 0;
+    max-width: 265px;
+    margin-left: 375px;
   }
 
   .advantagesHabit,
@@ -108,13 +109,16 @@
   .advantagesSection {
     padding: 64px 32px;
     background-image: url('../../../public/img/bg/girl-tab.webp');
+    min-height: 736px;
+    max-width: 672px;
   }
 
   .userCount {
-    bottom: 132px;
+    margin-top: 469px;
   }
   .advantagesList {
-    bottom: 64px;
+    margin-left: 340px;
+    min-width: 270px;
   }
 
   .advantagesHabit {

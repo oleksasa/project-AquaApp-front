@@ -16,16 +16,10 @@
   margin-right: -15px;
 }
 
-.countCustomers {
-}
-
 .userCountText {
   font-size: 12px;
   font-weight: 700;
   line-height: 14px;
-}
-
-.countSpan {
 }
 
 .grinSpan {
@@ -62,8 +56,14 @@
 }
 
 @media screen and (min-width: 768px) {
+  .userCountText {
+    font-size: 15px;
+    line-height: 1.49333;
+  }
+
   .userCountComponent {
     padding: 10px 20px;
+    max-width: 237px;
   }
 
   .userCountList {
@@ -80,10 +80,5 @@
   }
   .userCountItem:nth-child(3) {
     left: -36px;
-  }
-
-  .userCountText {
-    font-size: 15px;
-    line-height: 1.49333;
   }
 }

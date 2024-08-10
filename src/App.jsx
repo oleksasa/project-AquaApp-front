@@ -31,13 +31,8 @@ function App() {
 
   return isRefreshing ? (
     <Loader />
-  ) :  (
+  ) : (
     <SharedLayout>
-      {/* <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/tracker" element={<TrackerPage />} />
-        <Route path="/signin" element={<SignInPage />} />
-        <Route path="/signup" element={<SignUpPage />} /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
