@@ -1,8 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './components/layouts/SharedLayout/SharedLayout';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import RestrictedRoute from './components/permissions/RestrictedRoute';
 import PrivateRoute from './components/permissions/PrivateRoute';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo, refreshToken } from './redux/auth/operations.js';
+import { selectIsRefreshing } from './redux/auth/selectors.js';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
@@ -13,7 +16,21 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    const refreshAndFetchUserInfo = async () => {
+      await dispatch(refreshToken());
+      await dispatch(getUserInfo());
+    };
+
+    refreshAndFetchUserInfo();
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) :  (
     <SharedLayout>
       {/* <Routes>
         <Route path="/" element={<HomePage />} />

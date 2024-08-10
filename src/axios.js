@@ -19,7 +19,7 @@ export const fetchRefreshToken = async () => {
     {},
     { withCredentials: true },
   );
-  return data;
+  return data.data.accessToken;
 };
 
 instance.interceptors.request.use(
