@@ -35,7 +35,7 @@ const authSlice = createSlice({
 
       ////////////////////////////////////////////////////
       .addCase(signUp.pending, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.errorMessage = null;
         state.successMessage = null;
         state.token = null;
@@ -45,8 +45,8 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isNewUser = true;
         state.successMessage = 'Successfully registered';
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.accessToken;
       })
       .addCase(signUp.rejected, (state, action) => {
         state.isLoading = false;
