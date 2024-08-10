@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { logOutReducer, setToken } from './redux/auth/slice.js';
 
-// const BASE_URL = 'https://project-aquaapp-back.onrender.com';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://project-aquaapp-back.onrender.com';
 
 let store;
 export const injectStore = _store => {
