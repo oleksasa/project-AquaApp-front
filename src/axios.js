@@ -15,11 +15,11 @@ export const instance = axios.create({
 
 export const fetchRefreshToken = async () => {
   const { data } = await axios.post(
-    `${BASE_URL}` + '/users/refresh',
+    `${BASE_URL}` + '/auth/refresh',
     {},
     { withCredentials: true },
   );
-  return data;
+  return data.data.accessToken;
 };
 
 instance.interceptors.request.use(

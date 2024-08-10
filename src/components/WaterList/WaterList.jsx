@@ -9,9 +9,9 @@ import { isTodayDayChoosing } from '../../redux/water/slice';
 export default function WaterList() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchDailyWater());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchDailyWater());
+  // }, [dispatch]);
 
   // const waters = useSelector(selectWater);
 

@@ -97,10 +97,10 @@ export const refreshToken = createAsyncThunk(
   'users/refresh',
   async (_, thunkAPI) => {
     try {
-      const { token } = await fetchRefreshToken();
-      return token;
+      return fetchRefreshToken();
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response);
+      const errorMessage = err.response?.data?.message || 'Unable to refresh token';
+      return thunkAPI.rejectWithValue(errorMessage);
     }
   },
 );
