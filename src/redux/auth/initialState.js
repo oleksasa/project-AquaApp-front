@@ -11,6 +11,7 @@ export const INITIAL_STATE = {
   isLoading: null,
   isLoadingPhoto: null,
   token: null,
+  isRefreshing: false,
   isLoggedIn: false,
   isNewUser: false,
   errorMessage: null,
