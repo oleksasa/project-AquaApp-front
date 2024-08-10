@@ -1,7 +1,12 @@
+import { Suspense, lazy } from 'react';
 import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
 import { Layout } from '../../components/layouts/Layout/Layout.jsx';
 import { useWindowWidth } from '../../hooks/useWindowWidth.js';
 import css from './SignUpPage.module.css';
+
+const AdvantagesSection = lazy(() =>
+  import('../../components/AdvantagesSection/AdvantagesSection.jsx'),
+);
 
 const SignUpPage = () => {
   const windowWidth = useWindowWidth();
@@ -17,7 +22,11 @@ const SignUpPage = () => {
         bg: 'var(--color-main-bg)',
       }}
       rightComponent={{
-        component: <div className={css.rightComponentStyle}>Right</div>,
+        component: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AdvantagesSection />
+          </Suspense>
+        ),
         bg: 'var(--color-main-bg)',
         hide: windowWidth < 1440,
       }}
