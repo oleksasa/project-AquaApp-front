@@ -1,10 +1,6 @@
 .iconProgressSection {
   width: 16px;
   height: 16px;
-  fill: var(--white);
-}
-.iconProgressSection:hover {
-  fill: var(--color-font-main);
 }
 
 .btnAddWaterProgressSection {
@@ -22,9 +18,17 @@
   line-height: 18px;
   letter-spacing: -0.01em;
   text-align: center;
+  stroke: var(--white);
 
   color: var(--white);
   background-color: var(--color-font-main);
+  transition: all 250ms ease-out;
+}
+
+.btnAddWaterProgressSection:active {
+  color: var(--color-second-bg);
+  stroke: var(--color-second-bg);
+  transform: translateY(4px);
 }
 
 @media screen and (min-width: 768px) {
@@ -39,11 +43,16 @@
   .iconProgressSection {
     width: 24px;
     height: 24px;
-    fill: var(--white);
+  }
+
+  .btnAddWaterProgressSection:hover,
+  btnAddWaterProgressSection:focus {
+    color: var(--color-second-bg);
+    stroke: var(--color-second-bg);
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .btnAddWaterProgressSection {
     margin-top: 56px;
     margin-left: 430px;
