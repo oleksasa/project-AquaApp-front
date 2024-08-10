@@ -14,6 +14,7 @@ export default function UserBar() {
 
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
+  console.log(userPhoto);
 
   const handlClick = () => {
     if (!isShow) {
