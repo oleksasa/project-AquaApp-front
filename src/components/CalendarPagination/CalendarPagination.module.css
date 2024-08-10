@@ -6,6 +6,9 @@
 
 .button {
     border: none;
+    padding: 0;
+    background-color: transparent;
+    line-height: 0;
     
 }
 
@@ -19,7 +22,5 @@
 }
 
 .icon {
-    width: 8px;
-    height: 12px;
-    color: #323F47;
+    fill: #323F47;
 }
