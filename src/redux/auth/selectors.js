@@ -10,6 +10,8 @@ export const selectWaterRate = (state) => state.auth.user.dailyWaterConsumption;
 export const selectIsLoadingPhoto = (state) => state.auth.isLoadingPhoto;
 export const selectIsNewUser = (state) => state.auth.isNewUser;
 
+export const selectIsRefreshing = (state) => state.auth.isRefreshing;
+
 export const selectIsAuthenticated = (state) => {
   const token = selectToken(state);
   const isLoggedIn = selectIsLoggedIn(state);

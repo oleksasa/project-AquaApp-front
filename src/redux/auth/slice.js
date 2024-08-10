@@ -8,6 +8,7 @@ import {
   signUp,
   updateUserProfile,
 } from './operations';
+import toast from 'react-hot-toast';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -34,7 +35,7 @@ const authSlice = createSlice({
 
       ////////////////////////////////////////////////////
       .addCase(signUp.pending, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.errorMessage = null;
         state.successMessage = null;
         state.token = null;
@@ -44,12 +45,12 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isNewUser = true;
         state.successMessage = 'Successfully registered';
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.accessToken;
       })
       .addCase(signUp.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload;
+        toast.errorMessage = action.payload;
       })
 
       ////////////////////////////////////////////////////
@@ -61,14 +62,13 @@ const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log(action.payload);
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.successMessage = 'Successfully logged in';
       })
       .addCase(logIn.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = action.payload;
+        toast.errorMessage = action.payload;
       })
 
       ////////////////////////////////////////////////////
@@ -92,11 +92,11 @@ const authSlice = createSlice({
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = action.payload.data.user;
       })
       .addCase(getUserInfo.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = 'Something went wrong, try again later';
+        toast.errorMessage = 'Something went wrong, try again later';
       })
 
       ////////////////////////////////////////////////////
@@ -108,22 +108,26 @@ const authSlice = createSlice({
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.successMessage = 'Profile updated';
-        state.user = action.payload;
+        state.user = action.payload.data.user;
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
-        state.errorMessage = 'Something went wrong, try again later';
+        toast.errorMessage = 'Something went wrong, try again later';
       })
 
       //////
       .addCase(refreshToken.pending, state => {
-        state.isLoggedIn = false;
+        // state.isLoggedIn = false;
+        state.isRefreshing = true;
       })
       .addCase(refreshToken.fulfilled, (state, action) => {
-        state.isLoggedIn = true;
         state.token = action.payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
-      .addCase(refreshToken.rejected, () => INITIAL_STATE);
+      .addCase(refreshToken.rejected, (state) => {
+        state.isRefreshing = false;
+      });
   },
 });
 

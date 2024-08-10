@@ -12,7 +12,7 @@ import { signUp } from '../../redux/auth/operations.js';
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string()
-    .min(6, 'Password must be at least 8 characters')
+    .min(6, 'Password must be at least 6 characters')
     .required('Required'),
   repeatPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords don`t match')
@@ -57,7 +57,6 @@ const RegisterForm = () => {
       await dispatch(signUp(userData)).unwrap();
       toast.success('User successfully registered!');
       reset();
-      navigate('/signin');
     } catch (error) {
       toast.error('Something went wrong!');
     }
