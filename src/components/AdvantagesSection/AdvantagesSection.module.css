@@ -1,0 +1,133 @@
+.advantagesSection {
+  border-radius: 30px;
+  background-image: url('../../../public/img/bg/girl-mob.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 353px;
+}
+
+.userCount {
+  left: 16px;
+  bottom: 96px;
+}
+
+.advantagesList {
+  right: 16px;
+  bottom: 32px;
+  width: 200px;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.advantagesHabit,
+.advantagesStatistics,
+.advantagesSetting {
+  padding: 9px 12px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 100%;
+}
+
+.advantagesHabit {
+  background-color: var(--color-font-main);
+  color: var(--white);
+  padding-left: 19px;
+  position: relative;
+}
+
+.advantagesHabit::before {
+  content: '';
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-second-bg);
+  border-radius: 50%;
+}
+
+.advantagesStatistics {
+  background-color: var(--color-second-bg);
+}
+
+.advantagesSetting {
+  background-color: var(--white);
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .advantagesSection {
+    background-image: url('../../../public/img/bg/girl-mob-retina.webp');
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .advantagesSection {
+    padding: 32px;
+    background-image: url('../../../public/img/bg/girl-tab.webp');
+  }
+
+  .userCount {
+    left: 32px;
+  }
+
+  .advantagesList {
+    width: 300px;
+
+    right: 32px;
+  }
+
+  .advantagesHabit,
+  .advantagesStatistics,
+  .advantagesSetting {
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+
+  .advantagesHabit {
+    padding-left: 26px;
+  }
+
+  .advantagesHabit::before {
+    left: 16px;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .advantagesSection {
+      background-image: url('../../../public/img/bg/girl-tab-retina.webp');
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .advantagesSection {
+    padding: 64px 32px;
+    background-image: url('../../../public/img/bg/girl-tab.webp');
+  }
+
+  .userCount {
+    bottom: 132px;
+  }
+  .advantagesList {
+    bottom: 64px;
+  }
+
+  .advantagesHabit {
+    padding-left: 28px;
+  }
+
+  .advantagesHabit::before {
+    left: 18px;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .advantagesSection {
+      background-image: url('../../../public/img/bg/girl-tab-retina.webp');
+    }
+  }
+}
