@@ -4,22 +4,23 @@ import photo2 from '../../../public/img/userCount/photo2.webp';
 import photo3 from '../../../public/img/userCount/photo3.webp';
 import css from './UserCount.module.css';
 import classNames from 'classnames';
+import { requestUserCount } from '../../api/auth';
 
 const UserCount = () => {
   const [userCount, setUserCount] = useState();
 
-  //   useEffect(() => {
-  //     async function getCount() {
-  //       try {
-  //         const data = await requestUserCount();
-  //         setUserCount(data.data.count);
-  //       } catch (err) {
-  //         console.log(err.message);
-  //       }
-  //     }
+  useEffect(() => {
+    async function getCount() {
+      try {
+        const data = await requestUserCount();
+        setUserCount(data.data.count);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
 
-  //     getCount();
-  //   });
+    getCount();
+  }, []);
 
   return (
     <div className={css.userCountComponent}>
@@ -36,7 +37,7 @@ const UserCount = () => {
       </ul>
       <p className={classNames(css.countCustomers, css.userCountText)}>
         <span className={classNames(css.countSpan, css.userCountText)}>
-          Our
+          {userCount}
         </span>{' '}
         <span className={classNames(css.grinSpan, css.userCountText)}>
           happy
