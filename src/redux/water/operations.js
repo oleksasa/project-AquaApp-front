@@ -21,7 +21,7 @@ export const fetchDailyWater = createAsyncThunk(
     }
   },
 );
-
+// "2024-08-09"
 export const addWater = createAsyncThunk(
   'water/addWater',
   async (newWater, thunkAPI) => {
@@ -35,6 +35,10 @@ export const addWater = createAsyncThunk(
     }
   },
 );
+// {
+//   date: "2024-07-24T10:12:22Z",
+//   volume: 50
+// }
 
 export const updateWater = createAsyncThunk(
   'water/updateWater',
@@ -52,6 +56,11 @@ export const updateWater = createAsyncThunk(
     }
   },
 );
+// {
+//   _id: "777777777777"
+//   date: "2024-07-24T10:12:22Z",
+//   volume: 50
+// }
 
 export const deleteWater = createAsyncThunk(
   'water/deleteWater',
@@ -66,6 +75,7 @@ export const deleteWater = createAsyncThunk(
     }
   },
 );
+//  "777777777777"
 
 export const fetchMonthlyWater = createAsyncThunk(
   'water/fetchMonthlyWater',
@@ -78,3 +88,4 @@ export const fetchMonthlyWater = createAsyncThunk(
     }
   },
 );
+// "2024-08"

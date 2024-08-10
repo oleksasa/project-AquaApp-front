@@ -4,5 +4,6 @@ export const selectPercentPerDay = state => state.water.data.percentPerDay;
 export const selectTotalWaterPerMonth = state =>
   state.water.dataPerMonth.totalPerMonth;
 export const selectIsTodayDay = state => state.water.isTodayDay;
+export const selectChoosingDay = state => state.water.choosingDay;
 export const selectLoading = state => state.water.loading;
 export const selectError = state => state.water.error;
