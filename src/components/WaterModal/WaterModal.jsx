@@ -1,7 +1,7 @@
 import WaterForm from '../WaterForm/WaterForm';
 import css from './WaterModal.module.css';
 
-const WaterModal = ({ props,onRequestClose }) => {
+const WaterModal = ({ props, onRequestClose, water }) => {
   return (
     <div className={css.container}>
       {props === 'add' ? (
@@ -15,7 +15,7 @@ const WaterModal = ({ props,onRequestClose }) => {
           <p className={css.p}>Correct entered data:</p>
         </>
       )}
-      <WaterForm onRequestClose={onRequestClose}/>
+      <WaterForm onRequestClose={onRequestClose} />
     </div>
   );
 };
