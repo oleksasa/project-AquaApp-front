@@ -9,7 +9,7 @@ export default function TrackerPage() {
   return (
     <Layout
       leftComponent={{
-        // component: <WaterMainInfo />,
+        component: <WaterMainInfo />,
         bg: 'var(--color-second-bg)',
       }}
       rightComponent={{
