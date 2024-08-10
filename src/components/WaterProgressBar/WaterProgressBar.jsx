@@ -1,7 +1,7 @@
 import css from './WaterProgressBar.module.css';
 
 export default function WaterProgressBar() {
-  const rect1 = 60;
+  const rect1 = 60; /* % of water drink is need to take from Backend*/
   const rect2 = 100 - rect1;
 
   return (

@@ -1,7 +1,8 @@
 import css from './WaterDailyNorma.module.css';
 
 export default function WaterDailyNorma() {
-  const myDailyNorma = Number(1.5);
+  const myDailyNorma =
+    Number(1.5); /* daily norma is need to take from Backend*/
 
   return (
     <div className={css.container}>
