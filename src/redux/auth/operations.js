@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import {
   logInUser,
@@ -6,14 +6,13 @@ import {
   registerUser,
   requestUserInfo,
   updateUserInfo,
-  updateUserPhoto,
-} from "../../api/auth.js";
-import { fetchRefreshToken } from "../../axios.js";
+} from '../../api/auth.js';
+import { fetchRefreshToken } from '../../axios.js';
 
 //====================== SIGN IN ======================
 
 export const logIn = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (userData, thunkAPI) => {
     try {
       const res = await logInUser(userData);
@@ -21,27 +20,42 @@ export const logIn = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.data.message);
     }
-  }
+  },
 );
+
+//export const login = createAsyncThunk(
+//   'auth/login',
+//   async ({ formData, formik }, thunkAPI) => {
+//     try {
+//       const { data } = await apiLogin(formData);
+//       setToken(data.token);
+//       return data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     } finally {
+//       formik.resetForm();
+//     }
+//   },
+// );
 
 //====================== SIGN UP ======================
 
 export const signUp = createAsyncThunk(
-  "auth/signUp",
+  'auth/signUp',
   async (userData, thunkAPI) => {
     try {
       const resSignUp = await registerUser(userData);
-      const resSignIn = await logInUser(userData);
-      return resSignIn.data;
+      return resSignUp.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response.data.data.message);
+      console.log(err);
+      return thunkAPI.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 //====================== LOG OUT =======================
 
-export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await logOutUser();
   } catch (err) {
@@ -52,7 +66,7 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 //================= USER INFORMATION ===================
 
 export const getUserInfo = createAsyncThunk(
-  "auth/info",
+  'auth/info',
   async (_, thunkAPI) => {
     try {
       const response = await requestUserInfo();
@@ -60,13 +74,13 @@ export const getUserInfo = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.data.message);
     }
-  }
+  },
 );
 
 //================== UPDATE PROFILE ====================
 
 export const updateUserProfile = createAsyncThunk(
-  "auth/update",
+  'auth/update',
   async (userData, thunkAPI) => {
     try {
       const response = await updateUserInfo(userData);
@@ -74,35 +88,21 @@ export const updateUserProfile = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.data.message);
     }
-  }
-);
-
-//=================== UPLOAD PHOTO =====================
-
-export const uploadUserPhoto = createAsyncThunk(
-  "users/photo",
-  async (formData, thunkAPI) => {
-    try {
-      const response = await updateUserPhoto(formData);
-      return response.data.photo;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.response.data.data.message);
-    }
-  }
+  },
 );
 
 //=================== REFRESH TOKEN =====================
 
 export const refreshToken = createAsyncThunk(
-  "users/refresh",
+  'users/refresh',
   async (_, thunkAPI) => {
     try {
-      const { token } = await fetchRefreshToken();
-      return token;
+      return fetchRefreshToken();
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response);
+      const errorMessage = err.response?.data?.message || 'Unable to refresh token';
+      return thunkAPI.rejectWithValue(errorMessage);
     }
-  }
+  },
 );
 
 //=====================================================
@@ -116,3 +116,61 @@ export const refreshToken = createAsyncThunk(
 //=====================================================
 
 //TODO: export const resetPassword = createAsyncThunk();
+
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { clearToken, setToken } from '../../api/instance';
+// import {
+//   apiLogOut,
+//   apiLogin,
+//   apiRefreshUser,
+//   apiRegister,
+// } from '../../api/authorisation';
+
+// export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+//   try {
+//     await apiLogOut();
+//     clearToken();
+//     return;
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
+// export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+//   const state = thunkAPI.getState();
+//   const persistedToken = state.auth.token;
+
+//   if (!persistedToken) return thunkAPI.rejectWithValue('Unable to fetch user');
+
+//   try {
+//     setToken(persistedToken);
+//     const { data } = await apiRefreshUser();
+//     return data;
+//   } catch (e) {
+//     return thunkAPI.rejectWithValue(e.message);
+//   }
+// });
+
+// export const refreshThunk = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkApi) => {
+//     try {
+//       const state = thunkApi.getState();
+//       const token = state.auth.token;
+//       setToken(token);
+//       const { data } = await instance.get('/users/current');
+
+//       return data;
+//     } catch (err) {
+//       return thunkApi.rejectWithValue(err.message);
+//     }
+//   },
+//   {
+//     condition: (_, thunkApi) => {
+//       const state = thunkApi.getState();
+//       const token = state.auth.token;
+//       if (!token) return false;
+//       return true;
+//     },
+//   },
+// );

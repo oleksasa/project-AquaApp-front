@@ -1,7 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
-// import { logInUser } from '../../api/auth.js';
 import css from './LoginForm.module.css';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -38,6 +37,7 @@ const LoginForm = () => {
     defaultValues: INITIAL_VALUE,
     mode: 'onTouched',
   });
+
   const onSubmit = async data => {
     try {
       await dispatch(logIn(data)).unwrap();
@@ -49,6 +49,7 @@ const LoginForm = () => {
       toast.error('Something went wrong!');
     }
   };
+
   return (
     <div className={css.LoginWrapper}>
       <form className={css.LoginForm} onSubmit={handleSubmit(onSubmit)}>

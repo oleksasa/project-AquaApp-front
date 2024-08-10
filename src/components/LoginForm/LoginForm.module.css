@@ -1,12 +1,14 @@
+.LoginWrapper {
+  width: 100%;
+}
+
 .LoginContainer {
   display: flex;
   flex-direction: column;
   row-gap: 16px;
   margin-bottom: 32px;
 }
-.LoginForm {
-  width: 311px;
-}
+
 .LoginTitle {
   color: var(--color-font-main);
   font-size: 32px;
@@ -43,7 +45,7 @@
   transform: translateY(-50%);
   stroke-width: 0;
   stroke: currentColor;
-  fill: currentColor;
+  fill: none;
 }
 .formInputError {
   color: red;
@@ -66,7 +68,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  font-size: 10px;
+  font-size: 8px;
   color: red;
 }
 .errorMsg {
@@ -107,10 +109,14 @@
     font-size: 36px;
   }
   .LoginForm {
-    width: 436px;
+    max-width: 436px;
+    margin: 0 auto;
   }
   .LoginName {
     font-size: 16px;
+  }
+  .errorMessageWrapper {
+    font-size: 12px;
   }
   .LoginBtn {
     padding: 18px;

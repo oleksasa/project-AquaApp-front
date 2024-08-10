@@ -1,7 +1,7 @@
-.container {
-  min-width: 320px;
+/* .container {
+  min-width: 288px;
   width: 100%;
-  padding: 16px;
+
   margin-left: auto;
   margin-right: auto;
 }
@@ -15,12 +15,14 @@
 }
 @media screen and (min-width: 768px) {
   .container {
-    min-width: 768px;
+    min-width: 704px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
-    min-width: 1440px;
+    min-width: 1376px;
+    display: flex;
+    gap: 32px;
   }
-}
+} */

@@ -1,17 +1,13 @@
 .container {
   /* My daily norma */
   display: flex;
-  position: absolute;
-  flex-direction: column;
   justify-content: center;
-  gap: 6px;
-
+  align-items: center;
   padding: 12px;
   width: 102px;
   height: 54px;
-  top: 122px;
 
-  /* margin-top: 78px; */
+  margin-top: 78px;
 
   background: #ffffff;
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
@@ -38,4 +34,31 @@
   line-height: 10px;
 
   color: rgba(47, 47, 47, 0.6);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 129px;
+    height: 78px;
+    margin-top: 88px;
+    padding: 14px 18px;
+  }
+
+  .dailyNorma {
+    font-size: 15px;
+    line-height: 1.49;
+  }
+
+  .text {
+    font-size: 12px;
+    line-height: 22.4px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    left: 64px;
+    top: 157px;
+    margin-top: 65px;
+  }
 }

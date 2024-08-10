@@ -56,8 +56,10 @@
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
   padding: 16px 14px;
+  background-color: rgb(255,255,255);
   display: block;
   margin-top: 8px;
+  color: rgba(47, 47, 47, 1);
   width: 100%;
   transition: border-color 300ms, box-shadow 300ms;
   outline: transparent;
@@ -88,6 +90,7 @@
 }
 .minus,
 .plus {
+  color: rgb(1,1,1);
   transition: all var(--transition-color-color);
 }
 .minus:hover {

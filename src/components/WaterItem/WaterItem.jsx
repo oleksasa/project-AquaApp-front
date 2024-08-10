@@ -33,10 +33,10 @@ export default function WaterItem() {
           <Icon id="trash" className={css.iconTrash} />
         </button>
         <BaseModal isOpen={isOpenEditModal} onRequestClose={closeEditModal}>
-          <WaterModal />
+          <WaterModal onRequestClose={closeEditModal} />
         </BaseModal>
         <BaseModal isOpen={isOpenDeleteModal} onRequestClose={closeDeleteModal}>
-          <DeleteWaterModal />
+          <DeleteWaterModal onClose={closeDeleteModal} />
         </BaseModal>
       </div>
     </div>
