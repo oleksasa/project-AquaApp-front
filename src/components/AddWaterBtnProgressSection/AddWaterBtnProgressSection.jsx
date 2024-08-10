@@ -1,5 +1,4 @@
 import css from './AddWaterBtnProgressSection.module.css';
-import Icon from '../IconProgressSection/IconProgressSection';
 import BaseModal from '../BaseModal/BaseModal';
 import WaterModal from '../WaterModal/WaterModal';
 import { useState } from 'react';

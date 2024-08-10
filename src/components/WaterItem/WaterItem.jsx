@@ -36,7 +36,7 @@ export default function WaterItem() {
           <WaterModal onRequestClose={closeEditModal} />
         </BaseModal>
         <BaseModal isOpen={isOpenDeleteModal} onRequestClose={closeDeleteModal}>
-          <DeleteWaterModal />
+          <DeleteWaterModal onClose={closeDeleteModal} />
         </BaseModal>
       </div>
     </div>

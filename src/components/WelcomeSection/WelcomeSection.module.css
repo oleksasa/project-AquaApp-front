@@ -1,0 +1,108 @@
+.welcome {
+  padding: 74px 0 37px 0;
+}
+
+.text {
+  color: #2f2f2f;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+
+.header {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+}
+
+.register {
+  background-color: #9be1a0;
+  border-radius: 30px;
+  padding: 14px 19px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+
+.register:hover {
+  background-color: #87d28d;
+}
+
+.login {
+  border: 1px solid #323f47;
+  border-radius: 30px;
+  padding: 14px 19px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+
+.login:hover {
+  border: 1px solid #87d28d;
+  color: #87d28d;
+}
+
+@media screen and (min-width: 768px) {
+  .welcome {
+    padding: 50px 61px 18px 32px;
+  }
+
+  .text {
+    line-height: 24px;
+    font-size: 16px;
+  }
+
+  .header {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 70px;
+  }
+
+  .links {
+    gap: 16px;
+  }
+
+  .register {
+    padding: 18px 40px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .login {
+    padding: 18px 40px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .welcome {
+    padding-left: 32px;
+    padding-top: 132px;
+    padding-bottom: 148px;
+    padding-right: 29px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header {
+    font-size: 80px;
+    line-height: 76px;
+  }
+}
