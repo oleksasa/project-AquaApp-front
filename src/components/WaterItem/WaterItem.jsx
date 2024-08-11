@@ -5,8 +5,9 @@ import { useState } from 'react';
 import BaseModal from '../BaseModal/BaseModal';
 import DeleteWaterModal from '../DeleteWaterModal/DeleteWaterModal';
 import WaterModal from '../WaterModal/WaterModal';
+import { getTimeFromDate } from '../../helpers/dateRequire';
 
-export default function WaterItem() {
+export default function WaterItem({ water }) {
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const openEditModal = () => setIsOpenEditModal(true);
@@ -14,12 +15,14 @@ export default function WaterItem() {
   const openDeleteModal = () => setIsOpenDeleteModal(true);
   const closeDeleteModal = () => setIsOpenDeleteModal(false);
 
+  const timeWater = getTimeFromDate(water.date);
+
   return (
     <div className={css.wrapItem}>
       <Icon id="cup-water" className={css.icon} />
       <div>
-        <p className={css.textML}>250 ml</p>
-        <p className={css.textTime}>7:00</p>
+        <p className={css.textML}>{water.volume} ml</p>
+        <p className={css.textTime}>{timeWater}</p>
       </div>
       <div className={css.wrapBtn}>
         <button className={css.btnIcon} type="button" onClick={openEditModal}>
@@ -33,10 +36,10 @@ export default function WaterItem() {
           <Icon id="trash" className={css.iconTrash} />
         </button>
         <BaseModal isOpen={isOpenEditModal} onRequestClose={closeEditModal}>
-          <WaterModal onRequestClose={closeEditModal} />
+          <WaterModal water={water} onRequestClose={closeEditModal} />
         </BaseModal>
         <BaseModal isOpen={isOpenDeleteModal} onRequestClose={closeDeleteModal}>
-          <DeleteWaterModal onClose={closeDeleteModal} />
+          <DeleteWaterModal waterId={water.id} onClose={closeDeleteModal} />
         </BaseModal>
       </div>
     </div>

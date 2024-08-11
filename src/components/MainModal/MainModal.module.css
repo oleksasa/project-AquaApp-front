@@ -1,0 +1,77 @@
+.modal {
+  display: fixed;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 375px;
+  max-height: 90%;
+  padding: 40px 20px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: var(--white);
+  border-radius: 15px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: none;
+  scrollbar-width: none;
+}
+
+.modal:focus {
+  outline: none;
+}
+
+/* .modal::-webkit-scrollbar {
+  border-radius: 30px;
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: var(--color-main-bg);
+  border-radius: 10px;
+} */
+
+.overlay {
+  background-color: rgba(47, 47, 47, 0.6);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  border: none;
+  background: none;
+}
+
+.closeBtnSvg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-font-second);
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    max-width: 648px;
+    padding: 40px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 114%;
+  }
+
+  .closeBtnSvg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .modal {
+    max-width: 920px;
+  }
+}

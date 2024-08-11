@@ -16,6 +16,9 @@ const waterSlice = createSlice({
     isTodayDayChoosing(state, action) {
       state.isTodayDay = action.payload;
     },
+    choosingDay(state, action) {
+      state.choosingDay = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -26,7 +29,7 @@ const waterSlice = createSlice({
       })
       .addCase(fetchDailyWater.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+        state.data = action.payload.data;
       })
       .addCase(fetchDailyWater.rejected, (state, action) => {
         state.isLoading = false;
@@ -92,6 +95,6 @@ const waterSlice = createSlice({
   },
 });
 
-export const { isTodayDayChoosing } = waterSlice.actions;
+export const { isTodayDayChoosing, choosingDay } = waterSlice.actions;
 
 export default waterSlice.reducer;

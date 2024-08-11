@@ -7,6 +7,7 @@ export const WATER_INITIAL_STATE = {
   dataPerMonth: {
     totalPerMonth: null,
   },
+  choosingDay: "",
   isTodayDay: true,
   isLoading: false,
   isError: null,

@@ -3,6 +3,7 @@
   width: fit-content;
 }
 .button {
+  min-width: 137px;
   border: none;
   border-radius: 30px;
   background-color: var(--color-font-main);
@@ -59,6 +60,7 @@
 
 @media screen and (min-width: 768px) {
   .button {
+    min-width: 157px;
     gap: 10px;
     font-size: 16px;
     line-height: 150%;
