@@ -54,7 +54,7 @@ const WaterForm = ({ onRequestClose, props, waterId }) => {
 
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
-    const formatedTime = `${formattedDate}T${data.counter}:00Z`;
+     const formatedTime = `${formattedDate}T${data.time}:00Z`;
 
     if (props === 'add') {
       dispatch(addWater({ date: formatedTime, volume: data.counter }));
