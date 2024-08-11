@@ -20,6 +20,10 @@ const schema = yup.object().shape({
 });
 
 const WaterForm = ({ onRequestClose, props, waterId }) => {
+    const [checkId,setCheckId]=useState(0);
+  if(!props==='add'){
+       setCheckId(waterId)
+  }
   const isLoading = useSelector(selectLoading);
   const isTodayDay = useSelector(selectIsTodayDay);
   const dispatch = useDispatch();
@@ -63,7 +67,7 @@ const WaterForm = ({ onRequestClose, props, waterId }) => {
     }
     //   id де ти паскуда
     dispatch(
-      updateWater({ _id: waterId, date: formatedTime, volume: data.counter }),
+      updateWater({ _id: checkId, date: formatedTime, volume: data.counter }),
     );
     onRequestClose();
   };
