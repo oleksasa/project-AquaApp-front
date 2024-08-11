@@ -1,76 +1,106 @@
-import * as Yup from "yup";
-import css from "./UserSettingsForm.module.css";
-import svg from "/sprite.svg";
-import clsx from "clsx";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { SUPPORTED_FORMATS } from "../../constants";
-import { useState } from "react";
+import * as Yup from 'yup';
+import css from './UserSettingsForm.module.css';
+import svg from '/sprite.svg';
+import clsx from 'clsx';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo, updateUserProfile } from '../../redux/auth/operations';
+import toast, { Toaster } from 'react-hot-toast';
+import { SettingsDefaultValues, SUPPORTED_FORMATS } from '../../constants';
 
-export default function UserSettingsForm() {
+export default function UserSettingsForm({ onRequestClose }) {
   const [avatar, setAvatar] = useState(null);
+  const [previewAvatar, setPreviewAvatar] = useState('');
 
-  const PhotoUploadHandler = (event) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [dispatch]);
+
+  const userInfo = useSelector(state => state.auth.user);
+
+  console.log(userInfo);
+
+  const PhotoUploadHandler = event => {
     const file = event.currentTarget.files[0];
     if (SUPPORTED_FORMATS.includes(file.type)) {
       const url = URL.createObjectURL(file);
-      setAvatar(url);
+      setAvatar(file);
+      setPreviewAvatar(url);
     } else {
-      console.error("Unsupported file format");
+      toast.error('Unsupported file format');
     }
   };
 
   let validateSchema = Yup.object().shape({
     userName: Yup.string()
-      .min(3, "minimal 3 characters")
-      .max(50, "maximum 50 characters")
-      .required("Name is required"),
+      .min(3, 'minimal 3 characters')
+      .max(50, 'maximum 50 characters')
+      .required('Name is required'),
     weight: Yup.number()
-      .typeError("Must be a number")
-      .min(30, "minimal weight 30 kg")
-      .required("Weight is required"),
+      .typeError('Must be a number')
+      .min(30, 'minimal weight 30 kg')
+      .required('Weight is required'),
     sportTime: Yup.number()
-      .typeError("Must be a number")
-      .positive("Сan't be negative")
-      .required("Time of sport activity is required"),
+      .typeError('Must be a number')
+      .positive('Must be positive')
+      .required('Time of sport activity is required'),
     dailyRateWater: Yup.number()
-      .typeError("Must be a number")
-      .positive("Сan't be negative")
-      .required("Water consumption is required"),
+      .typeError('Must be a number')
+      .positive('Must be positive')
+      .required('Water consumption is required'),
   });
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validateSchema),
-    defaultValues: { gender: "man", email: "az.36419.a@gmail.com" },
+    defaultValues: SettingsDefaultValues(userInfo),
   });
 
-  const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("avatar", avatar);
-    formData.append("userName", data.userName);
-    formData.append("weight", data.weight);
-    formData.append("sportTime", data.sportTime);
-    formData.append("dailyRateWater", data.dailyRateWater);
-    formData.append("gender", data.gender);
-    formData.append("email", data.email);
+  const onSubmit = async data => {
+    toast.success('Successfully update data');
+    console.log(1);
 
-    reset();
+    const formData = new FormData();
+    formData.append('avatar', avatar);
+    formData.append('name', data.userName);
+    formData.append('weight', data.weight);
+    formData.append('sportTime', data.sportTime);
+    formData.append('dailyRateWater', data.dailyRateWater);
+    formData.append('gender', data.gender);
+    formData.append('email', data.email);
+
+    console.log('Form Data:', Object.fromEntries(formData));
+
+    await dispatch(updateUserProfile(formData));
+    await dispatch(getUserInfo());
+
+    setPreviewAvatar('');
+    onRequestClose();
+    // reset(SettingsDefaultValues(userInfo));
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.userSettingForm}>
+      <Toaster key="unique-key" />
       <div className={css.uploadPhotoContainer}>
-        <img className={css.img} src={avatar || ""} alt="User avatar" />
+        <img
+          className={css.img}
+          src={previewAvatar == '' ? userInfo.avatar : previewAvatar}
+          alt="User avatar"
+        />
+
         <label>
           <button
             className={css.button}
             type="button"
-            onClick={() => document.getElementById("file").click()}
+            onClick={() => document.getElementById('file').click()}
           >
             <svg className={css.uploadSvg}>
               <use href={`${svg}#icon-upload`} />
@@ -96,7 +126,7 @@ export default function UserSettingsForm() {
                   type="radio"
                   name="gender"
                   value="woman"
-                  {...register("gender")}
+                  {...register('gender')}
                 />
                 <span className={css.customRadio}></span>
                 Woman
@@ -107,7 +137,7 @@ export default function UserSettingsForm() {
                   type="radio"
                   name="gender"
                   value="man"
-                  {...register("gender")}
+                  {...register('gender')}
                 />
                 <span className={css.customRadio}></span>
                 Man
@@ -119,15 +149,16 @@ export default function UserSettingsForm() {
               <label htmlFor="userName" className="">
                 <h2 className={css.formTitle}>Your name</h2>
                 <input
-                  {...register("userName")}
+                  {...register('userName')}
                   className={clsx(
                     css.formInput,
-                    errors.userName ? css.errorInput : ""
+                    errors.userName ? css.errorInput : '',
                   )}
                   name="userName"
                   id="userName"
                 />
               </label>
+
               {errors.userName && (
                 <span className={css.errorMessage}>
                   {errors.userName.message}
@@ -142,7 +173,7 @@ export default function UserSettingsForm() {
                   name="email"
                   id="email disabled"
                   disabled
-                  {...register("email")}
+                  {...register('email')}
                 />
               </label>
             </div>
@@ -184,11 +215,11 @@ export default function UserSettingsForm() {
                 <input
                   className={clsx(
                     css.formInput,
-                    errors.weight ? css.errorInput : ""
+                    errors.weight ? css.errorInput : '',
                   )}
                   name="weight"
                   id="weight"
-                  {...register("weight")}
+                  {...register('weight')}
                 />
               </label>
               {errors.weight && (
@@ -206,11 +237,11 @@ export default function UserSettingsForm() {
                 <input
                   className={clsx(
                     css.formInput,
-                    errors.sportTime ? css.errorInput : ""
+                    errors.sportTime ? css.errorInput : '',
                   )}
                   name="sportTime"
                   id="sportTime"
-                  {...register("sportTime")}
+                  {...register('sportTime')}
                 />
               </label>
               {errors.sportTime && (
@@ -233,11 +264,11 @@ export default function UserSettingsForm() {
                 <input
                   className={clsx(
                     css.formInput,
-                    errors.dailyRateWater ? css.errorInput : ""
+                    errors.dailyRateWater ? css.errorInput : '',
                   )}
                   name="dailyRateWater"
                   id="dailyRateWater"
-                  {...register("dailyRateWater")}
+                  {...register('dailyRateWater')}
                 />
               </label>
               {errors.dailyRateWater && (

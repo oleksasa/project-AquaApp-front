@@ -1,8 +1,8 @@
-import Modal from "react-modal";
-import css from "./MainModal.module.css";
-import svg from "/sprite.svg";
+import Modal from 'react-modal';
+import css from './MainModal.module.css';
+import svg from '/sprite.svg';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const MainModal = ({ isOpen, onRequestClose, children }) => {
   return (
@@ -24,3 +24,16 @@ const MainModal = ({ isOpen, onRequestClose, children }) => {
 };
 
 export default MainModal;
+
+//ПРИКЛАД ВИКОРИСТАННЯ
+
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const handleOpenModal = () => setIsModalOpen(true);
+//   const handleCloseModal = () => setIsModalOpen(false);
+
+//     <div className="">
+//       <button onClick={handleOpenModal}>OPEN</button>
+//       <MainModal isOpen={isModalOpen} onRequestClose={handleCloseModal}>
+//         <UserSettingsModal onRequestClose={handleCloseModal} />
+//       </MainModal>
+//     </div>
