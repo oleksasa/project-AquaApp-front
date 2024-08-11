@@ -8,12 +8,17 @@ const WaterStatistics = ({ currentMonth, waterData }) => {
         const start = startOfMonth(currentMonth);
         const end = endOfMonth(currentMonth);
         const today = new Date();
+
+        if (isAfter(start, today)) {
+            return [];
+        }
+
         const lastDay = isAfter(today, end) ? end : today; // Визначаємо останній день для графіка
         const days = eachDayOfInterval({ start, end: lastDay });
 
         // Створення масиву даних для графіка
         return days.map(day => {
-            const formattedDate = format(day, 'yyyy-MM-dd');
+            const formattedDate = format(day, 'dd-MM-yyyy');
             return {
                 date: format(day, 'd'),
                 waterIntake: waterData[formattedDate]?.dailyWaterIntake || 0
@@ -21,7 +26,7 @@ const WaterStatistics = ({ currentMonth, waterData }) => {
         });
     };
     // дані для прикладу
-    const dailyGoal = 3;
+    const dailyGoal = 2;
 
     const monthData = getMonthData();
 
@@ -32,6 +37,12 @@ const WaterStatistics = ({ currentMonth, waterData }) => {
                     data={monthData}
                     margin={{ top: 50, right: 10, left: 0, bottom: 0 }}
                 >
+                    {/* <defs>
+                        <linearGradient id="colorWaterIntake" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#9BE1A0" stopOpacity={0.8} />
+                            <stop offset="100%" stopColor="#9BE1A0" stopOpacity={0} />
+                        </linearGradient>
+                    </defs> */}
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis 
                     dataKey="date"
@@ -42,7 +53,7 @@ const WaterStatistics = ({ currentMonth, waterData }) => {
                     />
                     <Tooltip  formatter={(value) => `${value} l`}/>
                     <Legend />
-                    <Line type="monotone" dataKey="waterIntake" stroke="#87D28D" activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey="waterIntake" stroke="#9BE1A0" activeDot={{ r: 8 }} />
                 </LineChart>
             </ResponsiveContainer>
         </div>
