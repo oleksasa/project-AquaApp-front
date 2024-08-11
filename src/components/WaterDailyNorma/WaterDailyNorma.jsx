@@ -1,8 +1,11 @@
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/auth/selectors';
+
 import css from './WaterDailyNorma.module.css';
 
 export default function WaterDailyNorma() {
-  const myDailyNorma =
-    Number(1.5); /* daily norma is need to take from Backend*/
+  /* daily norma from Backend*/
+  const myDailyNorma = Number(useSelector(selectUser).dailyRateWater) / 1000;
 
   return (
     <div className={css.container}>

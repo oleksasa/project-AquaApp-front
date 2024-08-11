@@ -50,7 +50,7 @@
 .percent {
   display: inline-block;
   position: absolute;
-  transform: translate(-5px, 23px);
+  transform: translate(-5px, 21px);
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
