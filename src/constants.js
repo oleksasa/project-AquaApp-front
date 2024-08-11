@@ -8,7 +8,7 @@ export const SUPPORTED_FORMATS = [
 export const SettingsDefaultValues = userInfo => {
   return {
     gender: userInfo.gender || 'man',
-    userName: userInfo.name || 'User',
+    name: userInfo.name || 'User',
     email: userInfo.email || '',
     weight: userInfo.weight || '0',
     sportTime: userInfo.sportTime || '0',

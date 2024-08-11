@@ -22,8 +22,6 @@ export default function UserSettingsForm({ onRequestClose }) {
 
   const userInfo = useSelector(state => state.auth.user);
 
-  console.log(userInfo);
-
   const PhotoUploadHandler = event => {
     const file = event.currentTarget.files[0];
     if (SUPPORTED_FORMATS.includes(file.type)) {
@@ -36,7 +34,7 @@ export default function UserSettingsForm({ onRequestClose }) {
   };
 
   let validateSchema = Yup.object().shape({
-    userName: Yup.string()
+    name: Yup.string()
       .min(3, 'minimal 3 characters')
       .max(50, 'maximum 50 characters')
       .required('Name is required'),
@@ -54,47 +52,50 @@ export default function UserSettingsForm({ onRequestClose }) {
       .required('Water consumption is required'),
   });
 
+  const defaultValues = userInfo ? SettingsDefaultValues(userInfo) : {};
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, dirtyFields },
   } = useForm({
     resolver: yupResolver(validateSchema),
-    defaultValues: SettingsDefaultValues(userInfo),
+    defaultValues: defaultValues,
   });
 
+  useEffect(() => {
+    if (userInfo) {
+      reset(SettingsDefaultValues(userInfo));
+    }
+  }, [userInfo, reset]);
+
   const onSubmit = async data => {
-    toast.success('Successfully update data');
-    console.log(1);
+    toast.success('Successfully updated data');
 
     const formData = new FormData();
-    formData.append('avatar', avatar);
-    formData.append('name', data.userName);
-    formData.append('weight', data.weight);
-    formData.append('sportTime', data.sportTime);
-    formData.append('dailyRateWater', data.dailyRateWater);
-    formData.append('gender', data.gender);
-    formData.append('email', data.email);
-
-    console.log('Form Data:', Object.fromEntries(formData));
+    if (avatar) formData.append('avatar', avatar);
+    Object.keys(dirtyFields).forEach(key => {
+      formData.append(key, data[key]);
+    });
 
     await dispatch(updateUserProfile(formData));
     await dispatch(getUserInfo());
-
-    setPreviewAvatar('');
     onRequestClose();
-    // reset(SettingsDefaultValues(userInfo));
+    setPreviewAvatar('');
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.userSettingForm}>
-      <Toaster key="unique-key" />
+      <Toaster />
       <div className={css.uploadPhotoContainer}>
-        <img
-          className={css.img}
-          src={previewAvatar == '' ? userInfo.avatar : previewAvatar}
-          alt="User avatar"
-        />
+        {userInfo && (
+          <img
+            className={css.img}
+            src={previewAvatar === '' ? userInfo.avatar : previewAvatar}
+            alt="User avatar"
+          />
+        )}
 
         <label>
           <button
@@ -146,23 +147,21 @@ export default function UserSettingsForm({ onRequestClose }) {
           </div>
           <div className={css.nameEmailWrapper}>
             <div className={css.name}>
-              <label htmlFor="userName" className="">
+              <label htmlFor="name" className="">
                 <h2 className={css.formTitle}>Your name</h2>
                 <input
-                  {...register('userName')}
+                  {...register('name')}
                   className={clsx(
                     css.formInput,
-                    errors.userName ? css.errorInput : '',
+                    errors.name ? css.errorInput : '',
                   )}
-                  name="userName"
-                  id="userName"
+                  name="name"
+                  id="name"
                 />
               </label>
 
-              {errors.userName && (
-                <span className={css.errorMessage}>
-                  {errors.userName.message}
-                </span>
+              {errors.name && (
+                <span className={css.errorMessage}>{errors.name.message}</span>
               )}
             </div>
             <div className="">
