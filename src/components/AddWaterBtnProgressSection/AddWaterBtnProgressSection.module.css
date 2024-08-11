@@ -25,6 +25,7 @@
   background-color: var(--color-font-main);
   transition: transform 250ms ease-out, stroke var(--transition-color-color),
     color var(--transition-color-color);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btnAddWaterProgressSection:active {
