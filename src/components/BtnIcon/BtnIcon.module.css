@@ -1,0 +1,14 @@
+.icon-pagination {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-statistics {
+    width: 20px;
+    height: 20px;
+
+    @media screen and (min-width: 768px) {
+        width: 24px;
+        height: 24px;
+    }
+}

@@ -1,9 +1,11 @@
 import icons from "../../../public/symbol-defs.svg";
+import css from "./BtnIcon.module.css";
 
 export default function BtnIcon({ id, className }) {
+  const iconClass = (id === 'pie-chart-01' || id === 'pie-chart-02') ? css['icon-statistics'] : css['icon-pagination'];
     return (
-      <svg className={className} width={18} height={18}>
-        <use href={`${icons}#icon-${id}`} />
+      <svg className={`${className} ${iconClass}`} >
+        <use href={`${icons}#${id}`}/>
       </svg>
     );
 }
