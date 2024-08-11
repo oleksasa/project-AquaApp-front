@@ -9,7 +9,7 @@ export default function BtnIcon({ id, className }) {
 
   return (
     <svg className={`${className} ${iconClass}`}>
-      <use href={`${icons}#${id}`} />
+      <use href={`/symbol-defs.svg#${id}`} />
     </svg>
   );
 }
