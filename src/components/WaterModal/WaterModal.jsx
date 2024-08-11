@@ -16,7 +16,7 @@ const WaterModal = ({ props, onRequestClose, water }) => {
           <p className={css.p}>Correct entered data:</p>
         </>
       )}
-      <WaterForm onRequestClose={onRequestClose} props={props} />
+        <WaterForm onRequestClose={onRequestClose} props={props} waterId={water._id}/>
     </div>
   );
 };
