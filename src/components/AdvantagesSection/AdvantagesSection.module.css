@@ -1,0 +1,137 @@
+.advantagesSection {
+  border-radius: 30px;
+  background-image: url('../../../public/img/bg/girl-mob.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 353px;
+}
+
+.userCount {
+  margin-top: 209px;
+  margin-left: 16px;
+}
+
+.advantagesList {
+  margin-top: 8px;
+  margin-left: 80px;
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.advantagesHabit,
+.advantagesStatistics,
+.advantagesSetting {
+  padding: 9px 12px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 8px;
+  letter-spacing: -0.01em;
+}
+
+.advantagesHabit {
+  background-color: var(--color-font-main);
+  color: var(--white);
+  padding-left: 19px;
+  position: relative;
+}
+
+.advantagesHabit::before {
+  content: '';
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-second-bg);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.advantagesStatistics {
+  background-color: var(--color-second-bg);
+}
+
+.advantagesSetting {
+  background-color: var(--white);
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .advantagesSection {
+    background-image: url('../../../public/img/bg/girl-mob-retina.webp');
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .advantagesSection {
+    padding: 32px;
+    background-image: url('../../../public/img/bg/girl-tab.webp');
+    min-height: 436px;
+  }
+
+  .userCount {
+    left: 32px;
+  }
+
+  .advantagesList {
+    margin-top: 0;
+    max-width: 265px;
+    margin-left: 375px;
+  }
+
+  .advantagesHabit,
+  .advantagesStatistics,
+  .advantagesSetting {
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+
+  .advantagesHabit {
+    padding-left: 26px;
+  }
+
+  .advantagesHabit::before {
+    left: 16px;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .advantagesSection {
+      background-image: url('../../../public/img/bg/girl-tab-retina.webp');
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .advantagesSection {
+    padding: 64px 32px;
+    background-image: url('../../../public/img/bg/girl-tab.webp');
+    min-height: 736px;
+    max-width: 672px;
+  }
+
+  .userCount {
+    margin-top: 469px;
+  }
+  .advantagesList {
+    margin-left: 340px;
+    min-width: 270px;
+  }
+
+  .advantagesHabit {
+    padding-left: 28px;
+  }
+
+  .advantagesHabit::before {
+    left: 18px;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .advantagesSection {
+      background-image: url('../../../public/img/bg/girl-tab-retina.webp');
+    }
+  }
+}

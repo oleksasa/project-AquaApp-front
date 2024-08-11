@@ -1,10 +1,7 @@
+import css from './Loader.module.css';
 const Loader = () => {
   return (
-    <div>
-      <div>
-        <div>AquaTrack</div>
-      </div>
-    </div>
+    <span className={css.loader}></span>
   );
 };
 

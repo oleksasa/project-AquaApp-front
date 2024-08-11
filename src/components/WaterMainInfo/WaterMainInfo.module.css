@@ -1,5 +1,5 @@
 .section {
-  background: url(./transparent_bottle_for_water1.png) no-repeat;
+  background: url(/transparent_bottle_for_water1.png) no-repeat;
   background-size: 262px 335px;
   background-position: center;
   width: 100%;
@@ -21,7 +21,5 @@
     background-size: 472px 604px;
     min-height: 604px;
     margin-top: 36px;
-  }
-  .backImg {
   }
 }
