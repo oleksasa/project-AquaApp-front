@@ -4,6 +4,9 @@ import css from './WaterForm.module.css';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { addWater, updateWater } from '../../redux/water/operations';
+import { selectIsTodayDay, selectLoading } from '../../redux/water/selectors';
 
 // Створюємо схему валідації за допомогою yup
 const schema = yup.object().shape({
@@ -16,7 +19,10 @@ const schema = yup.object().shape({
     .max(1500, 'Max 1500 ml'),
 });
 
-const WaterForm = ({onRequestClose}) => {
+const WaterForm = ({ onRequestClose, props, waterId }) => {
+  const isLoading = useSelector(selectLoading);
+  const isTodayDay = useSelector(selectIsTodayDay);
+  const dispatch = useDispatch();
   const [counter, setCounter] = useState(0);
   const {
     register,
@@ -46,8 +52,19 @@ const WaterForm = ({onRequestClose}) => {
       return; // Скасовуємо відправку форми
     }
 
-    // Якщо всі перевірки пройдено, показуємо дані
-    alert(JSON.stringify(data));
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    const formatedTime = `${formattedDate}T${data.counter}:00Z`;
+
+    if (props === 'add') {
+      dispatch(addWater({ date: formatedTime, volume: data.counter }));
+      onRequestClose();
+      return;
+    }
+    //   id де ти паскуда
+    dispatch(
+      updateWater({ _id: waterId, date: formatedTime, volume: data.counter }),
+    );
     onRequestClose();
   };
 
@@ -87,13 +104,13 @@ const WaterForm = ({onRequestClose}) => {
     <div className={css.info}>
       <p className={css.p}>Amount of water:</p>
       <div className={css.counter}>
-        <button type='button' className={css.minus} onClick={minus}>
+        <button type="button" className={css.minus} onClick={minus}>
           <CiCircleMinus className={css.svg} />
         </button>
         <div className={css.counterInfo}>
           <span>{counter}</span> ml
         </div>
-        <button type='button' className={css.plus} onClick={plus}>
+        <button type="button" className={css.plus} onClick={plus}>
           <CiCirclePlus className={css.svg} />
         </button>
       </div>
@@ -101,7 +118,7 @@ const WaterForm = ({onRequestClose}) => {
         <label className={css.timeP}>
           Recording time:
           <input
-            type='time'
+            type="time"
             {...register('time')}
             className={css.input}
             defaultValue={new Date().toTimeString().slice(0, 5)}
@@ -112,7 +129,7 @@ const WaterForm = ({onRequestClose}) => {
           Enter the value of the water used:
           <input
             className={css.input}
-            type='number'
+            type="number"
             {...register('counter')}
             min={0}
             max={1500}
@@ -123,8 +140,17 @@ const WaterForm = ({onRequestClose}) => {
             <p className={css.error}>{errors.counter.message}</p>
           )}
         </label>
-        <button type='submit' className={css.btnSubmit}>
-          Save
+        <button type="submit" className={css.btnSubmit} disabled={!isTodayDay}>
+          Save{' '}
+          {isLoading && (
+            <div className={css.loader}>
+              <div className={css.orbe} style={{ '--index': 0 }}></div>
+              <div className={css.orbe} style={{ '--index': 1 }}></div>
+              <div className={css.orbe} style={{ '--index': 2 }}></div>
+              <div className={css.orbe} style={{ '--index': 3 }}></div>
+              <div className={css.orbe} style={{ '--index': 4 }}></div>
+            </div>
+          )}
         </button>
       </form>
     </div>
