@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.button {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    line-height: 0;
+    
+}
+
+.text {
+    font-size: 14px;
+    font-weight: 700;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+    }
+}
+
+.icon {
+    fill: #323F47;
+}
