@@ -74,9 +74,7 @@ const MonthInfo = () => {
                 onClick={handleButtonClick}
                 >
                     {showStats ? <BtnIcon id="pie-chart-01"/> : <BtnIcon id="pie-chart-02"/>}
-                    {/* <svg className={css.icon}>
-                        <use href={showStats ? '#icon-calendar' : '#icon-stats'}></use>
-                    </svg> */}
+                    
                 </button>
             </div>
             {showStats ? (

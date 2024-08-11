@@ -17,11 +17,11 @@ const CalendarPagination = ({ currentMonth, onMonthChange }) => {
     return (
         <div className={css.container}>
             <button className={css.button} onClick={handlePrevMonth}>
-                <BtnIcon id="icon-left" className={css.icon}/>
+                <BtnIcon id="icon-left"/>
             </button>
             <span className={css.text}>{format(currentMonth, 'MMMM, yyyy')}</span>
             <button className={css.button} onClick={handleNextMonth}>
-                <BtnIcon id="icon-right" className={css.icon}/>
+                <BtnIcon id="icon-right"/>
             </button>
         </div>
     );
