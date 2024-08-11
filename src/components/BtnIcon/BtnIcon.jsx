@@ -6,6 +6,7 @@ export default function BtnIcon({ id, className }) {
     id === 'icon-pie-chart-01' || id === 'icon-pie-chart-02'
       ? css['icon-statistics']
       : css['icon-pagination'];
+
   return (
     <svg className={`${className} ${iconClass}`}>
       <use href={`${icons}#${id}`} />
