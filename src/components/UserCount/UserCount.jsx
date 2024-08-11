@@ -8,33 +8,52 @@ import { requestUserCount } from '../../api/auth';
 
 const UserCount = () => {
   const [userCount, setUserCount] = useState();
+  const [avatars, setAvatars] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getCount() {
       try {
         const data = await requestUserCount();
-        setUserCount(data.data.count);
+        setUserCount(data.data.totalUsersCount);
+        setAvatars(data.data.randomAvatars);
       } catch (err) {
         console.log(err.message);
+      }finally {
+        setLoading(false);
       }
     }
 
     getCount();
   }, []);
 
+
   return (
     <div className={css.userCountComponent}>
       <ul className={css.userCountList}>
-        <li className={css.userCountItem}>
-          <img src={photo1} alt="user" />
-        </li>
-        <li className={css.userCountItem}>
-          <img src={photo2} alt="user" />
-        </li>
-        <li className={css.userCountItem}>
-          <img src={photo3} alt="user" />
-        </li>
+        {loading ? (
+          ""
+        ) : avatars && avatars.length > 0 ? (
+          avatars.map((photo, index) => (
+            <li key={index} className={css.userCountItem}>
+              <img src={photo} alt={`user ${index + 1}`} />
+            </li>
+          ))
+        ) : (
+          <>
+            <li className={css.userCountItem}>
+              <img src={photo1} alt="user" />
+            </li>
+            <li className={css.userCountItem}>
+              <img src={photo2} alt="user" />
+            </li>
+            <li className={css.userCountItem}>
+              <img src={photo3} alt="user" />
+            </li>
+          </>
+        )}
       </ul>
+
       <p className={classNames(css.countCustomers, css.userCountText)}>
         <span className={classNames(css.countSpan, css.userCountText)}>
           {userCount}
