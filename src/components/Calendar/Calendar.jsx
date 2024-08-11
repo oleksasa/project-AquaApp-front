@@ -1,46 +1,36 @@
 
-import { useState, useEffect } from 'react';
-import { format, eachDayOfInterval, startOfMonth, endOfMonth } from "date-fns";
+import { useSelector } from 'react-redux';
+import { format, eachDayOfInterval, startOfMonth, endOfMonth, startOfDay } from "date-fns";
 import CalendarItem from '../CalendarItem/CalendarItem';
 import css from './Calendar.module.css';
+import { selectTotalWaterPerDay } from '../../redux/water/selectors.js';
 
-const Calendar = ({ currentMonth, onDayClick, dailyWaterData }) => {
-
-    const [selectedDate, setSelectedDate] = useState(new Date());
-
-    useEffect(() => {
-        const today = new Date();
-        if (today >= startOfMonth(currentMonth) && today <= endOfMonth(currentMonth)) {
-            setSelectedDate(today);
-        } else {
-            setSelectedDate(startOfMonth(currentMonth));
-        }
-        
-    }, [currentMonth]);
+const Calendar = ({ currentMonth, onDayClick }) => {
+    const dailyWaterData = useSelector(selectTotalWaterPerDay);
 
     const start = startOfMonth(currentMonth);
     const end = endOfMonth(currentMonth);
     const days = eachDayOfInterval({ start, end });
     
-
-    const handleDayClick = (date) => {
-        setSelectedDate(date);
-        onDayClick(date);
-    };
+    const today = startOfDay(new Date());
 
     return (
         <div className={css.container}>
             {days.map(day => {
                 const formattedDate = format(day, 'yyyy-MM-dd');
-                const dailyWaterIntake = dailyWaterData[formattedDate]?.dailyWaterIntake || 0;
+                const dailyWaterIntake = dailyWaterData && dailyWaterData[formattedDate]
+                ? dailyWaterData[formattedDate].dailyWaterIntake || 0
+                : 0;
+
+                const isSelected = startOfDay(day).getTime() === today.getTime();
             
             return (
                 <CalendarItem
-                key={day}
+                key={day.toISOString()}
                 date={day}
-                onClick={handleDayClick}
+                onClick={onDayClick}
                 dailyWaterIntake={dailyWaterIntake}
-                isSelected={selectedDate && day.toDateString() === selectedDate.toDateString()}
+                isSelected={isSelected}
                 />
             );
             })}
