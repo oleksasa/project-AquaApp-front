@@ -21,7 +21,7 @@ export default function WaterProgressBar() {
           }}
         ></span>
         <span className={css.ellipse}></span>
-        {(15 <= rect1) & (rect1 <= 30) || (60 <= rect1) & (rect1 <= 75) ? (
+        {(13 <= rect1) & (rect1 <= 35) || (57 <= rect1) & (rect1 <= 81) ? (
           <span className={css.percent}>{rect1}%</span>
         ) : null}
         <span
