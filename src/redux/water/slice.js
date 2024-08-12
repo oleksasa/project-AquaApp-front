@@ -41,7 +41,7 @@ const waterSlice = createSlice({
         state.isError = null;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        state.data.dayItems = state.data.dayItems.concat(action.payload);
+        state.data.dayItems.push(action.payload.data);
         state.isLoading = false;
         console.log(action.payload);
       })
