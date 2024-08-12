@@ -5,7 +5,11 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addWater, updateWater } from '../../redux/water/operations';
+import {
+  addWater,
+  fetchDailyWater,
+  updateWater,
+} from '../../redux/water/operations';
 import { selectIsTodayDay, selectLoading } from '../../redux/water/selectors';
 
 const schema = yup.object().shape({
@@ -58,12 +62,14 @@ const WaterForm = ({ onRequestClose, props, waterId, checkData }) => {
 
     if (props === 'add') {
       dispatch(addWater({ date: formatedTime, volume: data.counter }));
+      dispatch(fetchDailyWater(formattedDate));
       onRequestClose();
       return;
     }
 
     dispatch(
       updateWater({ _id: waterId, date: formatedTime, volume: data.counter }),
+      dispatch(fetchDailyWater(String(checkData.date).substring(0, 10))),
     );
     onRequestClose();
   };
