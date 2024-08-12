@@ -12,7 +12,7 @@ export default function UserBar() {
   const buttonRef = useRef(null);
   const popoverRef = useRef(null);
 
-  const userName  = useSelector(selectUserName);
+  const userName = useSelector(selectUserName);
 
   const handlClick = () => {
     if (!isShow) {
@@ -22,29 +22,29 @@ export default function UserBar() {
     }
   };
 
-  useLayoutEffect(() => {
-    if (buttonRef.current) {
-      setPopoverWidth(buttonRef.current.offsetWidth);
-    }
-  }, [isShow]);
+  // useLayoutEffect(() => {
+  //   if (buttonRef.current) {
+  //     setPopoverWidth(buttonRef.current.offsetWidth);
+  //   }
+  // }, [isShow]);
 
-  useEffect(() => {
-    const handleOutsideClick = event => {
-      if (
-        isShow &&
-        popoverRef.current &&
-        !popoverRef.current.contains(event.target) &&
-        !buttonRef.current.contains(event.target)
-      ) {
-        setIsShow(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleOutsideClick = event => {
+  //     if (
+  //       isShow &&
+  //       popoverRef.current &&
+  //       !popoverRef.current.contains(event.target) &&
+  //       !buttonRef.current.contains(event.target)
+  //     ) {
+  //       setIsShow(false);
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [isShow]);
+  //   document.addEventListener('mousedown', handleOutsideClick);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleOutsideClick);
+  //   };
+  // }, [isShow]);
 
   return (
     <div className={css.wrapUserBar}>
@@ -54,7 +54,7 @@ export default function UserBar() {
         type="button"
         onClick={handlClick}
       >
-        {userName ? userName : "User"}
+        {userName ? userName : 'User'}
         <div className={css.wrapAvatar}>
           <IoPersonCircleSharp className={css.avatar} />
         </div>
