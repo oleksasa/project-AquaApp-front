@@ -16,6 +16,7 @@ export default function WaterItem({ water }) {
   const closeDeleteModal = () => setIsOpenDeleteModal(false);
 
   const timeWater = getTimeFromDate(water.date);
+  console.log(timeWater);
 
   return (
     <div className={css.wrapItem}>

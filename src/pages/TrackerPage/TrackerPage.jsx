@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { useEffect } from 'react';
 import { dateToday } from '../../helpers/dateRequire.js';
-import { fetchDailyWater } from '../../redux/water/operations.js';
+import { addWater, fetchDailyWater } from '../../redux/water/operations.js';
 
 export default function TrackerPage() {
   const dispatch = useDispatch();
@@ -15,10 +15,19 @@ export default function TrackerPage() {
     dispatch(fetchDailyWater(dateToday()));
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   dispatch(
+  //     addWater({
+  //       date: '2024-08-12T10:12:22Z',
+  //       volume: 50,
+  //     }),
+  //   );
+  // }, [dispatch]);
+
   return (
     <Layout
       leftComponent={{
-        component: <WaterMainInfo />,
+        // component: <WaterMainInfo />,
         bg: 'var(--color-second-bg)',
       }}
       rightComponent={{
