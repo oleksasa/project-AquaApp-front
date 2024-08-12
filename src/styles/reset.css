@@ -34,3 +34,10 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+input,
+textarea,
+select {
+  background-color: transparent;
+  color: inherit;
+}

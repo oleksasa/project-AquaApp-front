@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
 import css from './DeleteWaterModal.module.css';
-import { deleteWater } from '../../redux/water/operations';
+import { deleteWater, fetchDailyWater } from '../../redux/water/operations';
 
-const DeleteWaterModal = ({ onClose, waterId }) => {
+const DeleteWaterModal = ({ onClose, waterId, waterDate }) => {
   const dispatch = useDispatch();
 
   const deleteWaterRequest = () => {
     dispatch(deleteWater(waterId));
+    dispatch(fetchDailyWater(String(waterDate).substring(0, 10)));
     onClose();
   };
   return (

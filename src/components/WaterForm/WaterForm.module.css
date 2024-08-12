@@ -23,7 +23,7 @@
   border-radius: 30px;
   background: rgb(50, 63, 71);
   padding: 11px 20px 11px 20px;
-  color: rgb(255, 255, 255);
+  color: var(--white);
   font-weight: 700;
   line-height: 1;
 }
@@ -56,7 +56,7 @@
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
   padding: 16px 14px;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--white);
   display: block;
   margin-top: 8px;
   color: rgba(47, 47, 47, 1);
