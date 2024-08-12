@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo, updateUserProfile } from '../../redux/auth/operations';
 import toast, { Toaster } from 'react-hot-toast';
 import { SettingsDefaultValues, SUPPORTED_FORMATS } from '../../constants';
+import { selectUser } from '../../redux/auth/selectors.js';
 
 export default function UserSettingsForm({ onRequestClose }) {
   const [avatar, setAvatar] = useState(null);
@@ -16,11 +17,7 @@ export default function UserSettingsForm({ onRequestClose }) {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, [dispatch]);
-
-  const userInfo = useSelector(state => state.auth.user);
+  const userInfo = useSelector(selectUser);
 
   const PhotoUploadHandler = event => {
     const file = event.currentTarget.files[0];
