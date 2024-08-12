@@ -5,7 +5,7 @@ import css from './WaterDailyNorma.module.css';
 
 export default function WaterDailyNorma() {
   /* daily norma from Backend*/
-  const myDailyNorma = Number(useSelector(selectUser).dailyRateWater) / 1000;
+  const myDailyNorma = Number(useSelector(selectUser).dailyRateWater);
 
   return (
     <div className={css.container}>
