@@ -1,15 +1,10 @@
-import { eachDayOfInterval, startOfMonth, endOfMonth, startOfDay } from "date-fns";
+import { format, eachDayOfInterval, startOfMonth, endOfMonth, startOfDay } from "date-fns";
 import CalendarItem from '../CalendarItem/CalendarItem';
 import css from './Calendar.module.css';
-import { useSelector } from "react-redux";
-import { selectTotalWaterPerDay } from "../../redux/water/selectors";
 
 
 
-const Calendar = ({ currentMonth, onDayClick, selectedDay }) => {
-    
-    const dailyWaterData = useSelector(selectTotalWaterPerDay);
-    console.log('Daily Water Data:', dailyWaterData);
+const Calendar = ({ currentMonth, onDayClick, selectedDay, waterData }) => {
 
     const start = startOfMonth(currentMonth);
     const end = endOfMonth(currentMonth);
@@ -19,11 +14,11 @@ const Calendar = ({ currentMonth, onDayClick, selectedDay }) => {
     return (
         <div className={css.container}>
             {days.map(day => {
-                // const formattedDate = format(day, 'yyyy-MM-dd');
-                // const dailyWaterIntake = dailyWaterData[formattedDate]
-                // ? dailyWaterData[formattedDate].dailyWaterIntake || 0
-                // : 0;
-                // console.log(`Formatted Date: ${formattedDate}, Intake: ${dailyWaterIntake}`);
+                // форматуємо дату, щоб отримати ключ з waterData
+                const formattedDate = format(day, 'yyyy-MM-dd');
+                // // отримуємо відсоток для конкретного дня
+                const dailyData = waterData[formattedDate] || {};
+                const percentage = dailyData.percentage || 0;
 
                 const isSelected = startOfDay(day).getTime() === startOfDay(selectedDay).getTime();
             
@@ -32,7 +27,7 @@ const Calendar = ({ currentMonth, onDayClick, selectedDay }) => {
                 key={day.toISOString()}
                 date={day}
                 onClick={onDayClick}
-                dailyWaterIntake={dailyWaterData}
+                percentage={percentage}
                 isSelected={isSelected}
                 />
             );
