@@ -25,7 +25,6 @@ function App() {
     if (!token) return
 
     const refreshAndFetchUserInfo = async () => {
-      await dispatch(refreshToken());
       await dispatch(getUserInfo());
     };
 

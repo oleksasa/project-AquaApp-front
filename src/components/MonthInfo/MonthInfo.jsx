@@ -26,14 +26,19 @@ const MonthInfo = () => {
     
     // const dailyWaterData = useSelector(selectTotalWaterPerDay);
     const selectedDayFromRedux = useSelector(selectChoosingDay);
-    const isAuthenticated = useSelector(selectIsAuthenticated);
+    // const isAuthenticated = useSelector(selectIsAuthenticated);
 
     useEffect(() => {
-        if (isAuthenticated) {
+        // if (isAuthenticated) {
         dispatch(fetchMonthlyWater(format(currentMonth, 'yyyy-MM')));
+        // }
+    }, [currentMonth, dispatch]);
+
+    useEffect(() => {
+        // if (isAuthenticated) {
         dispatch(fetchDailyWater(format(selectedDay, 'yyyy-MM-dd')));
-        }
-    }, [currentMonth, selectedDay, dispatch, isAuthenticated]);
+        // }
+    }, [selectedDay, dispatch]);
 
     useEffect(() => {
         if (selectedDayFromRedux) {
@@ -60,10 +65,10 @@ const MonthInfo = () => {
     };
 
     const handleDayClick = (day) => {
-        if (isAuthenticated) {
-        dispatch(fetchDailyWater(format(day, 'yyyy-MM-dd')));
+        // if (isAuthenticated) {
+        // dispatch(fetchDailyWater(format(day, 'yyyy-MM-dd')));
         setSelectedDay(day);
-        }
+        // }
     };
 
     const monthName = format(currentMonth, 'MMMM');
