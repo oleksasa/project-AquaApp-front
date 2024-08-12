@@ -12,6 +12,17 @@ export default function UserBar() {
   const buttonRef = useRef(null);
   const popoverRef = useRef(null);
 
+  const [isOpenSettingsModal, setIsOpenSettingsModal] = useState(false);
+  const [isOpenLogOutModal, setIsOpenLogOutModal] = useState(false);
+  const openSettingsModal = () => {
+    setIsOpenSettingsModal(true);
+  };
+  const closeSettingsModal = () => setIsOpenSettingsModal(false);
+  const openLogOutModal = () => {
+    setIsOpenLogOutModal(true);
+  };
+  const closeLogOutModal = () => setIsOpenLogOutModal(false);
+
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
@@ -33,6 +44,8 @@ export default function UserBar() {
     const handleOutsideClick = event => {
       if (
         isShow &&
+        !isOpenSettingsModal &&
+        !isOpenLogOutModal &&
         popoverRef.current &&
         !popoverRef.current.contains(event.target) &&
         !buttonRef.current.contains(event.target)
@@ -45,7 +58,7 @@ export default function UserBar() {
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
-  }, [isShow]);
+  }, [isShow, isOpenSettingsModal, isOpenLogOutModal]);
 
   return (
     <div className={css.wrapUserBar}>
@@ -78,6 +91,12 @@ export default function UserBar() {
       {isShow && (
         <div ref={popoverRef}>
           <UserBarPopover
+            isOpenSettingsModal={isOpenSettingsModal}
+            openSettingsModal={openSettingsModal}
+            closeSettingsModal={closeSettingsModal}
+            isOpenLogOutModal={isOpenLogOutModal}
+            openLogOutModal={openLogOutModal}
+            closeLogOutModal={closeLogOutModal}
             style={{
               width: popoverWidth !== null ? `${popoverWidth}px` : 'auto',
             }}

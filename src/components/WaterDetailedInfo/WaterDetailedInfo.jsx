@@ -9,7 +9,7 @@ export default function WaterDetailedInfo() {
     <div className={css.wrapper}>
       <UserPanel />
       <DailyInfo />
-      {/* <MonthInfo /> */}
+      <MonthInfo />
     </div>
   );
 }

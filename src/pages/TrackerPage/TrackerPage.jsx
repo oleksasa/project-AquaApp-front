@@ -15,19 +15,10 @@ export default function TrackerPage() {
     dispatch(fetchDailyWater(dateToday()));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     addWater({
-  //       date: '2024-08-12T10:12:22Z',
-  //       volume: 50,
-  //     }),
-  //   );
-  // }, [dispatch]);
-
   return (
     <Layout
       leftComponent={{
-        // component: <WaterMainInfo />,
+        component: <WaterMainInfo />,
         bg: 'var(--color-second-bg)',
       }}
       rightComponent={{
