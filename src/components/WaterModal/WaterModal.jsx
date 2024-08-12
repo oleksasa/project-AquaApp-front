@@ -1,13 +1,18 @@
 import WaterForm from '../WaterForm/WaterForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './WaterModal.module.css';
 
 const WaterModal = ({ props, onRequestClose, water }) => {
-  const [checkId,setCheckId]=useState('');
-  if(!props==='add'){
-       setCheckId(water._id)
-  }
-  console.log(water);
+  const [checkId, setCheckId] = useState('');
+  const [checkData, setcheckData] = useState('');
+
+  useEffect(() => {
+    if (props !== 'add') {
+      setCheckId(water._id);
+      setcheckData(water);
+    }
+  }, [props, water]);
+
   return (
     <div className={css.container}>
       {props === 'add' ? (
@@ -21,7 +26,12 @@ const WaterModal = ({ props, onRequestClose, water }) => {
           <p className={css.p}>Correct entered data:</p>
         </>
       )}
-        <WaterForm onRequestClose={onRequestClose} props={props} waterId={checkId}/>
+      <WaterForm
+        onRequestClose={onRequestClose}
+        props={props}
+        waterId={checkId}
+        checkData={checkData}
+      />
     </div>
   );
 };
