@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-
+/* тут потрібно почистити стилі */
 .button {
   background-color: rgba(50, 63, 71, 0.2);
   border: none;
@@ -22,18 +22,17 @@
   @media screen and (min-width: 768px) {
     width: 38px;
     height: 38px;
-  
   }
 }
-  
+
 .completed {
   background-color: white;
 }
-  
+
 .incomplete {
   color: white;
 }
-  
+
 .selected {
   background-color: rgba(50, 63, 71, 1);
   color: rgba(155, 225, 160, 1);
@@ -49,6 +48,3 @@
     margin-top: 4px;
   }
 }
-  
-
-  
