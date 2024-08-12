@@ -5,8 +5,7 @@ import css from './WaterProgressBar.module.css';
 export default function WaterProgressBar() {
   // % of water drink from Backend
   const rect1 = Number(useSelector(selectPercentPerDay));
-
-  // const rect2 = 100 - rect1;
+  const rect2 = 100 - rect1;
 
   return (
     <div className={css.container}>
@@ -28,7 +27,7 @@ export default function WaterProgressBar() {
           className={css.rectangle}
           style={{
             /* Rectangle 2 */
-            width: `${rect1}%`,
+            width: `${rect2}%`,
             background: '#F0EFF4',
           }}
         ></span>
