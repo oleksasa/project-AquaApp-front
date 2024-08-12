@@ -9,11 +9,11 @@ import { dateToday } from '../../helpers/dateRequire.js';
 import { addWater, fetchDailyWater } from '../../redux/water/operations.js';
 
 export default function TrackerPage() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchDailyWater(dateToday()));
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  //
+  // useEffect(() => {
+  //   dispatch(fetchDailyWater(dateToday()));
+  // }, [dispatch]);
 
   return (
     <Layout

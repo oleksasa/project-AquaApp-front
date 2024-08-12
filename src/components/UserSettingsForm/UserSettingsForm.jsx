@@ -33,20 +33,20 @@ export default function UserSettingsForm({ onRequestClose }) {
   let validateSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, 'minimal 3 characters')
-      .max(50, 'maximum 50 characters')
-      .required('Name is required'),
+      .max(50, 'maximum 50 characters'),
+      // .required('Name is required'),
     weight: Yup.number()
       .typeError('Must be a number')
-      .min(30, 'minimal weight 30 kg')
-      .required('Weight is required'),
+      .min(30, 'minimal weight 30 kg'),
+      // .required('Weight is required'),
     sportTime: Yup.number()
       .typeError('Must be a number')
-      .positive('Must be positive')
-      .required('Time of sport activity is required'),
+      .positive('Must be positive'),
+      // .required('Time of sport activity is required'),
     dailyRateWater: Yup.number()
       .typeError('Must be a number')
       .positive('Must be positive')
-      .required('Water consumption is required'),
+      // .required('Water consumption is required'),
   });
 
   const defaultValues = userInfo ? SettingsDefaultValues(userInfo) : {};
