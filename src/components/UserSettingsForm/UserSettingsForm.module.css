@@ -66,6 +66,7 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   color: var(--color-font-second);
+  background-color: var(--white);
 }
 
 .radioInput {
@@ -94,7 +95,7 @@
   cursor: pointer;
 }
 .radioInput:checked + .customRadio::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 8.5px;
   height: 8.5px;
@@ -153,6 +154,7 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   color: var(--color-font-second);
+  background-color: var(--white);
 }
 .formInput:focus {
   outline: none;
