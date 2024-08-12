@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { useEffect } from 'react';
 import { dateToday } from '../../helpers/dateRequire.js';
-import { fetchDailyWater } from '../../redux/water/operations.js';
+import { addWater, fetchDailyWater } from '../../redux/water/operations.js';
 
 export default function TrackerPage() {
   const dispatch = useDispatch();

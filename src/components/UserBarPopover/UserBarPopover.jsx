@@ -6,14 +6,15 @@ import Icon from '../Icon/Icon';
 import css from './UserBarPopover.module.css';
 import { useState } from 'react';
 
-export default function UserBarPopover({ style }) {
-  const [isOpenSettingsModal, setIsOpenSettingsModal] = useState(false);
-  const [isOpenLogOutModal, setIsOpenLogOutModal] = useState(false);
-  const openSettingsModal = () => setIsOpenSettingsModal(true);
-  const closeSettingsModal = () => setIsOpenSettingsModal(false);
-  const openLogOutModal = () => setIsOpenLogOutModal(true);
-  const closeLogOutModal = () => setIsOpenLogOutModal(false);
-
+export default function UserBarPopover({
+  style,
+  isOpenSettingsModal,
+  openSettingsModal,
+  closeSettingsModal,
+  isOpenLogOutModal,
+  openLogOutModal,
+  closeLogOutModal,
+}) {
   return (
     <div className={css.wrapper} style={style}>
       <button className={css.btnSet} type="button" onClick={openSettingsModal}>
