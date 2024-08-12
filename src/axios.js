@@ -45,8 +45,9 @@ instance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const response = await fetchRefreshToken();
-        store.dispatch(setToken(response.token));
+        const token = await fetchRefreshToken();
+        store.dispatch(setToken(token));
+        instance.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         return instance(originalRequest);
       } catch (error) {
         if (error.response.status === 401) {

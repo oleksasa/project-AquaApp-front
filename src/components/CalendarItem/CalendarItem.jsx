@@ -4,7 +4,7 @@ import css from './CalendarItem.module.css';
 
 const CalendarItem = ({ date, onClick, dailyWaterIntake, isSelected }) => {
     const myDailyNorma = 2000;
-    console.log('CalendarItem Props:', { date, dailyWaterIntake, isSelected });
+    // console.log('CalendarItem Props:', { date, dailyWaterIntake, isSelected });
 
     // const intake = dailyWaterIntake || 0;
     const percentage = myDailyNorma > 0 ? (dailyWaterIntake / myDailyNorma) * 100 : 0;
