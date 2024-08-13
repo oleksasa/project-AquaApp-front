@@ -4,7 +4,7 @@ import { lazy, useEffect } from 'react';
 import RestrictedRoute from './components/permissions/RestrictedRoute';
 import PrivateRoute from './components/permissions/PrivateRoute';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserInfo, refreshToken } from './redux/auth/operations.js';
+import { getUserInfo } from './redux/auth/operations.js';
 import { selectIsRefreshing, selectToken } from './redux/auth/selectors.js';
 import Loader from './components/Loader/Loader.jsx';
 
@@ -22,7 +22,7 @@ function App() {
   const token = useSelector(selectToken);
 
   useEffect(() => {
-    if (!token) return
+    if (!token) return;
 
     const refreshAndFetchUserInfo = async () => {
       await dispatch(getUserInfo());

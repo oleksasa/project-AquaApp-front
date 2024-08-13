@@ -3,7 +3,6 @@ import { selectPercentPerDay } from '../../redux/water/selectors';
 import css from './WaterProgressBar.module.css';
 
 export default function WaterProgressBar() {
-  // % of water drink from Backend
   const rect1 = Number(useSelector(selectPercentPerDay));
   const rect2 = 100 - rect1;
 
@@ -14,7 +13,6 @@ export default function WaterProgressBar() {
         <span
           className={css.rectangle}
           style={{
-            /* Rectangle 1 */
             width: `${rect1}%`,
             background: '#9be1a0',
           }}
@@ -26,7 +24,6 @@ export default function WaterProgressBar() {
         <span
           className={css.rectangle}
           style={{
-            /* Rectangle 2 */
             width: `${rect2}%`,
             background: '#F0EFF4',
           }}

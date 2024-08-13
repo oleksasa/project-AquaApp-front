@@ -17,7 +17,6 @@ const Calendar = ({ currentMonth, onDayClick, selectedDay, waterData }) => {
     return (
         <div className={css.container}>
             {days.map(day => {
-                // форматуємо дату, щоб отримати ключ з waterData
                 const formattedDate = format(day, 'yyyy-MM-dd');
                 const dailyData = waterDataMap[formattedDate] || {};
                 const percentage = dailyData.percentage || 0;

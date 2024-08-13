@@ -33,12 +33,9 @@ export default function UserSettingsForm({ onRequestClose }) {
     name: Yup.string()
       .min(3, 'minimal 3 characters')
       .max(50, 'maximum 50 characters'),
-    weight: Yup.number()
-      .typeError('Must be a number'),
-    sportTime: Yup.number()
-      .typeError('Must be a number'),
-    dailyRateWater: Yup.number()
-      .typeError('Must be a number'),
+    weight: Yup.number().typeError('Must be a number'),
+    sportTime: Yup.number().typeError('Must be a number'),
+    dailyRateWater: Yup.number().typeError('Must be a number'),
   });
 
   const defaultValues = userInfo ? SettingsDefaultValues(userInfo) : {};
@@ -55,19 +52,25 @@ export default function UserSettingsForm({ onRequestClose }) {
     defaultValues: defaultValues,
   });
 
-
   useEffect(() => {
     if (userInfo) {
       reset(SettingsDefaultValues(userInfo));
     }
   }, [userInfo, reset]);
 
-  const watchedFields = useWatch({ name: ['weight', 'sportTime', 'dailyRateWater'], control });
+  const watchedFields = useWatch({
+    name: ['weight', 'sportTime', 'dailyRateWater'],
+    control,
+  });
 
   useEffect(() => {
     watchedFields.forEach((fieldValue, index) => {
       const fieldName = ['weight', 'sportTime', 'dailyRateWater'][index];
-      if (fieldValue === '' || fieldValue === null || fieldValue === undefined) {
+      if (
+        fieldValue === '' ||
+        fieldValue === null ||
+        fieldValue === undefined
+      ) {
         setValue(fieldName, 0);
       }
     });

@@ -8,7 +8,6 @@ export const selectToken = state => state.auth.token;
 export const selectAuthErrorMessage = state => state.auth.errorMessage;
 export const selectAuthSuccessMessage = state => state.auth.successMessage;
 export const selectIsLoading = state => state.auth.isLoading;
-// export const selectWaterRate = state => state.auth.user.dailyWaterConsumption;
 export const selectWaterRate = state => state.auth.user.dailyRateWater;
 export const selectIsLoadingPhoto = state => state.auth.isLoadingPhoto;
 export const selectIsNewUser = state => state.auth.isNewUser;
@@ -23,5 +22,5 @@ export const selectIsAuthenticated = state => {
 
 export const selectWaterRateInMilliliters = createSelector(
   [selectWaterRate],
-  (dailyRateWater) => dailyRateWater ? dailyRateWater * 1000 : 0
+  dailyRateWater => (dailyRateWater ? dailyRateWater * 1000 : 0),
 );

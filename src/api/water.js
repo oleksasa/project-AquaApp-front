@@ -2,7 +2,6 @@ import { instance } from '../axios.js';
 
 export const getDayWater = async date => {
   const data = await instance.get(`/water/day?date=${date}`);
-  // console.log(data);
   return data;
 };
 

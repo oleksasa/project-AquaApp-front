@@ -1,4 +1,4 @@
-//Функція переведення дати в формат "YYYY-MM-DD"
+
 export const dateToday = () => {
   const day = new Date();
 
@@ -8,13 +8,12 @@ export const dateToday = () => {
 
   return `${year}-${month}-${dateOfMonth}`;
 };
-//Функція витягування часу з дати '2024-08-10T10:12:22Z' в форматі '10:12'
+
 export const getTimeFromDate = date => {
-  const time = date.slice(11, 16); // Витягує '10:12'
+  const time = date.slice(11, 16); 
   return time;
 };
 
-//Функція для переформатування дати в "Day, Month"
 export const getShowDate = date => {
   const dateChoosing = new Date(date);
 
