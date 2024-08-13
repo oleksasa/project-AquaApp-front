@@ -13,6 +13,7 @@
   text-align: center;
   color: rgba(50, 63, 71, 1);
   font-size: 14px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,11 +23,13 @@
   @media screen and (min-width: 768px) {
     width: 38px;
     height: 38px;
+    font-size: 16px;
   }
 }
 
 .completed {
   background-color: white;
+  color: #323F47;
 }
 
 .incomplete {
@@ -41,6 +44,7 @@
 .percentage {
   color: rgba(47, 47, 47, 0.6);
   font-size: 10px;
+  font-weight: 400;
   margin-top: 6px;
 
   @media screen and (min-width: 768px) {
