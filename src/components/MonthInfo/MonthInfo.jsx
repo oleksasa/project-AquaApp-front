@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import CalendarPagination from '../CalendarPagination/CalendarPagination';
 import Calendar from '../Calendar/Calendar';
 import WaterStatistics from '../WaterStatistics/WaterStatistics';
-import { format, addMonths, subMonths, startOfDay } from 'date-fns';
+import { format, addMonths, subMonths, startOfDay, isToday } from 'date-fns';
 import css from './MonthInfo.module.css';
 import BtnIcon from '../BtnIcon/BtnIcon';
 import { fetchMonthlyWater, fetchDailyWater } from '../../redux/water/operations.js';
 import { selectTotalWaterPerMonth, selectChoosingDay } from '../../redux/water/selectors.js';
-import { choosingDay } from '../../redux/water/slice.js';
+import { choosingDay, isTodayDayChoosing } from '../../redux/water/slice.js';
 
 
 const MonthInfo = () => {
@@ -54,8 +54,9 @@ const MonthInfo = () => {
         setShowStats(prevShowStats => !prevShowStats);
     };
 
-    const handleDayClick = (day) => {
-        dispatch(choosingDay(day))
+    const handleDayClick = day => {
+        dispatch(choosingDay(String(day)));
+        dispatch(isTodayDayChoosing(isToday(String(day))));
         setSelectedDay(day);
     };
 

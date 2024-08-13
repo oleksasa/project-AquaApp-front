@@ -43,7 +43,6 @@ const waterSlice = createSlice({
       .addCase(addWater.fulfilled, (state, action) => {
         state.data.dayItems.push(action.payload.data);
         state.isLoading = false;
-        console.log(action.payload);
       })
       .addCase(addWater.rejected, (state, action) => {
         state.isLoading = false;

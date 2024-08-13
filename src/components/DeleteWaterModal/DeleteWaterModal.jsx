@@ -6,10 +6,10 @@ import { format } from 'date-fns';
 const DeleteWaterModal = ({ onClose, waterId, waterDate }) => {
   const dispatch = useDispatch();
 
-  const deleteWaterRequest = () => {
-    dispatch(deleteWater(waterId));
-    dispatch(fetchDailyWater(String(waterDate).substring(0, 10)));
-    dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
+  const deleteWaterRequest = async () => {
+    await dispatch(deleteWater(waterId));
+    await dispatch(fetchDailyWater(String(waterDate).substring(0, 10)));
+    await dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
     onClose();
   };
   return (
