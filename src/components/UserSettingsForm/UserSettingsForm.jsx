@@ -36,15 +36,6 @@ export default function UserSettingsForm({ onRequestClose }) {
     weight: Yup.number().typeError('Must be a number'),
     sportTime: Yup.number().typeError('Must be a number'),
     dailyRateWater: Yup.number().typeError('Must be a number'),
-    weight: Yup.number()
-      .typeError('Must be a number')
-      .min(30, 'minimal weight 30 kg'),
-    sportTime: Yup.number()
-      .typeError('Must be a number')
-      .positive('Must be positive'),
-    dailyRateWater: Yup.number()
-      .typeError('Must be a number')
-      .positive('Must be positive'),
   });
 
   const defaultValues = userInfo ? SettingsDefaultValues(userInfo) : {};
@@ -52,6 +43,7 @@ export default function UserSettingsForm({ onRequestClose }) {
   const {
     register,
     handleSubmit,
+    reset,
     control,
     setValue,
     formState: { errors, dirtyFields },
@@ -60,6 +52,11 @@ export default function UserSettingsForm({ onRequestClose }) {
     defaultValues: defaultValues,
   });
 
+  useEffect(() => {
+    if (userInfo) {
+      reset(SettingsDefaultValues(userInfo));
+    }
+  }, [userInfo, reset]);
 
   const watchedFields = useWatch({
     name: ['weight', 'sportTime', 'dailyRateWater'],
@@ -81,20 +78,16 @@ export default function UserSettingsForm({ onRequestClose }) {
 
   const onSubmit = async data => {
     toast.success('Successfully updated data');
-    onRequestClose();
 
     const formData = new FormData();
     if (avatar) formData.append('avatar', avatar);
     Object.keys(dirtyFields).forEach(key => {
-      if (data[key] !== undefined && data[key] !== null) {
-        formData.append(key, data[key]);
-      }
       formData.append(key, data[key]);
     });
 
     await dispatch(updateUserProfile(formData));
     await dispatch(getUserInfo());
-
+    onRequestClose();
     setPreviewAvatar('');
   };
 
@@ -109,7 +102,6 @@ export default function UserSettingsForm({ onRequestClose }) {
             alt="User avatar"
           />
         )}
-
         <label>
           <button
             className={css.button}
