@@ -36,19 +36,15 @@ export default function UserSettingsForm({ onRequestClose }) {
     weight: Yup.number().typeError('Must be a number'),
     sportTime: Yup.number().typeError('Must be a number'),
     dailyRateWater: Yup.number().typeError('Must be a number'),
-    // .required('Name is required'),
     weight: Yup.number()
       .typeError('Must be a number')
       .min(30, 'minimal weight 30 kg'),
-    // .required('Weight is required'),
     sportTime: Yup.number()
       .typeError('Must be a number')
       .positive('Must be positive'),
-    // .required('Time of sport activity is required'),
     dailyRateWater: Yup.number()
       .typeError('Must be a number')
       .positive('Must be positive'),
-    // .required('Water consumption is required'),
   });
 
   const defaultValues = userInfo ? SettingsDefaultValues(userInfo) : {};
@@ -64,11 +60,6 @@ export default function UserSettingsForm({ onRequestClose }) {
     defaultValues: defaultValues,
   });
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     reset(SettingsDefaultValues(userInfo));
-  //   }
-  // }, [userInfo, reset]);
 
   const watchedFields = useWatch({
     name: ['weight', 'sportTime', 'dailyRateWater'],

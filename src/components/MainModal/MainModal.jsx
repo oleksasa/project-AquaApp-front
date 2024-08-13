@@ -24,16 +24,3 @@ const MainModal = ({ isOpen, onRequestClose, children }) => {
 };
 
 export default MainModal;
-
-//ПРИКЛАД ВИКОРИСТАННЯ
-
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-//   const handleOpenModal = () => setIsModalOpen(true);
-//   const handleCloseModal = () => setIsModalOpen(false);
-
-//     <div className="">
-//       <button onClick={handleOpenModal}>OPEN</button>
-//       <MainModal isOpen={isModalOpen} onRequestClose={handleCloseModal}>
-//         <UserSettingsModal onRequestClose={handleCloseModal} />
-//       </MainModal>
-//     </div>
