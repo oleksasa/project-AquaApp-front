@@ -10,7 +10,7 @@ import {
   fetchDailyWater, fetchMonthlyWater,
   updateWater,
 } from '../../redux/water/operations';
-import { selectIsTodayDay, selectLoading } from '../../redux/water/selectors';
+import { selectChoosingDay, selectIsTodayDay, selectLoading } from '../../redux/water/selectors';
 import { format } from 'date-fns';
 
 const schema = yup.object().shape({
@@ -25,8 +25,9 @@ const schema = yup.object().shape({
 
 const WaterForm = ({ onRequestClose, props, waterId, checkData }) => {
   const isLoading = useSelector(selectLoading);
-  const isTodayDay = useSelector(selectIsTodayDay);
   const dispatch = useDispatch();
+
+  const choosingDay = useSelector(selectChoosingDay);
 
   const [counter, setCounter] = useState(checkData?.volume ?? 0);
 
@@ -45,7 +46,6 @@ const WaterForm = ({ onRequestClose, props, waterId, checkData }) => {
     },
   });
 
-  // Використовуємо useEffect для установки початкових значень у форму
   useEffect(() => {
     if (checkData?.date) {
       setValue('time', String(checkData.date).substring(11, 16));
@@ -56,23 +56,20 @@ const WaterForm = ({ onRequestClose, props, waterId, checkData }) => {
     }
   }, [checkData, setValue]);
 
-  const onSubmit = data => {
-    const today = new Date();
-    const formattedDate = today.toISOString().split('T')[0];
-    const formatedTime = `${formattedDate}T${data.time}:00Z`;
+  const onSubmit = async (data) => {
+    const formatedTime = `${choosingDay ? choosingDay : format(new Date(), 'yyyy-MM-dd')}T${data.time}:00Z`;
 
     if (props === 'add') {
-      dispatch(addWater({ date: formatedTime, volume: data.counter }));
-      dispatch(fetchDailyWater(formattedDate));
-      dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
+      await dispatch(addWater({ date: formatedTime, volume: data.counter }));
+      await dispatch(fetchDailyWater(choosingDay ? choosingDay : format(new Date(), 'yyyy-MM-dd')));
+      await dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
       onRequestClose();
       return;
     }
 
-    dispatch(
-      updateWater({ _id: waterId, date: formatedTime, volume: data.counter }),
-      dispatch(fetchDailyWater(String(checkData.date).substring(0, 10))),
-    );
+    dispatch(updateWater({ _id: waterId, date: formatedTime, volume: data.counter }));
+    await dispatch(fetchDailyWater(choosingDay ? choosingDay : format(new Date(), 'yyyy-MM-dd')));
+    await dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
     onRequestClose();
   };
 
@@ -143,7 +140,8 @@ const WaterForm = ({ onRequestClose, props, waterId, checkData }) => {
             <p className={css.error}>{errors.counter.message}</p>
           )}
         </label>
-        <button type="submit" className={css.btnSubmit} disabled={!isTodayDay}>
+        {/*<button type="submit" className={css.btnSubmit} disabled={!isTodayDay}>*/}
+        <button type="submit" className={css.btnSubmit}>
           Save{' '}
           {isLoading && (
             <div className={css.loader}>
