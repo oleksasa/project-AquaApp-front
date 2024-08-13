@@ -14,11 +14,7 @@ const SignInPage = () => {
   return (
     <Layout
       leftComponent={{
-        component: (
-          <div className={css.SignInWrap}>
-            <LoginForm />
-          </div>
-        ),
+        component: <LoginForm />,
         bg: 'var(--color-main-bg)',
       }}
       rightComponent={{
