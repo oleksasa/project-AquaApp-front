@@ -3,19 +3,21 @@ import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import { Layout } from '../../components/layouts/Layout/Layout.jsx';
 // import { useDispatch, useSelector } from 'react-redux';
+// import { choosingDay } from '../../redux/water/slice.js';
 
 // import { useEffect } from 'react';
 // import { fetchMonthlyWater } from '../../redux/water/operations.js';
 // import { selectTotalWaterPerMonth } from '../../redux/water/selectors.js';
 
 export default function TrackerPage() {
-  //   const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  //   useEffect(() => {
-  //     dispatch(fetchMonthlyWater('2024-08'));
-  //   }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(choosingDay('2024-08-13'));
+  // }, [dispatch]);
 
-  //   console.log(useSelector(selectTotalWaterPerMonth));
+  // console.log(useSelector(selectTotalWaterPerMonth));
+
   return (
     <Layout
       leftComponent={{

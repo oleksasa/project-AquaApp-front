@@ -13,3 +13,15 @@ export const getTimeFromDate = date => {
   const time = date.slice(11, 16); // Витягує '10:12'
   return time;
 };
+
+//Функція для переформатування дати в "Day, Month"
+export const getShowDate = date => {
+  const dateChoosing = new Date(date);
+
+  const day = dateChoosing.getDate();
+  const month = dateChoosing.toLocaleDateString('en-US', { month: 'long' });
+
+  const formattedDate = `${day}, ${month}`;
+
+  return formattedDate;
+};
