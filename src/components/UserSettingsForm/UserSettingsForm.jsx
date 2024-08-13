@@ -2,27 +2,21 @@ import * as Yup from 'yup';
 import css from './UserSettingsForm.module.css';
 import svg from '/sprite.svg';
 import clsx from 'clsx';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo, updateUserProfile } from '../../redux/auth/operations';
 import toast, { Toaster } from 'react-hot-toast';
 import { SettingsDefaultValues, SUPPORTED_FORMATS } from '../../constants';
+import { selectUser } from '../../redux/auth/selectors.js';
 
 export default function UserSettingsForm({ onRequestClose }) {
   const [avatar, setAvatar] = useState(null);
   const [previewAvatar, setPreviewAvatar] = useState('');
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, [dispatch]);
-
-  const userInfo = useSelector(state => state.auth.user);
-
-  console.log(userInfo);
+  const userInfo = useSelector(selectUser);
 
   const PhotoUploadHandler = event => {
     const file = event.currentTarget.files[0];
@@ -36,54 +30,66 @@ export default function UserSettingsForm({ onRequestClose }) {
   };
 
   let validateSchema = Yup.object().shape({
-    userName: Yup.string()
+    name: Yup.string()
       .min(3, 'minimal 3 characters')
-      .max(50, 'maximum 50 characters')
-      .required('Name is required'),
-    weight: Yup.number()
-      .typeError('Must be a number')
-      .min(30, 'minimal weight 30 kg')
-      .required('Weight is required'),
-    sportTime: Yup.number()
-      .typeError('Must be a number')
-      .positive('Must be positive')
-      .required('Time of sport activity is required'),
-    dailyRateWater: Yup.number()
-      .typeError('Must be a number')
-      .positive('Must be positive')
-      .required('Water consumption is required'),
+      .max(50, 'maximum 50 characters'),
+    weight: Yup.number().typeError('Must be a number'),
+    sportTime: Yup.number().typeError('Must be a number'),
+    dailyRateWater: Yup.number().typeError('Must be a number'),
   });
+
+  const defaultValues = userInfo ? SettingsDefaultValues(userInfo) : {};
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    control,
+    setValue,
+    formState: { errors, dirtyFields },
   } = useForm({
     resolver: yupResolver(validateSchema),
-    defaultValues: SettingsDefaultValues(userInfo),
+    defaultValues: defaultValues,
   });
 
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     reset(SettingsDefaultValues(userInfo));
+  //   }
+  // }, [userInfo, reset]);
+
+  const watchedFields = useWatch({
+    name: ['weight', 'sportTime', 'dailyRateWater'],
+    control,
+  });
+
+  useEffect(() => {
+    watchedFields.forEach((fieldValue, index) => {
+      const fieldName = ['weight', 'sportTime', 'dailyRateWater'][index];
+      if (
+        fieldValue === '' ||
+        fieldValue === null ||
+        fieldValue === undefined
+      ) {
+        setValue(fieldName, 0);
+      }
+    });
+  }, [watchedFields, setValue]);
+
   const onSubmit = async data => {
-    toast.success('Successfully update data');
-    console.log(1);
+    toast.success('Successfully updated data');
+    onRequestClose();
 
     const formData = new FormData();
-    formData.append('avatar', avatar);
-    formData.append('name', data.userName);
-    formData.append('weight', data.weight);
-    formData.append('sportTime', data.sportTime);
-    formData.append('dailyRateWater', data.dailyRateWater);
-    formData.append('gender', data.gender);
-    formData.append('email', data.email);
-
-    console.log('Form Data:', Object.fromEntries(formData));
+    if (avatar) formData.append('avatar', avatar);
+    Object.keys(dirtyFields).forEach(key => {
+      if (data[key] !== undefined && data[key] !== null) {
+        formData.append(key, data[key]);
+      }
+    });
 
     await dispatch(updateUserProfile(formData));
     await dispatch(getUserInfo());
-
     setPreviewAvatar('');
-    onRequestClose();
-    // reset(SettingsDefaultValues(userInfo));
   };
 
   return (
@@ -254,7 +260,7 @@ export default function UserSettingsForm({ onRequestClose }) {
           <div className={css.waterPerDayContainer}>
             <p className={css.waterPerDayText}>
               The required amount of water in liters per day:
-              <span className={css.formula}>1.8L</span>
+              <span className={css.formula}>{userInfo.dailyRateWater}L</span>
             </p>
             <div className="">
               <label htmlFor="dailyRateWater" className="">
