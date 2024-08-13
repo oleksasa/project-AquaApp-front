@@ -8,7 +8,6 @@ import css from './MonthInfo.module.css';
 import BtnIcon from '../BtnIcon/BtnIcon';
 import { fetchMonthlyWater, fetchDailyWater } from '../../redux/water/operations.js';
 import { selectTotalWaterPerMonth, selectChoosingDay } from '../../redux/water/selectors.js';
-import { selectIsAuthenticated } from '../../redux/auth/selectors.js';
 
 const MonthInfo = () => {
     const dispatch = useDispatch();
@@ -19,9 +18,14 @@ const MonthInfo = () => {
     const formattedDate = format(currentMonth, 'MM-yyyy');
     const monthlyWaterData = useSelector( state => {
         const dataForMonth = selectTotalWaterPerMonth(state) || {};
-        return dataForMonth[formattedDate] || {};
+        const monthData = dataForMonth[formattedDate] || {};
+        // console.log('Data for month:', dataForMonth);
+        // console.log('Monthly water data:', monthData);
+        return monthData;
 
     });
+
+    // const monthlyWaterData = useSelector(selectTotalWaterPerMonth(currentMonth));
 
     
     // const dailyWaterData = useSelector(selectTotalWaterPerDay);
@@ -30,6 +34,7 @@ const MonthInfo = () => {
 
     useEffect(() => {
         // if (isAuthenticated) {
+        console.log('Current month:', format(currentMonth, 'yyyy-MM'));
         dispatch(fetchMonthlyWater(format(currentMonth, 'yyyy-MM')));
         // }
     }, [currentMonth, dispatch]);
@@ -103,6 +108,7 @@ const MonthInfo = () => {
                 <Calendar
                 currentMonth={currentMonth}
                 onDayClick={handleDayClick}
+                waterData={monthlyWaterData}
                 // dailyWaterData={dailyWaterData}
                 selectedDay={selectedDay}
                 />
