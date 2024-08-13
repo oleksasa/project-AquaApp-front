@@ -1,5 +1,5 @@
-export const isToday = (date) => {
-  const first = new Date(Number(date));
+export const isToday = date => {
+  const first = new Date(date);
   const second = new Date();
   return (
     first.getFullYear() === second.getFullYear() &&
