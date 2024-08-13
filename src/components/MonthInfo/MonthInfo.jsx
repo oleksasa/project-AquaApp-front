@@ -14,8 +14,7 @@ import {
   selectTotalWaterPerMonth,
   selectChoosingDay,
 } from '../../redux/water/selectors.js';
-import { choosingDay, isTodayDayChoosing } from '../../redux/water/slice.js';
-import { isToday } from '../../helpers/isToday.js';
+import { choosingDay } from '../../redux/water/slice.js';
 
 const MonthInfo = () => {
   const dispatch = useDispatch();
@@ -60,8 +59,7 @@ const MonthInfo = () => {
   };
 
   const handleDayClick = day => {
-    dispatch(choosingDay(String(day)));
-    dispatch(isTodayDayChoosing(isToday(String(day))));
+    dispatch(choosingDay(day));
     setSelectedDay(day);
   };
 
