@@ -8,6 +8,8 @@ import css from './MonthInfo.module.css';
 import BtnIcon from '../BtnIcon/BtnIcon';
 import { fetchMonthlyWater, fetchDailyWater } from '../../redux/water/operations.js';
 import { selectTotalWaterPerMonth, selectChoosingDay } from '../../redux/water/selectors.js';
+import { choosingDay } from '../../redux/water/slice.js';
+
 
 const MonthInfo = () => {
     const dispatch = useDispatch();
@@ -15,34 +17,20 @@ const MonthInfo = () => {
     const [currentMonth, setCurrentMonth] = useState( new Date());
     const [selectedDay, setSelectedDay] = useState(startOfDay(new Date()));
 
-    const formattedDate = format(currentMonth, 'MM-yyyy');
-    const monthlyWaterData = useSelector( state => {
-        const dataForMonth = selectTotalWaterPerMonth(state) || {};
-        const monthData = dataForMonth[formattedDate] || {};
-        // console.log('Data for month:', dataForMonth);
-        // console.log('Monthly water data:', monthData);
-        return monthData;
+    const rawMonthlyData = useSelector(selectTotalWaterPerMonth) || [];
 
-    });
 
-    // const monthlyWaterData = useSelector(selectTotalWaterPerMonth(currentMonth));
+    console.log('Formatted Monthly Water Data:', rawMonthlyData);
 
-    
-    // const dailyWaterData = useSelector(selectTotalWaterPerDay);
     const selectedDayFromRedux = useSelector(selectChoosingDay);
-    // const isAuthenticated = useSelector(selectIsAuthenticated);
+    
 
     useEffect(() => {
-        // if (isAuthenticated) {
-        console.log('Current month:', format(currentMonth, 'yyyy-MM'));
         dispatch(fetchMonthlyWater(format(currentMonth, 'yyyy-MM')));
-        // }
     }, [currentMonth, dispatch]);
 
     useEffect(() => {
-        // if (isAuthenticated) {
         dispatch(fetchDailyWater(format(selectedDay, 'yyyy-MM-dd')));
-        // }
     }, [selectedDay, dispatch]);
 
     useEffect(() => {
@@ -70,11 +58,10 @@ const MonthInfo = () => {
     };
 
     const handleDayClick = (day) => {
-        // if (isAuthenticated) {
-        // dispatch(fetchDailyWater(format(day, 'yyyy-MM-dd')));
+        dispatch(choosingDay(day))
         setSelectedDay(day);
-        // }
     };
+
 
     const monthName = format(currentMonth, 'MMMM');
 
@@ -101,15 +88,13 @@ const MonthInfo = () => {
             {showStats ? (
                 <WaterStatistics
                 currentMonth={currentMonth}
-                waterData={monthlyWaterData}
-                // dailyGoal={}
+                waterData={rawMonthlyData}
                 />
             ) : (
                 <Calendar
                 currentMonth={currentMonth}
                 onDayClick={handleDayClick}
-                waterData={monthlyWaterData}
-                // dailyWaterData={dailyWaterData}
+                waterData={rawMonthlyData}
                 selectedDay={selectedDay}
                 />
             )}

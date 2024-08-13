@@ -3,7 +3,7 @@ import { format, eachDayOfInterval, startOfMonth, endOfMonth, isAfter } from 'da
 import css from './WaterStatistics.module.css';
 
 const WaterStatistics = ({ currentMonth, waterData }) => {
-    // Функція для отримання даних за місяцем до поточної дати
+
     const getMonthData = () => {
         const start = startOfMonth(currentMonth);
         const end = endOfMonth(currentMonth);
@@ -13,20 +13,19 @@ const WaterStatistics = ({ currentMonth, waterData }) => {
             return [];
         }
 
-        const lastDay = isAfter(today, end) ? end : today; // Визначаємо останній день для графіка
+        const lastDay = isAfter(today, end) ? end : today; 
         const days = eachDayOfInterval({ start, end: lastDay });
 
-        // Створення масиву даних для графіка
+        
         return days.map(day => {
-            const formattedDate = format(day, 'dd-MM-yyyy');
+            const formattedDate = format(day, 'yyyy-MM-dd');
             return {
                 date: format(day, 'd'),
                 waterIntake: waterData[formattedDate]?.dailyWaterIntake || 0
             };
         });
     };
-    // дані для прикладу
-    const dailyGoal = 2;
+    const dailyGoal = 1.5;
 
     const monthData = getMonthData();
 
@@ -37,12 +36,12 @@ const WaterStatistics = ({ currentMonth, waterData }) => {
                     data={monthData}
                     margin={{ top: 50, right: 10, left: 0, bottom: 0 }}
                 >
-                    {/* <defs>
+                    <defs>
                         <linearGradient id="colorWaterIntake" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="0%" stopColor="#9BE1A0" stopOpacity={0.8} />
                             <stop offset="100%" stopColor="#9BE1A0" stopOpacity={0} />
                         </linearGradient>
-                    </defs> */}
+                    </defs>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis 
                     dataKey="date"
