@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import css from './DeleteWaterModal.module.css';
-import { deleteWater, fetchDailyWater } from '../../redux/water/operations';
+import { deleteWater, fetchDailyWater, fetchMonthlyWater } from '../../redux/water/operations';
+import { format } from 'date-fns';
 
 const DeleteWaterModal = ({ onClose, waterId, waterDate }) => {
   const dispatch = useDispatch();
@@ -8,6 +9,7 @@ const DeleteWaterModal = ({ onClose, waterId, waterDate }) => {
   const deleteWaterRequest = () => {
     dispatch(deleteWater(waterId));
     dispatch(fetchDailyWater(String(waterDate).substring(0, 10)));
+    dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
     onClose();
   };
   return (

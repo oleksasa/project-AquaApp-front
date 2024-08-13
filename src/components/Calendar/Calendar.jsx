@@ -8,7 +8,6 @@ const Calendar = ({ currentMonth, onDayClick, selectedDay, waterData }) => {
     const start = startOfMonth(currentMonth);
     const end = endOfMonth(currentMonth);
     const days = eachDayOfInterval({ start, end });
-    console.log('Formatted Monthly Water Data:', waterData);
     const waterDataMap = waterData.reduce((acc, { date, percentage }) => {
         acc[date] = { percentage: parseFloat(percentage) || 0};
         return acc;

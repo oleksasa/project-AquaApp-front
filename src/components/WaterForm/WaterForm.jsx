@@ -7,10 +7,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addWater,
-  fetchDailyWater,
+  fetchDailyWater, fetchMonthlyWater,
   updateWater,
 } from '../../redux/water/operations';
 import { selectIsTodayDay, selectLoading } from '../../redux/water/selectors';
+import { format } from 'date-fns';
 
 const schema = yup.object().shape({
   time: yup.string().required('Time required'),
@@ -63,6 +64,7 @@ const WaterForm = ({ onRequestClose, props, waterId, checkData }) => {
     if (props === 'add') {
       dispatch(addWater({ date: formatedTime, volume: data.counter }));
       dispatch(fetchDailyWater(formattedDate));
+      dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
       onRequestClose();
       return;
     }

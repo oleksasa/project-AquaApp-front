@@ -10,7 +10,7 @@ const CalendarItem = ({ date, onClick, percentage, isSelected }) => {
         <div className={css.container}>
             <button
             className={`${css.button} ${btnClass} ${isSelected ? css.selected : ''}`}
-            onClick={() => onClick(date)}
+            onClick={() => onClick(format(date, 'yyyy-MM-dd'))}
             aria-label={`Day ${format(date, 'd')}`}
             >
             {format(date, 'd')}
