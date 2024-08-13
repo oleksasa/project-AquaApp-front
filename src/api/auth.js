@@ -31,5 +31,5 @@ export const updateUserInfo = async userInfo => {
 
 export const requestUserCount = async () => {
   const data = await instance.get('/users');
-  return data;
+  return data.data;
 };

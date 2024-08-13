@@ -1,9 +1,9 @@
 export const INITIAL_STATE = {
   user: {
-    name: "",
+    name: '',
     email: null,
     gender: null,
-    photo: null,
+    avatar: null,
     weight: 0,
     dailyActiveTime: 0,
     dailyWaterConsumption: 0,

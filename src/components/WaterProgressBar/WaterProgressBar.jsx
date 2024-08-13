@@ -1,8 +1,10 @@
+import { useSelector } from 'react-redux';
+import { selectPercentPerDay } from '../../redux/water/selectors';
 import css from './WaterProgressBar.module.css';
 
 export default function WaterProgressBar() {
-  // добавити логіку
-  const rect1 = 60; /* % of water drink is need to take from Backend*/
+  // % of water drink from Backend
+  const rect1 = Number(useSelector(selectPercentPerDay));
   const rect2 = 100 - rect1;
 
   return (
@@ -18,7 +20,7 @@ export default function WaterProgressBar() {
           }}
         ></span>
         <span className={css.ellipse}></span>
-        {(15 <= rect1) & (rect1 <= 30) || (60 <= rect1) & (rect1 <= 75) ? (
+        {(13 <= rect1) & (rect1 <= 35) || (57 <= rect1) & (rect1 <= 81) ? (
           <span className={css.percent}>{rect1}%</span>
         ) : null}
         <span

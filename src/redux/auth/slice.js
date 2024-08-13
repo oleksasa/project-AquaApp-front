@@ -108,7 +108,10 @@ const authSlice = createSlice({
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.successMessage = 'Profile updated';
-        state.user = action.payload.data.user;
+        state.user = {
+          ...state.user,
+          ...action.payload.data.user,
+        };
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
