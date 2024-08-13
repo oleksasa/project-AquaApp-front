@@ -41,8 +41,9 @@ const waterSlice = createSlice({
         state.isError = null;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        state.data.dayItems.push(action.payload);
+        state.data.dayItems.push(action.payload.data);
         state.isLoading = false;
+        console.log(action.payload);
       })
       .addCase(addWater.rejected, (state, action) => {
         state.isLoading = false;
@@ -86,7 +87,7 @@ const waterSlice = createSlice({
       })
       .addCase(fetchMonthlyWater.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.dataPerMonth = action.payload.data.dataPerMonth;
+        state.dataPerMonth.data = action.payload.data.result;
       })
       .addCase(fetchMonthlyWater.rejected, state => {
         state.waterMonthly.isLoading = false;

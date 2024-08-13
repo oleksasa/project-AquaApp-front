@@ -23,7 +23,7 @@
   margin-bottom: 8px;
 }
 .LoginInput {
-  background-color: transparent;
+  background-color: var(--color-main-bg);
   border-radius: 15px;
   outline: transparent;
   color: var(--color-font-main);

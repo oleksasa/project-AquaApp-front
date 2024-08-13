@@ -36,6 +36,19 @@ export default function UserSettingsForm({ onRequestClose }) {
     weight: Yup.number().typeError('Must be a number'),
     sportTime: Yup.number().typeError('Must be a number'),
     dailyRateWater: Yup.number().typeError('Must be a number'),
+    // .required('Name is required'),
+    weight: Yup.number()
+      .typeError('Must be a number')
+      .min(30, 'minimal weight 30 kg'),
+    // .required('Weight is required'),
+    sportTime: Yup.number()
+      .typeError('Must be a number')
+      .positive('Must be positive'),
+    // .required('Time of sport activity is required'),
+    dailyRateWater: Yup.number()
+      .typeError('Must be a number')
+      .positive('Must be positive'),
+    // .required('Water consumption is required'),
   });
 
   const defaultValues = userInfo ? SettingsDefaultValues(userInfo) : {};
@@ -85,22 +98,26 @@ export default function UserSettingsForm({ onRequestClose }) {
       if (data[key] !== undefined && data[key] !== null) {
         formData.append(key, data[key]);
       }
+      formData.append(key, data[key]);
     });
 
     await dispatch(updateUserProfile(formData));
     await dispatch(getUserInfo());
+
     setPreviewAvatar('');
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.userSettingForm}>
-      <Toaster key="unique-key" />
+      <Toaster />
       <div className={css.uploadPhotoContainer}>
-        <img
-          className={css.img}
-          src={previewAvatar == '' ? userInfo.avatar : previewAvatar}
-          alt="User avatar"
-        />
+        {userInfo && (
+          <img
+            className={css.img}
+            src={previewAvatar === '' ? userInfo.avatar : previewAvatar}
+            alt="User avatar"
+          />
+        )}
 
         <label>
           <button
@@ -152,23 +169,21 @@ export default function UserSettingsForm({ onRequestClose }) {
           </div>
           <div className={css.nameEmailWrapper}>
             <div className={css.name}>
-              <label htmlFor="userName" className="">
+              <label htmlFor="name" className="">
                 <h2 className={css.formTitle}>Your name</h2>
                 <input
-                  {...register('userName')}
+                  {...register('name')}
                   className={clsx(
                     css.formInput,
-                    errors.userName ? css.errorInput : '',
+                    errors.name ? css.errorInput : '',
                   )}
-                  name="userName"
-                  id="userName"
+                  name="name"
+                  id="name"
                 />
               </label>
 
-              {errors.userName && (
-                <span className={css.errorMessage}>
-                  {errors.userName.message}
-                </span>
+              {errors.name && (
+                <span className={css.errorMessage}>{errors.name.message}</span>
               )}
             </div>
             <div className="">

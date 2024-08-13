@@ -2,7 +2,6 @@ import axios from 'axios';
 import { logOutReducer, setToken } from './redux/auth/slice.js';
 
 const BASE_URL = 'https://project-aquaapp-back.onrender.com';
-// const BASE_URL = 'http://localhost:3000';
 
 let store;
 export const injectStore = _store => {
@@ -46,8 +45,9 @@ instance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const response = await fetchRefreshToken();
-        store.dispatch(setToken(response.token));
+        const token = await fetchRefreshToken();
+        store.dispatch(setToken(token));
+        instance.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         return instance(originalRequest);
       } catch (error) {
         if (error.response.status === 401) {

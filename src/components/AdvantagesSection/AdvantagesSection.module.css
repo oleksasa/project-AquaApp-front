@@ -1,4 +1,7 @@
 .advantagesSection {
+  display: flex;
+  align-items: self-end;
+  padding-bottom: 32px;
   border-radius: 30px;
   background-image: url('../../../public/img/bg/girl-mob.webp');
   background-size: cover;
@@ -9,7 +12,6 @@
 }
 
 .userCount {
-  margin-top: 209px;
   margin-left: 16px;
 }
 
@@ -108,13 +110,10 @@
 @media screen and (min-width: 1440px) {
   .advantagesSection {
     padding: 64px 32px;
-    background-image: url('../../../public/img/bg/girl-tab.webp');
+    background-image: url('../../../public/img/bg/girl-tab.png');
     min-height: 736px;
+    height: 100%;
     max-width: 672px;
-  }
-
-  .userCount {
-    margin-top: 469px;
   }
   .advantagesList {
     margin-left: 340px;

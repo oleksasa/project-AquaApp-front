@@ -10,6 +10,6 @@ export const dateToday = () => {
 };
 //Функція витягування часу з дати '2024-08-10T10:12:22Z' в форматі '10:12'
 export const getTimeFromDate = date => {
-  const time = date.substring(11, 16);
+  const time = date.slice(11, 16); // Витягує '10:12'
   return time;
 };

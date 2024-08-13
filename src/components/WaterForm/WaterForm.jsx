@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
 import css from './WaterForm.module.css';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addWater,
+  fetchDailyWater,
+  updateWater,
+} from '../../redux/water/operations';
+import { selectIsTodayDay, selectLoading } from '../../redux/water/selectors';
 
-// Створюємо схему валідації за допомогою yup
 const schema = yup.object().shape({
   time: yup.string().required('Time required'),
   counter: yup
@@ -16,8 +22,13 @@ const schema = yup.object().shape({
     .max(1500, 'Max 1500 ml'),
 });
 
-const WaterForm = ({onRequestClose}) => {
-  const [counter, setCounter] = useState(0);
+const WaterForm = ({ onRequestClose, props, waterId, checkData }) => {
+  const isLoading = useSelector(selectLoading);
+  const isTodayDay = useSelector(selectIsTodayDay);
+  const dispatch = useDispatch();
+
+  const [counter, setCounter] = useState(checkData?.volume ?? 0);
+
   const {
     register,
     handleSubmit,
@@ -26,28 +37,40 @@ const WaterForm = ({onRequestClose}) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      time: new Date().toTimeString().slice(0, 5),
-      counter: 0,
+      time: checkData?.date
+        ? String(checkData.date).substring(11, 16)
+        : new Date().toTimeString().slice(0, 5),
+      counter: checkData?.volume ?? 0,
     },
   });
 
+  // Використовуємо useEffect для установки початкових значень у форму
+  useEffect(() => {
+    if (checkData?.date) {
+      setValue('time', String(checkData.date).substring(11, 16));
+    }
+    if (checkData?.volume) {
+      setValue('counter', checkData.volume);
+      setCounter(checkData.volume);
+    }
+  }, [checkData, setValue]);
+
   const onSubmit = data => {
-    // Перевірка, якщо counter = 0
-    if (data.counter === 0) {
-      // Додаємо помилку у форму через setError
-      setValue('counter', 0);
-      return; // Скасовуємо відправку форми
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    const formatedTime = `${formattedDate}T${data.time}:00Z`;
+
+    if (props === 'add') {
+      dispatch(addWater({ date: formatedTime, volume: data.counter }));
+      dispatch(fetchDailyWater(formattedDate));
+      onRequestClose();
+      return;
     }
 
-    // Перевірка на додаткові умови
-    if (data.time !== new Date().toTimeString().slice(0, 5)) {
-      // Додаємо помилку у форму через setError
-      setValue('time', new Date().toTimeString().slice(0, 5));
-      return; // Скасовуємо відправку форми
-    }
-
-    // Якщо всі перевірки пройдено, показуємо дані
-    alert(JSON.stringify(data));
+    dispatch(
+      updateWater({ _id: waterId, date: formatedTime, volume: data.counter }),
+      dispatch(fetchDailyWater(String(checkData.date).substring(0, 10))),
+    );
     onRequestClose();
   };
 
@@ -87,32 +110,27 @@ const WaterForm = ({onRequestClose}) => {
     <div className={css.info}>
       <p className={css.p}>Amount of water:</p>
       <div className={css.counter}>
-        <button type='button' className={css.minus} onClick={minus}>
+        <button type="button" className={css.minus} onClick={minus}>
           <CiCircleMinus className={css.svg} />
         </button>
         <div className={css.counterInfo}>
           <span>{counter}</span> ml
         </div>
-        <button type='button' className={css.plus} onClick={plus}>
+        <button type="button" className={css.plus} onClick={plus}>
           <CiCirclePlus className={css.svg} />
         </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <label className={css.timeP}>
           Recording time:
-          <input
-            type='time'
-            {...register('time')}
-            className={css.input}
-            defaultValue={new Date().toTimeString().slice(0, 5)}
-          />
+          <input type="time" {...register('time')} className={css.input} />
           {errors.time && <p className={css.error}>{errors.time.message}</p>}
         </label>
         <label className={css.valueP}>
           Enter the value of the water used:
           <input
             className={css.input}
-            type='number'
+            type="number"
             {...register('counter')}
             min={0}
             max={1500}
@@ -123,8 +141,17 @@ const WaterForm = ({onRequestClose}) => {
             <p className={css.error}>{errors.counter.message}</p>
           )}
         </label>
-        <button type='submit' className={css.btnSubmit}>
-          Save
+        <button type="submit" className={css.btnSubmit} disabled={!isTodayDay}>
+          Save{' '}
+          {isLoading && (
+            <div className={css.loader}>
+              <div className={css.orbe} style={{ '--index': 0 }}></div>
+              <div className={css.orbe} style={{ '--index': 1 }}></div>
+              <div className={css.orbe} style={{ '--index': 2 }}></div>
+              <div className={css.orbe} style={{ '--index': 3 }}></div>
+              <div className={css.orbe} style={{ '--index': 4 }}></div>
+            </div>
+          )}
         </button>
       </form>
     </div>

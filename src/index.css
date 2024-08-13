@@ -1,5 +1,5 @@
-@import url("./styles/variables.css");
-@import url("./styles/reset.css");
+@import url('./styles/variables.css');
+@import url('./styles/reset.css');
 
 body {
   font-family: Poppins, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -23,7 +23,4 @@ body {
     font-size: 18px;
     line-height: 1.33;
   }
-}
-
-@media screen and (min-width: 1440px) {
 }

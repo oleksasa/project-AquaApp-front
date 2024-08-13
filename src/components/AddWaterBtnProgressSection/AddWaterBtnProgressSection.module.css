@@ -5,7 +5,8 @@
 
 .btnAddWaterProgressSection {
   margin-top: 40px;
-  margin-left: 171px;
+  margin-left: auto;
+  min-width: 140px;
   padding: 15px 20px;
   display: flex;
   align-items: center;
@@ -22,7 +23,9 @@
 
   color: var(--white);
   background-color: var(--color-font-main);
-  transition: all 250ms ease-out;
+  transition: transform 250ms ease-out, stroke var(--transition-color-color),
+    color var(--transition-color-color);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btnAddWaterProgressSection:active {

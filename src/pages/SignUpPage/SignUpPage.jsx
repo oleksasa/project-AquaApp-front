@@ -1,3 +1,4 @@
+
 import { Suspense, lazy } from 'react';
 import RegisterForm from '../../components/RegisterForm/RegisterForm.jsx';
 import { Layout } from '../../components/layouts/Layout/Layout.jsx';

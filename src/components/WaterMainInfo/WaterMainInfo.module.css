@@ -1,5 +1,5 @@
 .section {
-  background: url(/transparent_bottle_for_water1.png) no-repeat;
+  background: url(/transparent_bottle_for_water-mob.png) no-repeat;
   background-size: 262px 335px;
   background-position: center;
   width: 100%;
@@ -7,19 +7,47 @@
   z-index: 0;
 }
 
+@media (min-resolution: 192dpi) and (max-width: 767px) {
+  .section {
+    background: url(/transparent_bottle_for_water-mob@2x.png) no-repeat;
+    background-size: 262px 335px;
+    background-position: center;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .section {
+    background: url(/transparent_bottle_for_water-tab.png) no-repeat;
     margin-top: 13px;
     background-size: 374px 477px;
+    background-position: center;
     min-height: 477px;
+  }
+}
+
+@media (min-resolution: 192dpi) and (min-width: 768px) {
+  .section {
+    background: url(/transparent_bottle_for_water-tab@2x.png) no-repeat;
+    background-size: 374px 477px;
+    background-position: center;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .section {
+    background: url(/transparent_bottle_for_water-desk.png) no-repeat;
     margin-bottom: 0;
     background-size: 472px 604px;
+    background-position: center;
     min-height: 604px;
     margin-top: 36px;
+  }
+}
+
+@media (min-resolution: 192dpi) and (min-width: 1440px) {
+  .section {
+    background: url(/transparent_bottle_for_water-desk@2x.png) no-repeat;
+    background-size: 472px 604px;
+    background-position: center;
   }
 }
