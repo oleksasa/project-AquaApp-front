@@ -31,9 +31,12 @@
   background-color: white;
   color: #323F47;
 }
+.completed-100 {
+  background-color: white;
+}
 
 .incomplete {
-  color: white;
+  color: #323f47;
 }
 
 .selected {
