@@ -44,7 +44,7 @@ export const updateWater = createAsyncThunk(
   'water/updateWater',
   async (water, thunkAPI) => {
     try {
-      const response = patchWater(water._id, {
+      const response = await patchWater(water._id, {
         date: water.date,
         volume: water.volume,
       });
