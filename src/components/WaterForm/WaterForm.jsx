@@ -67,7 +67,7 @@ const WaterForm = ({ onRequestClose, props, waterId, checkData }) => {
       return;
     }
 
-    dispatch(updateWater({ _id: waterId, date: formatedTime, volume: data.counter }));
+    await dispatch(updateWater({ _id: waterId, date: formatedTime, volume: data.counter }));
     await dispatch(fetchDailyWater(choosingDay ? choosingDay : format(new Date(), 'yyyy-MM-dd')));
     await dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
     onRequestClose();
