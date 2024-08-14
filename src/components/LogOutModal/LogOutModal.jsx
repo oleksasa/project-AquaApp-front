@@ -4,7 +4,7 @@ import { logOut } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import toast from 'react-hot-toast';
 
-const LogOutModal = ({onClose}) => {
+const LogOutModal = ({onRequestClose}) => {
   const dispatch=useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -24,7 +24,7 @@ const LogOutModal = ({onClose}) => {
         <button type='button' className={css.delete} onClick={logOutUser}>
           Log out
         </button>
-        <button type='button' className={css.cancel} onClick={onClose}>
+        <button type='button' className={css.cancel} onClick={onRequestClose}>
           Cancel
         </button>
       </div>

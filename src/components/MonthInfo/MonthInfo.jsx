@@ -24,8 +24,6 @@ const MonthInfo = () => {
 
   const rawMonthlyData = useSelector(selectTotalWaterPerMonth) || [];
 
-  console.log('Formatted Monthly Water Data:', rawMonthlyData);
-
   const selectedDayFromRedux = useSelector(selectChoosingDay);
 
   useEffect(() => {

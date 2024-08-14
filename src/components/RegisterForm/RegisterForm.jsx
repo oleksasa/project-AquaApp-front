@@ -59,7 +59,7 @@ const RegisterForm = () => {
       reset();
       navigate('/tracker');
     } catch (error) {
-      toast.error('Something went wrong!');
+      toast.error('Email in use!');
     }
   };
 

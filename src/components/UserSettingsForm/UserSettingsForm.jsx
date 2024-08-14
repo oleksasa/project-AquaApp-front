@@ -1,15 +1,17 @@
+import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import css from './UserSettingsForm.module.css';
 import svg from '/sprite.svg';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo, updateUserProfile } from '../../redux/auth/operations';
 import toast, { Toaster } from 'react-hot-toast';
 import { SettingsDefaultValues, SUPPORTED_FORMATS } from '../../constants';
 import { selectUser } from '../../redux/auth/selectors.js';
+import { fetchMonthlyWater } from '../../redux/water/operations.js';
+import { format } from 'date-fns';
 
 export default function UserSettingsForm({ onRequestClose }) {
   const [avatar, setAvatar] = useState(null);
@@ -30,13 +32,13 @@ export default function UserSettingsForm({ onRequestClose }) {
     }
   };
 
-  let validateSchema = Yup.object().shape({
+  const validateSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, 'minimal 3 characters')
       .max(50, 'maximum 50 characters'),
-    weight: Yup.number().typeError('Must be a number'),
-    sportTime: Yup.number().typeError('Must be a number'),
-    dailyRateWater: Yup.number().typeError('Must be a number'),
+    weight: Yup.number().typeError('Must be a number').nullable(),
+    sportTime: Yup.number().typeError('Must be a number').nullable(),
+    dailyRateWater: Yup.number().typeError('Must be a number').nullable(),
   });
 
   const defaultValues = userInfo ? SettingsDefaultValues(userInfo) : {};
@@ -72,6 +74,12 @@ export default function UserSettingsForm({ onRequestClose }) {
     }
   }, [weight, sportTime, gender]);
 
+  const onBlurHandler = (fieldName, value) => {
+    if (value === '' || value === null || value === undefined) {
+      setValue(fieldName, 0, { shouldValidate: true });
+    }
+  };
+
   const onSubmit = async data => {
     toast.success('Successfully updated data');
 
@@ -83,6 +91,7 @@ export default function UserSettingsForm({ onRequestClose }) {
 
     await dispatch(updateUserProfile(formData));
     await dispatch(getUserInfo());
+    await dispatch(fetchMonthlyWater(format(new Date(), 'yyyy-MM')));
     onRequestClose();
     setPreviewAvatar('');
   };
@@ -220,6 +229,12 @@ export default function UserSettingsForm({ onRequestClose }) {
                   name="weight"
                   id="weight"
                   {...register('weight')}
+                  onFocus={() => {
+                    if (watchedFields[0] === 0) {
+                      setValue('weight', '');
+                    }
+                  }}
+                  onBlur={(e) => onBlurHandler('weight', e.target.value)}
                 />
               </label>
               {errors.weight && (
@@ -242,6 +257,12 @@ export default function UserSettingsForm({ onRequestClose }) {
                   name="sportTime"
                   id="sportTime"
                   {...register('sportTime')}
+                  onFocus={() => {
+                    if (watchedFields[1] === 0) {
+                      setValue('sportTime', '');
+                    }
+                  }}
+                  onBlur={(e) => onBlurHandler('sportTime', e.target.value)}
                 />
               </label>
               {errors.sportTime && (
@@ -269,6 +290,12 @@ export default function UserSettingsForm({ onRequestClose }) {
                   name="dailyRateWater"
                   id="dailyRateWater"
                   {...register('dailyRateWater')}
+                  onFocus={() => {
+                    if (watchedFields[2] === 0) {
+                      setValue('dailyRateWater', '');
+                    }
+                  }}
+                  onBlur={(e) => onBlurHandler('dailyRateWater', e.target.value)}
                 />
               </label>
               {errors.dailyRateWater && (

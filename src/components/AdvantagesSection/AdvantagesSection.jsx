@@ -1,4 +1,3 @@
-import React from 'react';
 import css from './AdvantagesSection.module.css';
 import UserCount from '../UserCount/UserCount';
 
