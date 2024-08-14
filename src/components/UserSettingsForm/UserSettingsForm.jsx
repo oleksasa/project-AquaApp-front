@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import css from './UserSettingsForm.module.css';
 import svg from '/sprite.svg';
 import clsx from 'clsx';
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo, updateUserProfile } from '../../redux/auth/operations';
@@ -19,6 +19,7 @@ export default function UserSettingsForm({ onRequestClose }) {
 
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
+  const [waterDailyNorma, setWaterDailyNorma] = useState(1.8);
 
   const PhotoUploadHandler = event => {
     const file = event.currentTarget.files[0];
@@ -45,9 +46,8 @@ export default function UserSettingsForm({ onRequestClose }) {
   const {
     register,
     handleSubmit,
+    watch,
     reset,
-    control,
-    setValue,
     formState: { errors, dirtyFields },
   } = useForm({
     resolver: yupResolver(validateSchema),
@@ -60,20 +60,19 @@ export default function UserSettingsForm({ onRequestClose }) {
     }
   }, [userInfo, reset]);
 
-  const watchedFields = useWatch({
-    name: ['weight', 'sportTime', 'dailyRateWater'],
-    control,
-  });
+  const weight = watch('weight');
+  const sportTime = watch('sportTime');
+  const gender = watch('gender');
 
   useEffect(() => {
-    watchedFields.forEach((fieldValue, index) => {
-      const fieldName = ['weight', 'sportTime', 'dailyRateWater'][index];
-
-      if ((fieldValue === '' || fieldValue === null || fieldValue === undefined) && fieldValue !== null) {
-        setValue(fieldName, null, { shouldValidate: true });
-      }
-    });
-  }, [watchedFields, setValue]);
+    if (weight >= 1 && sportTime >= 0) {
+      const waterNorma =
+        gender === 'woman'
+          ? weight * 0.03 + sportTime * 0.4
+          : weight * 0.04 + sportTime * 0.6;
+      setWaterDailyNorma(waterNorma.toFixed(1));
+    }
+  }, [weight, sportTime, gender]);
 
   const onBlurHandler = (fieldName, value) => {
     if (value === '' || value === null || value === undefined) {
@@ -276,7 +275,7 @@ export default function UserSettingsForm({ onRequestClose }) {
           <div className={css.waterPerDayContainer}>
             <p className={css.waterPerDayText}>
               The required amount of water in liters per day:
-              <span className={css.formula}>{userInfo.dailyRateWater}L</span>
+              <span className={css.formula}>{waterDailyNorma}L</span>
             </p>
             <div className="">
               <label htmlFor="dailyRateWater" className="">
