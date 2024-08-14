@@ -19,7 +19,7 @@ const UserCount = () => {
         setAvatars(data.data.randomAvatars);
       } catch (err) {
         console.log(err.message);
-      }finally {
+      } finally {
         setLoading(false);
       }
     }
@@ -27,12 +27,11 @@ const UserCount = () => {
     getCount();
   }, []);
 
-
   return (
     <div className={css.userCountComponent}>
       <ul className={css.userCountList}>
         {loading ? (
-          ""
+          ''
         ) : avatars && avatars.length > 0 ? (
           avatars.map((photo, index) => (
             <li key={index} className={css.userCountItem}>
@@ -42,13 +41,13 @@ const UserCount = () => {
         ) : (
           <>
             <li className={css.userCountItem}>
-              <img src={photo1} alt="user" />
+              <img src={photo1} alt="user" className={css.userCountPhoto} />
             </li>
             <li className={css.userCountItem}>
-              <img src={photo2} alt="user" />
+              <img src={photo2} alt="user" className={css.userCountPhoto} />
             </li>
             <li className={css.userCountItem}>
-              <img src={photo3} alt="user" />
+              <img src={photo3} alt="user" className={css.userCountPhoto} />
             </li>
           </>
         )}
