@@ -1,6 +1,7 @@
 .container {
   padding-left: 20px;
   padding-right: 20px;
+  min-height: 106px;
   overflow: hidden;
 }
 .wrapList {
@@ -12,6 +13,17 @@
   width: 100%;
   overflow-y: hidden;
   overflow-x: auto;
+}
+
+.text {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: var(--color-second-bg-hover);
+  border-radius: 15px;
+  padding: 18px 14px;
+  backdrop-filter: blur(33.599998474121094px);
+  background-color: var(--white);
 }
 
 /* WebKit стилізація горизонтальної смуги прокрутки */
@@ -39,6 +51,7 @@
   .container {
     padding-left: 32px;
     padding-right: 32px;
+    min-height: 118px;
   }
   .wrapList {
     gap: 32px;
